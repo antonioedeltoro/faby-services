@@ -1,7 +1,7 @@
 export default function OpenEnrollment() {
   return (
     <div>
-      <h1>Open Enrollment Page</h1>
+      <h1>Open Enrollment {new Date().getFullYear()}</h1>
     </div>
   );
 }
