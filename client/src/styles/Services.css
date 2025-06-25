@@ -69,4 +69,18 @@
   .section-content {
     padding: 0 1.5rem;
   }
+
+  .section {
+    padding: 3rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 2rem 1rem;
+  }
+
+  .section-content {
+    padding: 0 1rem;
+  }
 }
