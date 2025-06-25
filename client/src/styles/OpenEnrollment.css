@@ -1,0 +1,137 @@
+/* ===========================
+   OPEN ENROLLMENT PAGE STYLES
+=========================== */
+
+.open-enrollment-page {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.open-enrollment-section {
+  width: 100%;
+  background-color: transparent;
+  padding: 2rem 0;
+}
+
+.enrollment-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.heading-xl {
+  font-size: 2.25rem;
+  margin-bottom: 1rem;
+}
+
+.heading-xl.blue {
+  color: var(--color-accent, #004d40);
+}
+
+.paragraph {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.enrollment-list {
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+  color: #333;
+}
+
+.enrollment-list li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
+
+/* === FORM === */
+.enrollment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.enrollment-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #222;
+}
+
+.enrollment-form input,
+.enrollment-form select {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid var(--color-gray, #ccc);
+  border-radius: 4px;
+}
+
+.phone-field {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.phone-field select {
+  width: 30%;
+}
+
+.phone-field input {
+  flex: 1;
+}
+
+.button {
+  background-color: var(--color-accent, #004d40);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  align-self: start;
+}
+
+.button:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.enrollment-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.button--outline {
+  background-color: transparent;
+  color: #000;
+  border: 1.5px solid #000;
+}
+
+.button--outline:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .section-content {
+    padding: 0 1.5rem;
+  }
+
+  .heading-xl {
+    font-size: 1.75rem;
+  }
+
+  .phone-field {
+    flex-direction: column;
+  }
+
+  .phone-field select {
+    width: 100%;
+  }
+}
