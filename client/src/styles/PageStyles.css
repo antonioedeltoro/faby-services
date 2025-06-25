@@ -8,15 +8,14 @@
   gap: 0;
 }
 
-/* Full-screen sections with default or alternating background */
+/* Generic section — cleaned up */
 .section {
-  min-height: 100vh;
   width: 100vw;
-  display: flex;
-  align-items: center;
   padding: 4rem 0;
+  /* REMOVED min-height: 100vh, display: flex, align-items: center */
 }
 
+/* Consistent section layout */
 .section-content {
   max-width: 1200px;
   margin: 0 auto;
@@ -24,12 +23,14 @@
   text-align: left;
 }
 
-/* Hero (uses default background) */
+/* Hero only: vertically centered */
 .hero-section {
-  background-color: transparent;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
-/* Alternating background */
+/* Alternating backgrounds */
 .mission-section,
 .founder-section,
 .stats-section {
@@ -41,7 +42,7 @@
   background-color: transparent;
 }
 
-/* Founder */
+/* Founder layout */
 .founder-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -96,7 +97,10 @@
   overflow-wrap: break-word;
 }
 
-/* Responsive */
+/* ================
+   RESPONSIVE
+================ */
+
 @media (max-width: 1024px) {
   .founder-image {
     width: 350px;
@@ -111,7 +115,6 @@
 @media (max-width: 768px) {
   .section {
     padding: 3rem 1.5rem;
-    min-height: unset;
   }
 
   .section-content {

@@ -11,7 +11,7 @@ export default function Home() {
       </Helmet>
 
       {/* HERO */}
-      <section className="section hero-section">
+      <section className="section hero-section centered">
         <div className="section-content">
           <h1 className="heading-xl text-center">Trusted Tax & Business Consulting Services</h1>
           <p className="paragraph">
