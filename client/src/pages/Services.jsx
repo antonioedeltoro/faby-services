@@ -8,7 +8,7 @@ export default function Services() {
         <title>Services | Faby Services Insurance & Taxes</title>
       </Helmet>
 
-      <section className="section services-section">
+      <section className="services-section">
         <div className="section-content">
           <h1 className="heading-xl blue">Explore Our Services</h1>
 

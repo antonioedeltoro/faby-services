@@ -96,6 +96,17 @@
   color: #444;
 }
 
+.hero-section,
+.mission-section,
+.beliefs-section,
+.founder-section,
+.testimonials-section,
+.stats-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .founder-wrapper {

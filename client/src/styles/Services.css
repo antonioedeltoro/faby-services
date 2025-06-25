@@ -6,12 +6,12 @@
   display: flex;
   flex-direction: column;
   gap: 0;
+  background-color: #f7f7f7;
 }
 
 .services-section {
-  width: 100vw;
-  background-color: transparent;
-  padding: 1rem 0;
+  width: 100%;
+  padding: 3rem 0;
 }
 
 .section-content {
@@ -24,6 +24,8 @@
 .heading-xl {
   font-size: 2.25rem;
   margin-bottom: 2rem;
+  font-weight: bold;
+  color: var(--color-dark, #1a1a1a);
 }
 
 .heading-xl.blue {
@@ -32,15 +34,17 @@
 
 .subheading {
   font-size: 1.25rem;
-  color: #222;
+  color: var(--color-accent, #004d40);
+  font-weight: 600;
+  margin-top: 2rem;
   margin-bottom: 0.5rem;
 }
 
 .paragraph {
   font-size: 1rem;
   color: #333;
-  margin-bottom: 2rem;
   line-height: 1.6;
+  margin-bottom: 1.5rem;
 }
 
 .cta {
@@ -50,13 +54,7 @@
   margin-top: 2rem;
 }
 
-/* Responsive */
-@media (min-width: 1024px) {
-  .services-section {
-    padding: 3rem 0;
-  }
-}
-
+/* Responsive tweaks */
 @media (max-width: 768px) {
   .heading-xl {
     font-size: 1.75rem;
@@ -69,17 +67,9 @@
   .section-content {
     padding: 0 1.5rem;
   }
-
-  .section {
-    padding: 3rem 1.5rem;
-  }
 }
 
 @media (max-width: 480px) {
-  .section {
-    padding: 2rem 1rem;
-  }
-
   .section-content {
     padding: 0 1rem;
   }
