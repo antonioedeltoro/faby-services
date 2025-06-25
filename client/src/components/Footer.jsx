@@ -19,7 +19,8 @@ export default function Footer() {
           <NavLink to="/">Home</NavLink>
           <NavLink to="/services">Services</NavLink>
           <NavLink to="/contact">Contact</NavLink>
-          <NavLink to="/open-enrollment">Open Enrollment</NavLink>
+          <NavLink to="/open-enrollment">Open Enrollment {new Date().getFullYear()}</NavLink>
+
         </div>
 
         {/* Middle: Branding */}

@@ -1,6 +1,6 @@
 import { NavLink, Link } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
-import logo from '../assets/Fabylogo.svg';
+import logo from '../assets/Fabylogo.png';
 import '../styles/Navbar.css';
 import { Menu, X } from 'lucide-react';
 
@@ -59,7 +59,12 @@ export default function Navbar() {
         <li><NavLink to="/" end onClick={closeMenu}>Home</NavLink></li>
         <li><NavLink to="/services" onClick={closeMenu}>Services</NavLink></li>
         <li><NavLink to="/contact" onClick={closeMenu}>Contact</NavLink></li>
-        <li><NavLink to="/open-enrollment" onClick={closeMenu}>Open Enrollment</NavLink></li>
+        <li>
+  <NavLink to="/open-enrollment" onClick={closeMenu}>
+    Open Enrollment {new Date().getFullYear()}
+  </NavLink>
+</li>
+
       </ul>
     </nav>
   );
