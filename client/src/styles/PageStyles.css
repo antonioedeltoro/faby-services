@@ -4,7 +4,6 @@
 
 /* Generic section — cleaned up */
 .section {
-  width: 100vw;
   padding: 4rem 0;
   /* REMOVED min-height: 100vh, display: flex, align-items: center */
 }
