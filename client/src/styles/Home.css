@@ -20,9 +20,19 @@
   text-align: left;
 }
 
+.section.centered {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 4rem 0;
+}
+
 /* Hero */
 .hero-section {
   background-color: transparent;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
 .hero-section h1 {

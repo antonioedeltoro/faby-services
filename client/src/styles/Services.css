@@ -9,12 +9,9 @@
 }
 
 .services-section {
-  min-height: 100vh;
   width: 100vw;
-  display: flex;
-  align-items: center;
-  padding: 4rem 0;
   background-color: transparent;
+  padding: 1rem 0;
 }
 
 .section-content {
@@ -54,6 +51,12 @@
 }
 
 /* Responsive */
+@media (min-width: 1024px) {
+  .services-section {
+    padding: 3rem 0;
+  }
+}
+
 @media (max-width: 768px) {
   .heading-xl {
     font-size: 1.75rem;
