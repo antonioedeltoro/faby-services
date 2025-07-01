@@ -60,11 +60,15 @@ export default function Navbar() {
         <li><NavLink to="/services" onClick={closeMenu}>Services</NavLink></li>
         <li><NavLink to="/contact" onClick={closeMenu}>Contact</NavLink></li>
         <li>
-  <NavLink to="/open-enrollment" onClick={closeMenu}>
-    Open Enrollment {new Date().getFullYear()}
-  </NavLink>
-</li>
-
+          <NavLink to="/open-enrollment" onClick={closeMenu}>
+            Open Enrollment {new Date().getFullYear()}
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/news" onClick={closeMenu}>
+            News
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );

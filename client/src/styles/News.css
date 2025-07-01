@@ -1,0 +1,187 @@
+/* ========================
+   NEWS STYLES
+======================== */
+
+.news-page {
+  background-color: #f2eee2;
+  min-height: 100vh;
+  padding: 4rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.news-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.news-title {
+  font-size: 2.25rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: var(--color-accent, #004d40);
+  text-align: center;
+}
+
+/* Cards for public news list */
+.news-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.news-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #1a1a1a;
+}
+
+.news-meta {
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.news-body {
+  color: #333;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.news-body-full {
+  margin-top: 2rem;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #333;
+}
+
+/* Buttons and links */
+.read-more,
+.back-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-weight: 600;
+  color: var(--color-accent, #004d40);
+  text-decoration: none;
+}
+
+.read-more:hover,
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* Form styles (Create / Edit) */
+.news-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.news-form label {
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.news-form input,
+.news-form textarea {
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  font-family: inherit;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+/* Reusable button classes */
+.button {
+  background-color: var(--color-accent, #004d40);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-weight: bold;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-decoration: none;
+}
+
+.button:hover {
+  background-color: #00332d;
+}
+
+.button--outline {
+  background-color: transparent;
+  color: #1a1a1a;
+  border: 2px solid #1a1a1a;
+}
+
+.button--outline:hover {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+/* Admin dashboard table */
+.news-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.news-table th,
+.news-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #ccc;
+  text-align: left;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.table-button {
+  background: none;
+  border: none;
+  color: var(--color-accent, #004d40);
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 0.75rem;
+}
+
+.table-button.danger {
+  color: #cc2c33;
+}
+
+.form-error {
+  color: #cc2c33;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .news-title {
+    font-size: 1.75rem;
+  }
+
+  .news-card h2 {
+    font-size: 1.25rem;
+  }
+
+  .news-container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .news-container {
+    padding: 0 1rem;
+  }
+}
