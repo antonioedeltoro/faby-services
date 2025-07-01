@@ -27,6 +27,9 @@
 }
 
 .footer__column.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   justify-content: center;
   gap: 0.25rem;
@@ -76,6 +79,24 @@
 .footer__contact a:hover,
 .footer__column a:hover {
   color: #f8cc21;
+}
+
+.admin-logo-link {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.footer-logo {
+  height: 90px;
+  max-height: 90px;
+  object-fit: contain;
+  opacity: 0.75;
+  transition: opacity 0.2s ease;
+  cursor: pointer;
+}
+
+.footer-logo:hover {
+  opacity: 1;
 }
 
 @media (max-width: 768px) {

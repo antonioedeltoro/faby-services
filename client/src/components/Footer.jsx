@@ -1,5 +1,5 @@
 import '../styles/Footer.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import {
   Phone,
   Mail,
@@ -9,8 +9,14 @@ import {
   MessageCircle,
   CircleDashed
 } from 'lucide-react';
+import logo from '../assets/Fabylogoblk.png';
 
 export default function Footer() {
+  function isAdmin() {
+    const token = localStorage.getItem('token');
+    return !!token;
+  }
+
   return (
     <footer className="footer">
       <div className="footer__grid">
@@ -20,11 +26,23 @@ export default function Footer() {
           <NavLink to="/services">Services</NavLink>
           <NavLink to="/contact">Contact</NavLink>
           <NavLink to="/open-enrollment">Open Enrollment {new Date().getFullYear()}</NavLink>
-
         </div>
 
-        {/* Middle: Branding */}
+        {/* Middle: Branding + Admin Logo */}
         <div className="footer__column center">
+          <div className="admin-logo-link">
+            <Link
+              to={isAdmin() ? '/admin/news/dashboard' : '/admin/login'}
+              title="Admin access"
+            >
+              <img
+                src={logo}
+                alt="Faby Services Admin"
+                className="footer-logo"
+              />
+            </Link>
+          </div>
+
           <p>© {new Date().getFullYear()} Faby Services Insurance & Taxes</p>
           <p>
             Designed by{' '}
