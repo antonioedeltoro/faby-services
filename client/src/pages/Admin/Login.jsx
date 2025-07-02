@@ -16,7 +16,14 @@ export default function AdminLogin() {
     e.preventDefault();
 
     try {
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, { email, password });
+      const loginURL = `${import.meta.env.VITE_API_URL}/api/auth/login`;
+      console.log('🔧 Login endpoint:', loginURL); // Optional Debug Log
+
+      const res = await axios.post(loginURL, {
+        email,
+        password
+      });
+
       login(res.data.token); // Save the token to auth context
       navigate('/admin/news');
     } catch (err) {
