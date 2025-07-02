@@ -1,9 +1,12 @@
+require("dotenv").config(); // ✅ Load env variables first
+
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 
-require("dotenv").config();
 const { ADMIN_EMAIL, ADMIN_PASSWORD } = process.env;
+
+console.log("✅ Loaded from .env →", ADMIN_EMAIL, ADMIN_PASSWORD);
 
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
