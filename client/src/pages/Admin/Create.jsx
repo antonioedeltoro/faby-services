@@ -1,7 +1,8 @@
+// src/pages/Admin/Create.jsx
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/News.css';
+import api from '../../api/axios'; // Secure Axios instance
 
 export default function CreateNews() {
   const [title, setTitle] = useState('');
@@ -17,7 +18,7 @@ export default function CreateNews() {
     }
 
     try {
-      await axios.post('/api/news', { title, body });
+      await api.post('/news', { title, body });
       navigate('/admin/news');
     } catch (err) {
       console.error('Error creating news:', err);

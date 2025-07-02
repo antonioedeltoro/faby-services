@@ -1,15 +1,16 @@
+// src/pages/Admin/Dashboard.jsx
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../../styles/News.css';
+import api from '../../api/axios'; // Secure Axios instance
 
 export default function NewsDashboard() {
   const [newsItems, setNewsItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const fetchNews = () => {
-    axios
-      .get('/api/news')
+    api
+      .get('/news')
       .then((res) => {
         setNewsItems(res.data);
         setLoading(false);
@@ -27,7 +28,7 @@ export default function NewsDashboard() {
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this news item?')) return;
     try {
-      await axios.delete(`/api/news/${id}`);
+      await api.delete(`/news/${id}`);
       setNewsItems(newsItems.filter((item) => item._id !== id));
     } catch (err) {
       console.error('Failed to delete:', err);
