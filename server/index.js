@@ -1,13 +1,14 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const cors = require("cors");
+const mongoose = require("mongoose");
 require("dotenv").config();
 
-const app = express();
-const PORT = process.env.PORT || 5000;
+const authRoutes = require("./routes/auth");
+const newsRoutes = require("./routes/news");
 
-// Middleware
-app.use(express.json());
+const app = express();
+
+// 🔥 Apply CORS middleware BEFORE anything else
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -17,25 +18,20 @@ app.use(
   })
 );
 
-// Routes
-const newsRoutes = require("./routes/news");
-const authRoutes = require("./routes/auth"); // <-- Add this line
+// Built-in body parser
+app.use(express.json());
 
+// Mount routes
+app.use("/api/auth", authRoutes);
 app.use("/api/news", newsRoutes);
-app.use("/api/auth", authRoutes); // <-- Add this line
 
-// MongoDB Connection
+// Connect to MongoDB
 mongoose
-  .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("MongoDB connected");
-    app.listen(PORT, () => {
-      console.log(`Server running on http://localhost:${PORT}`);
-    });
+    app.listen(5000, () =>
+      console.log("Server running on http://localhost:5000")
+    );
   })
-  .catch((err) => {
-    console.error("Connection error:", err.message);
-  });
+  .catch((err) => console.error("Connection error:", err));
