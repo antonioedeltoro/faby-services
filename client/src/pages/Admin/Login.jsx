@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import '../../styles/AdminLogin.css';
+import axios from 'axios';
 
 export default function AdminLogin() {
   const [email, setEmail] = useState('');
@@ -11,18 +12,16 @@ export default function AdminLogin() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Hardcoded credentials
-    const validEmail = 'antonioedeltoro@gmail.com';
-    const validPassword = 'fabysecret2025';
-
-    if (email === validEmail && password === validPassword) {
-      login('secure-token');
+    try {
+      const res = await axios.post('/api/auth/login', { email, password });
+      login(res.data.token); // Save the token to auth context
       navigate('/admin/news');
-    } else {
-      setError('Incorrect email or password');
+    } catch (err) {
+      console.error('Login failed:', err);
+      setError('Invalid email or password');
     }
   };
 
