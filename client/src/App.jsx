@@ -22,13 +22,11 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
 // Auth
-import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 
 export default function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
         <div className="app-container">
           <Navbar />
           <main className="app-main">
@@ -65,7 +63,6 @@ export default function App() {
           </main>
           <Footer />
         </div>
-      </AuthProvider>
     </BrowserRouter>
   );
 }
