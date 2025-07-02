@@ -12,7 +12,10 @@ app.use(cors());
 
 // Routes
 const newsRoutes = require("./routes/news");
+const authRoutes = require("./routes/auth"); // <-- Add this line
+
 app.use("/api/news", newsRoutes);
+app.use("/api/auth", authRoutes); // <-- Add this line
 
 // MongoDB Connection
 mongoose
