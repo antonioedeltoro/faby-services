@@ -1,14 +1,11 @@
-const express = require("express");
-const router = express.Router();
-require("dotenv").config();
+const router = require("express").Router();
 
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
 
-  // TEMP: Debugging logs
-  console.log("Received credentials:", email, password);
+  console.log("🔐 Received:", email, password);
   console.log(
-    "Expected credentials:",
+    "✅ Expected:",
     process.env.ADMIN_EMAIL,
     process.env.ADMIN_PASSWORD
   );
@@ -17,10 +14,10 @@ router.post("/login", (req, res) => {
     email === process.env.ADMIN_EMAIL &&
     password === process.env.ADMIN_PASSWORD
   ) {
-    return res.status(200).json({ token: "secure-token" });
+    return res.status(200).json({ token: "fake-jwt-token" });
+  } else {
+    return res.status(403).json({ message: "Invalid email or password" });
   }
-
-  return res.status(403).json({ message: "Invalid email or password" });
 });
 
 module.exports = router;
