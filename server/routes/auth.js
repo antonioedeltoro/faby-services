@@ -1,19 +1,26 @@
-// server/routes/auth.js
 const express = require("express");
 const router = express.Router();
+require("dotenv").config();
 
-// POST /api/auth/login
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
 
-  const adminEmail = process.env.ADMIN_EMAIL;
-  const adminPassword = process.env.ADMIN_PASSWORD;
+  // TEMP: Debugging logs
+  console.log("Received credentials:", email, password);
+  console.log(
+    "Expected credentials:",
+    process.env.ADMIN_EMAIL,
+    process.env.ADMIN_PASSWORD
+  );
 
-  if (email === adminEmail && password === adminPassword) {
+  if (
+    email === process.env.ADMIN_EMAIL &&
+    password === process.env.ADMIN_PASSWORD
+  ) {
     return res.status(200).json({ token: "secure-token" });
-  } else {
-    return res.status(401).json({ message: "Invalid email or password" });
   }
+
+  return res.status(403).json({ message: "Invalid email or password" });
 });
 
 module.exports = router;
