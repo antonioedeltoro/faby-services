@@ -1,7 +1,8 @@
+// src/pages/Admin/Edit.jsx
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import '../../styles/News.css';
+import api from '../../api/axios'; // Secure Axios instance
 
 export default function EditNews() {
   const { id } = useParams();
@@ -13,8 +14,8 @@ export default function EditNews() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get(`/api/news/${id}`)
+    api
+      .get(`/news/${id}`)
       .then((res) => {
         setTitle(res.data.title);
         setBody(res.data.body);
@@ -35,7 +36,7 @@ export default function EditNews() {
     }
 
     try {
-      await axios.put(`/api/news/${id}`, { title, body });
+      await api.put(`/news/${id}`, { title, body });
       navigate('/admin/news');
     } catch (err) {
       console.error('Failed to update post:', err);
