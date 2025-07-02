@@ -4,6 +4,8 @@ const jwt = require("jsonwebtoken");
 
 const { ADMIN_EMAIL, ADMIN_PASSWORD } = process.env;
 
+console.log("✅ Loaded from .env →", ADMIN_EMAIL, ADMIN_PASSWORD); // <-- Add this
+
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
 
