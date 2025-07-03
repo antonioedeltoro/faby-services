@@ -1,7 +1,7 @@
 // src/context/AuthContext.jsx
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
-export const AuthContext = createContext();
+const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(localStorage.getItem('authToken') || null);
@@ -23,4 +23,9 @@ export function AuthProvider({ children }) {
       {children}
     </AuthContext.Provider>
   );
+}
+
+// ✅ Add this so other files can consume context safely
+export function useAuth() {
+  return useContext(AuthContext);
 }

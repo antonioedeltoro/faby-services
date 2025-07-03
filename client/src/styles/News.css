@@ -4,12 +4,42 @@
 
 .news-page {
   background-color: #f2eee2;
-  min-height: 100vh;
-  padding: 4rem 0;
+  min-height: 100vh; /* Use full viewport height */
+  padding: 4rem 1.5rem 2rem; /* Reduced bottom padding */
   display: flex;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start; /* Push content to top */
 }
 
+/* Dashboard Card Wrapper */
+.dashboard-card {
+  background-color: #fff;
+  max-width: 700px;
+  width: 100%;
+  padding: 3rem 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+/* Dashboard Title */
+.dashboard-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #009fe3; /* Faby Services blue */
+  margin-bottom: 2rem;
+}
+
+/* Dashboard Buttons Group */
+.dashboard-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap; /* Enable wrapping for mobile */
+}
+
+/* Cards for public news list */
 .news-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -25,7 +55,6 @@
   text-align: center;
 }
 
-/* Cards for public news list */
 .news-card {
   background-color: #fff;
   border: 1px solid #ddd;
@@ -100,11 +129,12 @@
 .form-buttons {
   display: flex;
   gap: 1rem;
+  justify-content: flex-start;
 }
 
 /* Reusable button classes */
 .button {
-  background-color: var(--color-accent, #004d40);
+  background-color: var(--color-accent, #009fe3);
   color: #fff;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -116,7 +146,8 @@
 }
 
 .button:hover {
-  background-color: #00332d;
+  background-color: #f8cc21; /* Yellow hover (Faby brand) */
+  color: #000;
 }
 
 .button--outline {
@@ -135,6 +166,7 @@
   width: 100%;
   border-collapse: collapse;
   margin-top: 1rem;
+  margin-bottom: 2rem; /* Reduce extra space at bottom */
 }
 
 .news-table th,
@@ -177,6 +209,10 @@
 
   .news-container {
     padding: 0 1.5rem;
+  }
+
+  .dashboard-card {
+    padding: 2rem 1.5rem;
   }
 }
 

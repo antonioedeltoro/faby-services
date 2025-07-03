@@ -1,0 +1,13 @@
+/* styles/Typography/Typography.css */
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  color: #222;
+}
+
+.heading-xl {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #0088cc;
+}

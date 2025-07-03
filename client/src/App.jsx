@@ -13,9 +13,9 @@ import NewsDetail from './pages/News/NewsDetail';
 
 // Admin Pages (Private)
 import AdminLogin from './pages/Admin/Login';
-import AdminDashboard from './pages/Admin/Dashboard';
-import AdminCreate from './pages/Admin/Create';
-import AdminEdit from './pages/Admin/Edit';
+import AdminDashboard from './pages/Admin/NewsDashboard';
+import AdminCreate from './pages/Admin/CreatePost';
+import AdminEdit from './pages/Admin/EditPost'; // assuming you renamed this
 
 // Layout
 import Navbar from './components/Navbar';
@@ -27,42 +27,48 @@ import ProtectedRoute from './components/ProtectedRoute';
 export default function App() {
   return (
     <BrowserRouter>
-        <div className="app-container">
-          <Navbar />
-          <main className="app-main">
-            <Routes>
-              {/* Public Routes */}
-              <Route path="/" element={<Home />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/open-enrollment" element={<OpenEnrollment />} />
-              <Route path="/news" element={<NewsList />} />
-              <Route path="/news/:id" element={<NewsDetail />} />
-              <Route path="/admin/login" element={<AdminLogin />} />
+      <div className="app-container">
+        <Navbar />
+        <main className="app-main">
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<Home />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/open-enrollment" element={<OpenEnrollment />} />
+            <Route path="/news" element={<NewsList />} />
+            <Route path="/news/:id" element={<NewsDetail />} />
+            <Route path="/admin/login" element={<AdminLogin />} />
 
-              {/* Protected Admin Routes */}
-<Route path="/admin/news" element={<AdminDashboard />} />
-
-              <Route
-                path="/admin/news/new"
-                element={
-                  <ProtectedRoute>
-                    <AdminCreate />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/admin/news/edit/:id"
-                element={
-                  <ProtectedRoute>
-                    <AdminEdit />
-                  </ProtectedRoute>
-                }
-              />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
+            {/* Protected Admin Routes */}
+            <Route
+              path="/admin/news"
+              element={
+                <ProtectedRoute>
+                  <AdminDashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/news/create"
+              element={
+                <ProtectedRoute>
+                  <AdminCreate />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/news/edit/:id"
+              element={
+                <ProtectedRoute>
+                  <AdminEdit />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 }

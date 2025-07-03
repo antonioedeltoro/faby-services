@@ -1,7 +1,10 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import '../../styles/News.css';
-import { Link } from 'react-router-dom';
+// client/src/pages/News/NewsList.jsx
+
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import "../../styles/News.css";
+import "../../styles/Typography.css";
 
 export default function NewsList() {
   const [newsItems, setNewsItems] = useState([]);
@@ -9,23 +12,13 @@ export default function NewsList() {
 
   useEffect(() => {
     axios
-      // Option 1: Use hardcoded backend URL if proxy is not configured
-      // .get('http://localhost:5000/api/news')
-
-      // Option 2: Use relative path (proxy must be configured in vite.config.js)
-      .get('/api/news')
+      .get("/api/news")
       .then((res) => {
-        const data = res.data;
-        if (Array.isArray(data)) {
-          setNewsItems(data);
-        } else {
-          console.error('Expected array, got:', data);
-          setNewsItems([]);
-        }
+        setNewsItems(Array.isArray(res.data) ? res.data : []);
         setLoading(false);
       })
       .catch((err) => {
-        console.error('Error fetching news:', err);
+        console.error("Error fetching news:", err);
         setNewsItems([]);
         setLoading(false);
       });
@@ -34,7 +27,8 @@ export default function NewsList() {
   return (
     <div className="news-page">
       <div className="news-container">
-        <h1 className="news-title">Latest News</h1>
+        <h1 className="heading-xl">Latest News</h1>
+
         {loading ? (
           <p>Loading...</p>
         ) : newsItems.length === 0 ? (
@@ -42,13 +36,19 @@ export default function NewsList() {
         ) : (
           newsItems.map((item) => (
             <div className="news-card" key={item._id}>
-              <h2>{item.title}</h2>
+              <h2 className="heading-md">{item.title}</h2>
               <p className="news-meta">
-                {new Date(item.createdAt).toLocaleDateString()}
+                {item.createdAt
+                  ? new Date(item.createdAt).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })
+                  : "Date unknown"}
               </p>
               <p className="news-body">
                 {item.body.length > 200
-                  ? `${item.body.substring(0, 200)}...`
+                  ? item.body.substring(0, 200) + "..."
                   : item.body}
               </p>
               <Link to={`/news/${item._id}`} className="read-more">
