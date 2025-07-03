@@ -21,6 +21,9 @@ app.use(
 // Built-in body parser
 app.use(express.json());
 
+// ✅ Serve static image files
+app.use("/uploads", express.static("uploads"));
+
 // Mount routes
 app.use("/api/auth", authRoutes);
 app.use("/api/news", newsRoutes);
