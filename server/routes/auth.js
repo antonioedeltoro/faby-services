@@ -15,6 +15,14 @@ router.post("/login", (req, res) => {
   console.log("  Received →", email, password);
   console.log("  Expected →", ADMIN_EMAIL, ADMIN_PASSWORD);
 
+  if (!email || !password) {
+    console.error("❗ Missing email or password in request body");
+    return res.status(400).json({ message: "Missing credentials" });
+  }
+
+  console.log("🔍 Email match?", email === ADMIN_EMAIL);
+  console.log("🔍 Password match?", password === ADMIN_PASSWORD);
+
   if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
     const token = jwt.sign({ email }, "your_jwt_secret", { expiresIn: "1h" });
     console.log("✅ Login success");
