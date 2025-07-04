@@ -1,28 +1,28 @@
-// client/src/pages/News/NewsList.jsx
-
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import "../../styles/News.css";
-import "../../styles/Typography.css";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import '../../styles/News.css';
+import '../../styles/Typography.css';
 
 export default function NewsList() {
   const [newsItems, setNewsItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const API = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+
   useEffect(() => {
     axios
-      .get("/api/news")
+      .get(`${API}/api/news`)
       .then((res) => {
         setNewsItems(Array.isArray(res.data) ? res.data : []);
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Error fetching news:", err);
+        console.error('Error fetching news:', err);
         setNewsItems([]);
         setLoading(false);
       });
-  }, []);
+  }, [API]);
 
   return (
     <div className="news-page">
@@ -37,21 +37,28 @@ export default function NewsList() {
           newsItems.map((item) => (
             <div className="news-card" key={item._id}>
               <h2 className="heading-md">{item.title}</h2>
+
               <p className="news-meta">
                 {item.createdAt
-                  ? new Date(item.createdAt).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
+                  ? new Date(item.createdAt).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
                     })
-                  : "Date unknown"}
+                  : 'Date unknown'}
               </p>
+
               <p className="news-body">
-                {item.body.length > 200
-                  ? item.body.substring(0, 200) + "..."
-                  : item.body}
+                {item.content?.length > 200
+                  ? item.content.substring(0, 200) + '…'
+                  : item.content}
               </p>
-              <Link to={`/news/${item._id}`} className="read-more">
+
+              {/* 🔑 Fallback to _id if slug is missing */}
+              <Link
+                to={`/news/${item.slug || item._id}`}
+                className="read-more"
+              >
                 Read more →
               </Link>
             </div>

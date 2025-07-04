@@ -1,38 +1,51 @@
-const express = require("express");
-const cors = require("cors");
-const mongoose = require("mongoose");
-require("dotenv").config();
+// server/index.js  (ES‑module version)
+import express from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
 
-const authRoutes = require("./routes/auth");
-const newsRoutes = require("./routes/news");
+import authRoutes from "./routes/auth.js";
+import newsRoutes from "./routes/news.js";
+
+dotenv.config();
 
 const app = express();
 
-// 🔥 Apply CORS middleware BEFORE anything else
+/* ───────────────────────────────────────────
+   CORS – adjust ORIGIN for production
+   ─────────────────────────────────────────── */
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.CLIENT_ORIGIN || "http://localhost:5173",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
 
-// Built-in body parser
-app.use(express.json());
+/* ───────────────────────────────────────────
+   Global middleware
+   ─────────────────────────────────────────── */
+app.use(express.json()); // built‑in body parser
+app.use("/uploads", express.static("uploads")); // serve image files
 
-// ✅ Serve static image files
-app.use("/uploads", express.static("uploads"));
-
-// Mount routes
+/* ───────────────────────────────────────────
+   Routes
+   ─────────────────────────────────────────── */
 app.use("/api/auth", authRoutes);
 app.use("/api/news", newsRoutes);
 
-// Connect to MongoDB
+/* ───────────────────────────────────────────
+   Database + server start
+   ─────────────────────────────────────────── */
+const PORT = process.env.PORT || 5001;
+
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_URI, { serverSelectionTimeoutMS: 5000 })
   .then(() => {
-    console.log("MongoDB connected");
-    app.listen(5001, () => console.log("Server running..."));
+    console.log("✅  MongoDB connected");
+    app.listen(PORT, () =>
+      console.log(`🚀  Server running on http://localhost:${PORT}`)
+    );
   })
-  .catch((err) => console.error("Connection error:", err));
+  .catch((err) => console.error("❌  Mongo connection error:", err));

@@ -1,27 +1,32 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import "../../styles/AdminFormWrapper.css";
+import '../../styles/AdminFormWrapper.css';
 import '../../styles/Typography.css';
 
 export default function EditPost() {
-  const { id } = useParams();
+  const { id } = useParams();                     // still _id for admin
   const navigate = useNavigate();
   const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
+  const [content, setContent] = useState('');
   const [image, setImage] = useState(null);
   const [existingImage, setExistingImage] = useState('');
   const [error, setError] = useState('');
 
+  const API = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await fetch(`/api/news/${id}`);
+        const token = localStorage.getItem('authToken');
+        const res = await fetch(`${API}/api/news/${id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         if (!res.ok) throw new Error('Post not found');
         const data = await res.json();
         setTitle(data.title || '');
-        setBody(data.body || '');
-        setExistingImage(data.image || '');
+        setContent(data.content || '');            // ✅
+        setExistingImage(data.imageUrl || '');     // ✅
       } catch (err) {
         console.error(err);
         setError('Failed to load post.');
@@ -29,7 +34,7 @@ export default function EditPost() {
     };
 
     fetchPost();
-  }, [id]);
+  }, [API, id]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -45,27 +50,23 @@ export default function EditPost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!title.trim() || !body.trim()) {
-      setError('Title and body are required.');
+    if (!title.trim() || !content.trim()) {
+      setError('Title and content are required.');
       return;
     }
 
     const formData = new FormData();
     formData.append('title', title);
-    formData.append('body', body);
-    if (image) {
-      formData.append('image', image);
-    }
+    formData.append('content', content);           // ✅
+    if (image) formData.append('image', image);
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('authToken');
 
     try {
-      const res = await fetch(`/api/news/${id}`, {
+      const res = await fetch(`${API}/api/news/${id}`, {
         method: 'PUT',
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
-        body: formData
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData,
       });
 
       if (res.ok) {
@@ -98,12 +99,12 @@ export default function EditPost() {
           required
         />
 
-        <label htmlFor="body">Body</label>
+        <label htmlFor="content">Content</label>
         <textarea
-          id="body"
+          id="content"
           rows="8"
-          value={body}
-          onChange={(e) => setBody(e.target.value)}
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
           required
         />
 

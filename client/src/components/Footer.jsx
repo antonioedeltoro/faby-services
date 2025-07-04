@@ -13,7 +13,7 @@ import logo from '../assets/Fabylogoblk.png';
 
 export default function Footer() {
   function isAdmin() {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('authToken');
     return !!token;
   }
 
@@ -32,7 +32,7 @@ export default function Footer() {
         <div className="footer__column center">
           <div className="admin-logo-link">
             <Link
-              to={isAdmin() ? '/admin/news/dashboard' : '/admin/login'}
+              to={isAdmin() ? '/admin/news/' : '/admin/login'}
               title="Admin access"
             >
               <img

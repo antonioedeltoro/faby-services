@@ -6,10 +6,12 @@ import '../../styles/Typography.css';
 
 export default function CreatePost() {
   const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
+  const [content, setContent] = useState('');
   const [image, setImage] = useState(null);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+
+  const API = import.meta.env.VITE_API_URL || 'http://localhost:5001';
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -25,27 +27,23 @@ export default function CreatePost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!title.trim() || !body.trim()) {
-      setError('Title and body are required.');
+    if (!title.trim() || !content.trim()) {
+      setError('Title and content are required.');
       return;
     }
 
     const formData = new FormData();
     formData.append('title', title);
-    formData.append('body', body);
-    if (image) {
-      formData.append('image', image);
-    }
+    formData.append('content', content);          // ✅ correct field name
+    if (image) formData.append('image', image);
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('authToken');
 
     try {
-      const res = await fetch('http://localhost:5001/api/news', {
+      const res = await fetch(`${API}/api/news`, {
         method: 'POST',
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
-        body: formData
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData,
       });
 
       if (res.ok) {
@@ -78,12 +76,12 @@ export default function CreatePost() {
           required
         />
 
-        <label htmlFor="body">Body</label>
+        <label htmlFor="content">Content</label>
         <textarea
-          id="body"
+          id="content"
           rows="8"
-          value={body}
-          onChange={(e) => setBody(e.target.value)}
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
           required
         />
 

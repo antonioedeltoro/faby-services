@@ -37,7 +37,7 @@ export default function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/open-enrollment" element={<OpenEnrollment />} />
             <Route path="/news" element={<NewsList />} />
-            <Route path="/news/:id" element={<NewsDetail />} />
+            <Route path="/news/:slug" element={<NewsDetail />} />
             <Route path="/admin/login" element={<AdminLogin />} />
 
             {/* Protected Admin Routes */}

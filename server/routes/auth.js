@@ -1,38 +1,27 @@
-require("dotenv").config(); // ✅ Load env variables first
+// server/routes/auth.js  (ESM version)
 
-const express = require("express");
-const router = express.Router();
-const jwt = require("jsonwebtoken");
+import { Router } from "express";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 
-const { ADMIN_EMAIL, ADMIN_PASSWORD } = process.env;
+dotenv.config(); // load .env once; harmless if index.js already did
 
-console.log("✅ Loaded from .env →", ADMIN_EMAIL, ADMIN_PASSWORD);
+const router = Router();
+
+const { ADMIN_EMAIL, ADMIN_PASSWORD, JWT_SECRET } = process.env;
 
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
 
-  console.log("📨 Login attempt:");
-  console.log("  Received →", email, password);
-  console.log("  Expected →", ADMIN_EMAIL, ADMIN_PASSWORD);
-
-  if (!email || !password) {
-    console.error("❗ Missing email or password in request body");
+  if (!email || !password)
     return res.status(400).json({ message: "Missing credentials" });
-  }
-
-  console.log("🔍 Email match?", email === ADMIN_EMAIL);
-  console.log("🔍 Password match?", password === ADMIN_PASSWORD);
 
   if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
-    const token = jwt.sign({ email }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
-    });
-    console.log("✅ Login success");
+    const token = jwt.sign({ email }, JWT_SECRET, { expiresIn: "1h" });
     return res.json({ token });
-  } else {
-    console.warn("❌ Login failed");
-    return res.status(403).json({ message: "Forbidden" });
   }
+
+  return res.status(403).json({ message: "Forbidden" });
 });
 
-module.exports = router;
+export default router;
