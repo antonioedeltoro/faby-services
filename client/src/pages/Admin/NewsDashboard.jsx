@@ -1,3 +1,4 @@
+// src/pages/Admin/NewsDashboard.jsx
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LogoutButton from "../../components/LogoutButton";
@@ -8,11 +9,11 @@ export default function NewsDashboard() {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("authToken");
 
     fetch("http://localhost:5001/api/news", {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`, // ✅ use the correct variable
       },
     })
       .then((res) => {
@@ -28,7 +29,7 @@ export default function NewsDashboard() {
     if (!confirmed) return;
 
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("authToken");
       const res = await fetch(`http://localhost:5001/api/news/${id}`, {
         method: "DELETE",
         headers: {

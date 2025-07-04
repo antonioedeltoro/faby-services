@@ -1,65 +1,47 @@
-const express = require("express");
-const router = express.Router();
-const multer = require("multer");
-const path = require("path");
+// server/routes/news.js
+import { Router } from "express";
+import multer from "multer";
+import path from "path";
+import {
+  getAllNews,
+  getNewsBySlug,
+  getNewsById,
+  createNews,
+  updateNews,
+  deleteNews,
+} from "../controllers/newsController.js";
+import authMiddleware from "../middleware/authMiddleware.js";
 
-const News = require("../models/News");
-const authMiddleware = require("../middleware/authMiddleware");
+const router = Router();
 
-// ─────────────────────────────────────────────
-// Multer Configuration for Image Uploads
-// ─────────────────────────────────────────────
+/* ─────────────────────────────────────────────
+   Multer configuration
+   ───────────────────────────────────────────── */
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "uploads/"); // Make sure this folder exists
+  destination: (_req, _file, cb) => {
+    cb(null, "uploads"); // folder must exist or be created at startup
   },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
+  filename: (_req, file, cb) => {
+    const unique = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(null, `${unique}${path.extname(file.originalname)}`);
   },
 });
 const upload = multer({ storage });
 
-// ─────────────────────────────────────────────
-// Public Routes
-// ─────────────────────────────────────────────
-router.get("/", async (req, res) => {
-  const news = await News.find().sort({ createdAt: -1 });
-  res.json(news);
-});
+/* ─────────────────────────────────────────────
+   Public routes
+   ───────────────────────────────────────────── */
+router.get("/", getAllNews); // GET /api/news
+router.get("/slug/:slug", getNewsBySlug); // GET /api/news/slug/:slug
+router.get("/:id", getNewsById); // GET /api/news/:id
 
-router.get("/:id", async (req, res) => {
-  const newsItem = await News.findById(req.params.id);
-  res.json(newsItem);
-});
+/* ─────────────────────────────────────────────
+   Protected routes – require valid JWT
+   ───────────────────────────────────────────── */
+router.post("/", authMiddleware, upload.single("image"), createNews); // POST /api/news
 
-// ─────────────────────────────────────────────
-// Protected Routes (Create, Update, Delete)
-// ─────────────────────────────────────────────
-router.post("/", authMiddleware, upload.single("image"), async (req, res) => {
-  try {
-    const { title, body } = req.body;
-    const image = req.file ? `/uploads/${req.file.filename}` : null;
+router.put("/:id", authMiddleware, upload.single("image"), updateNews); // PUT /api/news/:id
 
-    const newNews = new News({ title, body, image });
-    const saved = await newNews.save();
-    res.status(201).json(saved);
-  } catch (err) {
-    console.error("Error creating post:", err);
-    res.status(500).json({ message: "Server error. Try again later." });
-  }
-});
+router.delete("/:id", authMiddleware, deleteNews); // DELETE /api/news/:id
 
-router.put("/:id", authMiddleware, async (req, res) => {
-  const updated = await News.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-  });
-  res.json(updated);
-});
-
-router.delete("/:id", authMiddleware, async (req, res) => {
-  await News.findByIdAndDelete(req.params.id);
-  res.status(204).end();
-});
-
-module.exports = router;
+export default router;
