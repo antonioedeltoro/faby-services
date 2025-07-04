@@ -40,7 +40,7 @@ export default function CreatePost() {
     const token = localStorage.getItem('token');
 
     try {
-      const res = await fetch('/api/news', {
+      const res = await fetch('http://localhost:5001/api/news', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`
