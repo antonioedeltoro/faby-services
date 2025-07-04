@@ -1,0 +1,42 @@
+/* SERVICES PAGE – keeps only service‑specific rules */
+
+.services-page {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background-color: var(--color-bg-light);
+}
+
+.services-section {
+  padding: 3rem 0;
+}
+
+.heading-xl {
+  font-size: var(--font-size-xxl);
+  font-weight: 700;
+  color: var(--color-dark);
+}
+.heading-xl.blue {
+  color: var(--color-faby-blue);
+}
+
+.subheading {
+  font-size: var(--font-size-lg);
+  color: var(--color-faby-blue);
+  font-weight: 600;
+}
+
+.paragraph {
+  font-size: var(--font-size-md);
+  color: var(--color-dark);
+  line-height: 1.6;
+}
+
+.cta {
+  font-style: italic;
+  font-weight: 500;
+  color: #444;
+  margin-top: 2rem;
+}
+
+/* responsive unchanged … */
