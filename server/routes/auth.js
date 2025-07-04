@@ -24,7 +24,9 @@ router.post("/login", (req, res) => {
   console.log("🔍 Password match?", password === ADMIN_PASSWORD);
 
   if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
-    const token = jwt.sign({ email }, "your_jwt_secret", { expiresIn: "1h" });
+    const token = jwt.sign({ email }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
     console.log("✅ Login success");
     return res.json({ token });
   } else {

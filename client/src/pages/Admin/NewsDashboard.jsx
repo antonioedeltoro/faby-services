@@ -8,20 +8,28 @@ export default function NewsDashboard() {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
-    fetch("/api/news")
-      .then((res) => res.json())
+    const token = localStorage.getItem("token");
+
+    fetch("http://localhost:5001/api/news", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch news");
+        return res.json();
+      })
       .then((data) => setNews(data))
       .catch((err) => console.error("Error fetching news:", err));
   }, []);
 
-  // Optional: Delete functionality
   const handleDelete = async (id) => {
     const confirmed = window.confirm("Are you sure you want to delete this post?");
     if (!confirmed) return;
 
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`/api/news/${id}`, {
+      const res = await fetch(`http://localhost:5001/api/news/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
