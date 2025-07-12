@@ -1,111 +1,95 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
-import '../../styles/partials/forms.css';
-import "../../styles/partials/buttons.css";
-import '../../styles/Typography.css';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import "../../styles/Admin.css";
 
 export default function CreatePost() {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
   const [image, setImage] = useState(null);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const navigate = useNavigate();
-
-  const API = import.meta.env.VITE_API_URL || 'http://localhost:5001';
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    if (file && file.type.startsWith('image/')) {
+    if (file && file.type.startsWith("image/")) {
       setImage(file);
-      setError('');
+      setError("");
     } else {
-      setError('Please upload a valid image file.');
       setImage(null);
+      setError("Please upload a valid image file.");
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!title.trim() || !content.trim()) {
-      setError('Title and content are required.');
-      return;
-    }
+    if (!title.trim() || !body.trim())
+      return setError("Title and body are required");
 
     const formData = new FormData();
-    formData.append('title', title);
-    formData.append('content', content);          // ✅ correct field name
-    if (image) formData.append('image', image);
+    formData.append("title", title);
+    formData.append("content", body);
+    if (image) formData.append("image", image);
 
-    const token = localStorage.getItem('authToken');
+    const token = localStorage.getItem("authToken");
+    const res = await fetch("http://localhost:5001/api/news", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}` },
+      body: formData,
+    });
 
-    try {
-      const res = await fetch(`${API}/api/news`, {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${token}` },
-        body: formData,
-      });
-
-      if (res.ok) {
-        navigate('/admin/news');
-      } else {
-        const data = await res.json();
-        setError(data.message || 'Failed to create post.');
-      }
-    } catch (err) {
-      console.error('Submission error:', err);
-      setError('Server error. Please try again later.');
-    }
+    if (res.ok) navigate("/admin/news");
+    else setError("Failed to create post.");
   };
 
   return (
-    <div className="admin-form-wrapper">
-      <Helmet>
-        <title>Create News Post | Admin</title>
-      </Helmet>
+    <div className="news-page">
+      <div className="admin-card card">
+        <Helmet>
+          <title>Create Post | Admin</title>
+        </Helmet>
 
-      <h1>Create News Post</h1>
+        <h1 className="admin-page-title">Create New Post</h1>
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Title</label>
-        <input
-          id="title"
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
+        <form onSubmit={handleSubmit} className="enrollment-form">
+          <label>
+            Title
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+            />
+          </label>
 
-        <label htmlFor="content">Content</label>
-        <textarea
-          id="content"
-          rows="8"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          required
-        />
+          <label>
+            Body
+            <textarea
+              rows="8"
+              value={body}
+              onChange={(e) => setBody(e.target.value)}
+              required
+            />
+          </label>
 
-        <label htmlFor="image">Upload Image</label>
-        <input
-          id="image"
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-        />
+          <label>
+            Upload Image
+            <input type="file" accept="image/*" onChange={handleImageChange} />
+          </label>
 
-        {image && (
-          <div className="admin-form-preview">
-            <img src={URL.createObjectURL(image)} alt="Preview" />
-          </div>
-        )}
+          {image && (
+            <div className="admin-form-preview">
+              <img src={URL.createObjectURL(image)} alt="Preview" />
+            </div>
+          )}
 
-        {error && <p className="admin-form-error">{error}</p>}
+          {error && <p className="admin-form-error">{error}</p>}
 
-        <button type="submit" className="admin-form-submit button">
-          Submit
-        </button>
-      </form>
+          <button type="submit" className="button">
+            Publish Post
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

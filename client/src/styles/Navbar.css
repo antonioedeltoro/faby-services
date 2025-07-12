@@ -48,7 +48,7 @@
 }
 
 /* ========================
-   NAV LINKS (DEFAULT)
+   NAV LINKS (DESKTOP)
 ======================== */
 
 .navbar__links {
@@ -88,7 +88,8 @@
     width: 100%;
     background-color: white;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center; /* <- centred horizontally */
+    text-align: center; /* <- anchors centred */
     padding: 1rem 2rem;
     gap: 1rem;
     transform: scaleY(0);

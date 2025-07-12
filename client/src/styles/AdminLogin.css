@@ -1,6 +1,9 @@
-/* Admin login page – wrapper only */
+/* ADMIN LOGIN
+   =========== */
 
-@import url("./partials/forms.css");
+@import url("../partials/card.css");
+@import url("../partials/forms.css");
+@import url("../partials/buttons.css");
 
 .login-page {
   min-height: 80vh;
@@ -11,11 +14,26 @@
   padding: 2rem;
 }
 
-.login-page form {
-  background: var(--color-white);
-  padding: 2rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+.login-wrapper {
+  /* new card wrapper */
   width: 100%;
   max-width: 400px;
+}
+
+.login-card {
+  /* reuse .card */
+  padding: 2rem;
+}
+
+.login-card h1 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: var(--color-faby-blue);
+}
+
+.login-card .admin-form-error {
+  margin-top: 0.5rem;
+  color: var(--color-error);
+  font-weight: 500;
+  text-align: center;
 }

@@ -4,8 +4,10 @@
 
 @import url("./partials/buttons.css");
 @import url("./partials/forms.css");
+@import url("./partials/card.css");
 
-/* wrapper */
+/* ---------- Wrapper ---------- */
+
 .news-page {
   background-color: var(--color-bg-light);
   min-height: 100vh;
@@ -15,23 +17,6 @@
   align-items: flex-start;
 }
 
-/* dashboard card (admin) */
-.dashboard-card {
-  background-color: var(--color-white);
-  max-width: 700px;
-  width: 100%;
-  padding: 3rem 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  text-align: center;
-}
-
-.dashboard-card .heading-lg {
-  color: var(--color-faby-blue);
-  margin-bottom: 2rem;
-}
-
-/* news list */
 .news-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -39,19 +24,27 @@
   padding: 0 2rem;
 }
 
+/* ---------- Headings ---------- */
+
+.heading-xl,
+.heading-lg {
+  color: var(--color-faby-blue); /* blue headings */
+}
+
+/* ---------- List cards ---------- */
+
 .news-card {
-  background-color: var(--color-white);
   border: 1px solid #ddd;
   border-radius: 0.5rem;
-  padding: 2rem;
   margin-bottom: 2rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+.news-card.card {
+  /* inherits padding + shadow */
 }
 
 .news-card h2 {
   font-size: var(--font-size-lg);
   margin-bottom: 0.5rem;
-  color: var(--color-dark);
 }
 
 .news-meta {
@@ -67,31 +60,28 @@
   color: var(--color-dark);
 }
 
-/* table in admin dashboard */
-.news-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1rem 0 2rem;
+/* ---------- Links ---------- */
+
+.read-more,
+.back-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-weight: 600;
+  color: var(--color-faby-blue);
 }
 
-.news-table th,
-.news-table td {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid #ccc;
-  text-align: left;
-  font-size: var(--font-size-sm);
-  color: var(--color-dark);
+.read-more:hover,
+.back-link:hover {
+  text-decoration: underline;
 }
 
-/* responsive tweaks */
+/* ---------- Responsive ---------- */
+
 @media (max-width: 768px) {
   .news-card h2 {
     font-size: var(--font-size-md);
   }
   .news-container {
     padding: 0 1.5rem;
-  }
-  .dashboard-card {
-    padding: 2rem 1.5rem;
   }
 }
