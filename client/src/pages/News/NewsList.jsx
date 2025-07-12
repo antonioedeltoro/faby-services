@@ -1,14 +1,13 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import '../../styles/News.css';
-import '../../styles/Typography.css';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import "../../styles/News.css";
 
 export default function NewsList() {
   const [newsItems, setNewsItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const API = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+  const API = import.meta.env.VITE_API_URL || "http://localhost:5001";
 
   useEffect(() => {
     axios
@@ -18,7 +17,7 @@ export default function NewsList() {
         setLoading(false);
       })
       .catch((err) => {
-        console.error('Error fetching news:', err);
+        console.error("Error fetching news:", err);
         setNewsItems([]);
         setLoading(false);
       });
@@ -30,35 +29,22 @@ export default function NewsList() {
         <h1 className="heading-xl">Latest News</h1>
 
         {loading ? (
-          <p>Loading...</p>
+          <p>Loading ...</p>
         ) : newsItems.length === 0 ? (
           <p>No news available.</p>
         ) : (
           newsItems.map((item) => (
-            <div className="news-card" key={item._id}>
-              <h2 className="heading-md">{item.title}</h2>
-
+            <div className="news-card card" key={item._id}>
+              <h2>{item.title}</h2>
               <p className="news-meta">
-                {item.createdAt
-                  ? new Date(item.createdAt).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                    })
-                  : 'Date unknown'}
+                {new Date(item.createdAt).toLocaleDateString()}
               </p>
-
               <p className="news-body">
                 {item.content?.length > 200
-                  ? item.content.substring(0, 200) + '…'
+                  ? `${item.content.slice(0, 200)} …`
                   : item.content}
               </p>
-
-              {/* 🔑 Fallback to _id if slug is missing */}
-              <Link
-                to={`/news/${item.slug || item._id}`}
-                className="read-more"
-              >
+              <Link to={`/news/${item.slug || item._id}`} className="read-more">
                 Read more →
               </Link>
             </div>

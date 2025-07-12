@@ -1,90 +1,68 @@
-// src/pages/Admin/NewsDashboard.jsx
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LogoutButton from "../../components/LogoutButton";
-import "../../styles/News.css";
-import "../../styles/Typography.css";
+import "../../styles/Admin.css";
 
 export default function NewsDashboard() {
-  const [news, setNews] = useState([]);
+  const [posts, setPosts] = useState([]);
 
+  /* fetch posts on mount */
   useEffect(() => {
     const token = localStorage.getItem("authToken");
-
     fetch("http://localhost:5001/api/news", {
-      headers: {
-        Authorization: `Bearer ${token}`, // ✅ use the correct variable
-      },
+      headers: { Authorization: `Bearer ${token}` },
     })
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch news");
-        return res.json();
-      })
-      .then((data) => setNews(data))
-      .catch((err) => console.error("Error fetching news:", err));
+      .then((r) => r.json())
+      .then((data) => setPosts(data))
+      .catch(console.error);
   }, []);
 
+  /* delete handler */
   const handleDelete = async (id) => {
-    const confirmed = window.confirm("Are you sure you want to delete this post?");
-    if (!confirmed) return;
-
-    try {
-      const token = localStorage.getItem("authToken");
-      const res = await fetch(`http://localhost:5001/api/news/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (res.ok) {
-        setNews(news.filter((item) => item._id !== id));
-      } else {
-        const data = await res.json();
-        alert(data.message || "Failed to delete post.");
-      }
-    } catch (err) {
-      console.error("Delete error:", err);
-      alert("Server error. Try again later.");
-    }
+    if (!window.confirm("Delete this post?")) return;
+    const token = localStorage.getItem("authToken");
+    const res = await fetch(`http://localhost:5001/api/news/${id}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (res.ok) setPosts((p) => p.filter((n) => n._id !== id));
   };
 
   return (
     <div className="news-page">
-      <div className="dashboard-card">
-        <h1 className="dashboard-title">News Dashboard</h1>
+      <div className="admin-card card">
+        <h1 className="admin-page-title">Admin Dashboard</h1>
 
         <div className="dashboard-buttons">
           <Link to="/admin/news/create" className="button">
-            + Create New
+            Create Blog Post
           </Link>
           <LogoutButton />
         </div>
 
-        {news.length === 0 ? (
-          <p>No news posts found.</p>
+        {posts.length === 0 ? (
+          <p>No blog posts yet.</p>
         ) : (
-          <div className="news-table">
-            {news.map((item) => (
-              <div className="news-card" key={item._id}>
-                <h2>{item.title}</h2>
-                <p className="news-meta">
-                  Created: {new Date(item.createdAt).toLocaleDateString()}
-                </p>
-                <div className="form-buttons">
-                  <Link to={`/admin/news/edit/${item._id}`} className="button">
-                    Edit
-                  </Link>
-                  <button
-                    className="button danger"
-                    onClick={() => handleDelete(item._id)}
-                  >
-                    Delete
-                  </button>
-                </div>
+          posts.map((post) => (
+            <div className="post-card" key={post._id}>
+              <h2>{post.title}</h2>
+              <p className="news-meta">
+                Created: {new Date(post.createdAt).toLocaleDateString()}
+              </p>
+
+              <div className="form-buttons">
+                <Link to={`/admin/news/edit/${post._id}`} className="button">
+                  Edit
+                </Link>
+                <button
+                  className="button button--outline"
+                  onClick={() => handleDelete(post._id)}
+                >
+                  Delete
+                </button>
               </div>
-            ))}
-          </div>
+            </div>
+          ))
         )}
       </div>
     </div>
