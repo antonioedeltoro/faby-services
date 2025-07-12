@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useAuth } from '../../hooks/useAuth';
-import '../../styles/AdminFormWrapper.css';
+import '../../styles/partials/forms.css';
+import "../../styles/partials/buttons.css";
 import '../../styles/Typography.css';
 
 export default function AdminLogin() {
@@ -74,7 +75,7 @@ export default function AdminLogin() {
 
         {error && <p className="admin-form-error">{error}</p>}
 
-        <button type="submit" className="admin-form-submit">
+        <button type="submit" className="admin-form-submit button">
           Log In
         </button>
       </form>
