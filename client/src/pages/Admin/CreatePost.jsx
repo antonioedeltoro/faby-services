@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import '../../styles/AdminFormWrapper.css';
+import '../../styles/partials/forms.css';
+import "../../styles/partials/buttons.css";
 import '../../styles/Typography.css';
 
 export default function CreatePost() {
@@ -101,7 +102,7 @@ export default function CreatePost() {
 
         {error && <p className="admin-form-error">{error}</p>}
 
-        <button type="submit" className="admin-form-submit">
+        <button type="submit" className="admin-form-submit button">
           Submit
         </button>
       </form>

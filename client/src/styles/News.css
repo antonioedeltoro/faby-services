@@ -2,8 +2,8 @@
    NEWS PAGES – Faby brand
 ======================== */
 
-@import url("../partials/buttons.css");
-@import url("../partials/forms.css");
+@import url("./partials/buttons.css");
+@import url("./partials/forms.css");
 
 /* wrapper */
 .news-page {

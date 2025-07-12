@@ -58,7 +58,3 @@
   color: var(--color-error);
   font-weight: 500;
 }
-
-.admin-form-submit {
-  @extend .button;
-}

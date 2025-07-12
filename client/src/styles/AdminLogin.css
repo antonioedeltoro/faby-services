@@ -1,6 +1,6 @@
 /* Admin login page – wrapper only */
 
-@import url("../partials/forms.css");
+@import url("./partials/forms.css");
 
 .login-page {
   min-height: 80vh;

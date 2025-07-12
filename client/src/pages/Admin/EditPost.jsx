@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import '../../styles/AdminFormWrapper.css';
+import '../../styles/partials/forms.css';
+import "../../styles/partials/buttons.css";
 import '../../styles/Typography.css';
 
 export default function EditPost() {
@@ -127,7 +128,7 @@ export default function EditPost() {
 
         {error && <p className="admin-form-error">{error}</p>}
 
-        <button type="submit" className="admin-form-submit">
+        <button type="submit" className="admin-form-submit button">
           Update
         </button>
       </form>
