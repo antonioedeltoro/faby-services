@@ -5,10 +5,9 @@
 @import url("./partials/forms.css");
 
 /* ---------- layout shell ---------- */
-/* wider card — matches deltoro.codes proportion on desktop */
 .admin-card {
   width: 100%;
-  max-width: 900px; /* was 700px – enlarged */
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -81,4 +80,11 @@
   .admin-card {
     max-width: 100%;
   }
+}
+
+/* ===== FIX EXTRA SPACE ON DASHBOARD ===== */
+.admin-dashboard {
+  /* wrapper added in JSX */
+  min-height: auto !important; /* override 100vh from News.css */
+  padding-bottom: 1.5rem !important; /* reduce large bottom gap */
 }
