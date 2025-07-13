@@ -75,6 +75,14 @@
   text-decoration: underline;
 }
 
+/* client/src/styles/News.css  – append anywhere near the bottom */
+
+/* preserve author‑entered line breaks */
+.news-body,
+.news-body-full {
+  white-space: pre-line; /* keeps \n as real line breaks */
+}
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 768px) {
