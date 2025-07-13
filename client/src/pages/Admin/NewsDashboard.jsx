@@ -28,8 +28,9 @@ export default function NewsDashboard() {
     if (res.ok) setPosts((p) => p.filter((n) => n._id !== id));
   };
 
+  /* ---------- render ---------- */
   return (
-    <div className="news-page">
+    <div className="news-page admin-dashboard">
       <div className="admin-card card">
         <h1 className="admin-page-title">Admin Dashboard</h1>
 
