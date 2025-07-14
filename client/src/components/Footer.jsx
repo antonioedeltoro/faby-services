@@ -57,16 +57,16 @@ export default function Footer() {
             <a href="tel:+14242490927">
               <Phone size={18} title="Call" />
             </a>
-            <a href="mailto:faby@example.com">
+            <a href="mailto:fabymultiservicios@gmail.com">
               <Mail size={18} title="Email" />
             </a>
-            <a href="https://facebook.com/fabyservices" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.facebook.com/fabyservicesCA" target="_blank" rel="noopener noreferrer">
               <Facebook size={18} />
             </a>
-            <a href="https://instagram.com/fabyservices" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/fabyservicesca/" target="_blank" rel="noopener noreferrer">
               <Instagram size={18} />
             </a>
-            <a href="https://www.threads.net/@fabyservices" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.threads.net/@fabyservicesca" target="_blank" rel="noopener noreferrer">
               <CircleDashed size={18} title="Threads" />
             </a>
             <a href="https://x.com/fabyservices" target="_blank" rel="noopener noreferrer">
