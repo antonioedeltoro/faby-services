@@ -14,9 +14,9 @@ export default function Contact() {
           <p className="paragraph">Have questions? We’re here to help.</p>
 
           <div className="contact-details">
-            <p className="paragraph"><strong>Phone:</strong> (424) 249-0927 / (424) 361-7009</p>
+            <p className="paragraph"><strong>Phone:</strong> (424) 249-0927 / (424) 426-9893</p>
             <p className="paragraph"><strong>Email:</strong> fabymultiservicios@gmail.com</p>
-            <p className="paragraph"><strong>Location:</strong> 4862 W 95th St, Inglewood, CA 90301</p>
+            <p className="paragraph"><strong>Location:</strong>14103 Jefferson Ave Hawthorne, CA 90250</p>
           </div>
 
           <p className="paragraph cta">
