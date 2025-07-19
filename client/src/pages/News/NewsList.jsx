@@ -23,14 +23,18 @@ export default function NewsList() {
       });
   }, [API]);
 
+  /* ——— NEW: flag for the empty state ——— */
+  const isEmpty = !loading && newsItems.length === 0;
+
   return (
-    <div className="news-page">
+    /* ——— NEW: apply a modifier class when empty ——— */
+    <div className={`news-page ${isEmpty ? "news-page--compact" : ""}`}>
       <div className="news-container">
         <h1 className="heading-xl">Latest News</h1>
 
         {loading ? (
-          <p>Loading ...</p>
-        ) : newsItems.length === 0 ? (
+          <p>Loading …</p>
+        ) : isEmpty ? (
           <p>No news available.</p>
         ) : (
           newsItems.map((item) => (
