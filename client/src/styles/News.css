@@ -17,6 +17,14 @@
   align-items: flex-start;
 }
 
+/* When there are zero posts, shrink the wrapper
+   and vertically centre the “No news available.” message */
+.news-page--compact {
+  min-height: auto; /* let it size to content */
+  justify-content: center;
+  align-items: center;
+}
+
 .news-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -74,8 +82,6 @@
 .back-link:hover {
   text-decoration: underline;
 }
-
-/* client/src/styles/News.css  – append anywhere near the bottom */
 
 /* preserve author‑entered line breaks */
 .news-body,
