@@ -62,7 +62,7 @@ export default function OpenEnrollment() {
           <p className="paragraph">Ready to enroll?</p>
 
           <ul className="enrollment-list">
-            <li>Call us at (424) 249‑0927 or (424) 361‑7009.</li>
+            <li>Call us at (424) 249-0927 or (424) 426-9893</li>
             <li>
               Or fill out our online contact form, and we'll call you at your
               convenience.
