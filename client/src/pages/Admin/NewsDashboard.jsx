@@ -1,38 +1,56 @@
+// client/src/pages/Admin/NewsDashboard.jsx
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LogoutButton from "../../components/LogoutButton";
+import { API } from "../../api/baseURL";            // ← unified base URL
 import "../../styles/Admin.css";
 
 export default function NewsDashboard() {
   const [posts, setPosts] = useState([]);
+  const [error, setError] = useState("");
 
-  /* fetch posts on mount */
+  /* ─────────────── fetch posts once ─────────────── */
   useEffect(() => {
     const token = localStorage.getItem("authToken");
-    fetch(`${API}/api/auth/login`, {
+
+    fetch(`${API}/api/news`, {
       headers: { Authorization: `Bearer ${token}` },
     })
-      .then((r) => r.json())
-      .then((data) => setPosts(data))
-      .catch(console.error);
+      .then((r) => {
+        if (!r.ok) throw new Error(`Failed to load posts (${r.status})`);
+        return r.json();
+      })
+      .then((data) => setPosts(Array.isArray(data) ? data : []))
+      .catch((err) => setError(err.message));
   }, []);
 
-  /* delete handler */
+  /* ─────────────── delete handler ─────────────── */
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this post?")) return;
+
     const token = localStorage.getItem("authToken");
-    const res = await fetch(`http://localhost:5001/api/news/${id}`, {
-      method: "DELETE",
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    if (res.ok) setPosts((p) => p.filter((n) => n._id !== id));
+
+    try {
+      const res = await fetch(`${API}/api/news/${id}`, {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (!res.ok) {
+        throw new Error(`Delete failed (${res.status})`);
+      }
+
+      setPosts((prev) => prev.filter((p) => p._id !== id));
+    } catch (err) {
+      alert(err.message);
+    }
   };
 
-  /* ---------- render ---------- */
+  /* ─────────────── render ─────────────── */
   return (
     <div className="news-page admin-dashboard">
       <div className="admin-card card">
-        <h1 className="admin-page-title">Admin Dashboard</h1>
+        <h1 className="admin-page-title">Admin&nbsp;Dashboard</h1>
 
         <div className="dashboard-buttons">
           <Link to="/admin/news/create" className="button">
@@ -41,6 +59,8 @@ export default function NewsDashboard() {
           <LogoutButton />
         </div>
 
+        {error && <p className="admin-form-error">{error}</p>}
+
         {posts.length === 0 ? (
           <p>No blog posts yet.</p>
         ) : (
@@ -48,7 +68,7 @@ export default function NewsDashboard() {
             <div className="post-card" key={post._id}>
               <h2>{post.title}</h2>
               <p className="news-meta">
-                Created: {new Date(post.createdAt).toLocaleDateString()}
+                Created:&nbsp;{new Date(post.createdAt).toLocaleDateString()}
               </p>
 
               <div className="form-buttons">

@@ -1,32 +1,32 @@
+// client/src/pages/News/NewsList.jsx
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { API } from "../../api/baseURL";         // ← unified base URL
 import "../../styles/News.css";
-import { API_BASE as API } from '../../api/baseURL';
 
 export default function NewsList() {
   const [newsItems, setNewsItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  /* ─────────────── fetch once ─────────────── */
   useEffect(() => {
     axios
       .get(`${API}/api/news`)
       .then((res) => {
         setNewsItems(Array.isArray(res.data) ? res.data : []);
-        setLoading(false);
       })
       .catch((err) => {
         console.error("Error fetching news:", err);
         setNewsItems([]);
-        setLoading(false);
-      });
-  }, [API]);
+      })
+      .finally(() => setLoading(false));
+  }, []);                                        // API is constant ‑ no deps
 
-  /* ——— NEW: flag for the empty state ——— */
   const isEmpty = !loading && newsItems.length === 0;
 
+  /* ─────────────── render ─────────────── */
   return (
-    /* ——— NEW: apply a modifier class when empty ——— */
     <div className={`news-page ${isEmpty ? "news-page--compact" : ""}`}>
       <div className="news-container">
         <h1 className="heading-xl">Latest News</h1>
@@ -47,7 +47,10 @@ export default function NewsList() {
                   ? `${item.content.slice(0, 200)} …`
                   : item.content}
               </p>
-              <Link to={`/news/${item.slug || item._id}`} className="read-more">
+              <Link
+                to={`/news/${item.slug || item._id}`}
+                className="read-more"
+              >
                 Read more →
               </Link>
             </div>

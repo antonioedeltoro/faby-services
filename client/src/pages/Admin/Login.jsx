@@ -1,8 +1,10 @@
+// client/src/pages/Admin/Login.jsx
 import "../../styles/Admin.css";
 import { Helmet } from "react-helmet";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import { API } from "../../api/baseURL";          // ← centralised base URL
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
@@ -13,15 +15,26 @@ export default function AdminLogin() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");                                  // clear previous error
     try {
       const res = await fetch(`${API}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
+        credentials: "include",                   // ensure cookies flow, if used
       });
-      if (!res.ok) throw new Error("Invalid credentials");
+
+      if (!res.ok) {
+        /* Backend returns 401 for bad credentials; propagate a user‑friendly
+           message instead of the generic “Invalid credentials”. */
+        if (res.status === 401) {
+          throw new Error("Incorrect email or password.");
+        }
+        throw new Error(`Login failed (${res.status})`);
+      }
+
       const { token } = await res.json();
-      login(token);
+      login(token);                               // save token in auth context
       navigate("/admin/news");
     } catch (err) {
       setError(err.message);
@@ -34,11 +47,9 @@ export default function AdminLogin() {
         <title>Admin Login | Faby Services</title>
       </Helmet>
 
-      {/* ----- centered wrapper, NOT a card ----- */}
       <div className="admin-card">
-        <h1 className="admin-page-title">Admin Login</h1>
+        <h1 className="admin-page-title">Admin&nbsp;Login</h1>
 
-        {/* single white card that holds the form */}
         <div className="card">
           <form onSubmit={handleSubmit} className="admin-form-wrapper">
             <label>
@@ -47,6 +58,7 @@ export default function AdminLogin() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                autoComplete="username"
                 required
               />
             </label>
@@ -57,6 +69,7 @@ export default function AdminLogin() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
                 required
               />
             </label>
@@ -64,7 +77,7 @@ export default function AdminLogin() {
             {error && <p className="admin-form-error">{error}</p>}
 
             <button type="submit" className="button">
-              Log In
+              Log&nbsp;In
             </button>
           </form>
         </div>
