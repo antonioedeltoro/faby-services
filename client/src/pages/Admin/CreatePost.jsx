@@ -32,7 +32,7 @@ export default function CreatePost() {
     if (image) formData.append("image", image);
 
     const token = localStorage.getItem("authToken");
-    const res = await fetch("http://localhost:5001/api/news", {
+    const res = await fetch(`${API}/api/auth/login`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
       body: formData,

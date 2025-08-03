@@ -9,7 +9,7 @@ export default function NewsDashboard() {
   /* fetch posts on mount */
   useEffect(() => {
     const token = localStorage.getItem("authToken");
-    fetch("http://localhost:5001/api/news", {
+    fetch(`${API}/api/auth/login`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((r) => r.json())

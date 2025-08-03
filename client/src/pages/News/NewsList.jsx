@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "../../styles/News.css";
+import { API_BASE as API } from '../../api/baseURL';
 
 export default function NewsList() {
   const [newsItems, setNewsItems] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const API = import.meta.env.VITE_API_URL || "http://localhost:5001";
 
   useEffect(() => {
     axios
