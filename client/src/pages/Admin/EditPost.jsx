@@ -1,24 +1,25 @@
+// client/src/pages/Admin/EditPost.jsx
 import "../../styles/Admin.css";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { API_BASE as API } from '../../api/baseURL';
+import { API } from "../../api/baseURL";        // ← unified import
 
 export default function EditPost() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  /* API base (env or localhost) */
-
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
-  const [image, setImage] = useState(null);
+  /* ─────────────── state ─────────────── */
+  const [title, setTitle]           = useState("");
+  const [body, setBody]             = useState("");
+  const [image, setImage]           = useState(null);
   const [existingImage, setExistingImage] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError]           = useState("");
 
-  /* ───── Load post once ───── */
+  /* ─────────────── fetch post once ─────────────── */
   useEffect(() => {
     const token = localStorage.getItem("authToken");
+
     fetch(`${API}/api/news/${id}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -32,9 +33,9 @@ export default function EditPost() {
         setExistingImage(d.imageUrl || "");
       })
       .catch(() => setError("Failed to load post."));
-  }, [API, id]);
+  }, [id]);                                      // `API` is a constant; omit from deps
 
-  /* ───── Handlers ───── */
+  /* ─────────────── handlers ─────────────── */
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file && file.type.startsWith("image/")) {
@@ -48,8 +49,11 @@ export default function EditPost() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!title.trim() || !body.trim())
-      return setError("Title and body are required");
+
+    if (!title.trim() || !body.trim()) {
+      setError("Title and body are required");
+      return;
+    }
 
     const formData = new FormData();
     formData.append("title", title);
@@ -57,17 +61,25 @@ export default function EditPost() {
     if (image) formData.append("image", image);
 
     const token = localStorage.getItem("authToken");
-    const res = await fetch(`${API}/api/news/${id}`, {
-      method: "PUT",
-      headers: { Authorization: `Bearer ${token}` },
-      body: formData,
-    });
 
-    if (res.ok) navigate("/admin/news");
-    else setError("Update failed.");
+    try {
+      const res = await fetch(`${API}/api/news/${id}`, {
+        method: "PUT",
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData,
+      });
+
+      if (!res.ok) {
+        throw new Error(`Update failed (${res.status})`);
+      }
+
+      navigate("/admin/news");
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
-  /* ───── JSX ───── */
+  /* ─────────────── JSX ─────────────── */
   return (
     <div className="news-page">
       <div className="admin-card card">
@@ -100,7 +112,11 @@ export default function EditPost() {
 
           <label>
             Replace Image
-            <input type="file" accept="image/*" onChange={handleImageChange} />
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+            />
           </label>
 
           {(image || existingImage) && (

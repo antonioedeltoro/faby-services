@@ -1,6 +1,8 @@
+// client/src/pages/Admin/CreatePost.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { API } from "../../api/baseURL";             // ← central base URL
 import "../../styles/Admin.css";
 
 export default function CreatePost() {
@@ -10,6 +12,7 @@ export default function CreatePost() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  /* ─────────────── helpers ─────────────── */
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file && file.type.startsWith("image/")) {
@@ -23,8 +26,11 @@ export default function CreatePost() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!title.trim() || !body.trim())
-      return setError("Title and body are required");
+
+    if (!title.trim() || !body.trim()) {
+      setError("Title and body are required");
+      return;
+    }
 
     const formData = new FormData();
     formData.append("title", title);
@@ -32,16 +38,25 @@ export default function CreatePost() {
     if (image) formData.append("image", image);
 
     const token = localStorage.getItem("authToken");
-    const res = await fetch(`${API}/api/auth/login`, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${token}` },
-      body: formData,
-    });
 
-    if (res.ok) navigate("/admin/news");
-    else setError("Failed to create post.");
+    try {
+      const res = await fetch(`${API}/api/news`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        body: formData,
+      });
+
+      if (!res.ok) {
+        throw new Error(`Failed to create post (${res.status})`);
+      }
+
+      navigate("/admin/news");
+    } catch (err) {
+      setError(err.message);
+    }
   };
 
+  /* ─────────────── render ─────────────── */
   return (
     <div className="news-page">
       <div className="admin-card card">
@@ -74,7 +89,11 @@ export default function CreatePost() {
 
           <label>
             Upload Image
-            <input type="file" accept="image/*" onChange={handleImageChange} />
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+            />
           </label>
 
           {image && (
