@@ -2,14 +2,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import "../../styles/News.css";
+import { API_BASE as API } from '../../api/baseURL';
 
 export default function NewsDetail() {
   const { slug: slugOrId } = useParams();
   const [newsItem, setNewsItem] = useState(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
-
-  const API = import.meta.env.VITE_API_URL || "http://localhost:5001";
 
   useEffect(() => {
     const isMongoId = /^[0-9a-fA-F]{24}$/.test(slugOrId);

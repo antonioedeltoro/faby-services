@@ -2,13 +2,13 @@ import "../../styles/Admin.css";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { API_BASE as API } from '../../api/baseURL';
 
 export default function EditPost() {
   const { id } = useParams();
   const navigate = useNavigate();
 
   /* API base (env or localhost) */
-  const API = import.meta.env.VITE_API_URL || "http://localhost:5001";
 
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
