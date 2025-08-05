@@ -11,6 +11,8 @@
   transition: background-color 0.2s ease;
   text-decoration: none;
   display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
 }
 
 .button:hover {
@@ -27,4 +29,10 @@
 .button--outline:hover {
   background-color: var(--color-dark);
   color: var(--color-white);
+}
+
+/* Normalize anchor buttons */
+a.button {
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
 }
