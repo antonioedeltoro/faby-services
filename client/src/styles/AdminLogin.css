@@ -3,7 +3,7 @@
 
 @import url("../partials/card.css");
 @import url("../partials/forms.css");
-@import url("../partials/buttons.css");
+@import url("./buttons.css");
 
 .login-page {
   min-height: 80vh;
