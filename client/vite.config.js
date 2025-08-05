@@ -4,7 +4,10 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  base: "/", // ✅ This is what fixes blank page issues in production
+  base: "/",
+  build: {
+    emptyOutDir: true, // ✅ ensure no stale files
+  },
   server: {
     proxy: {
       "/api": "http://localhost:5000",
