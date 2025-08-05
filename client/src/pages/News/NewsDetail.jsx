@@ -1,15 +1,14 @@
-// client/src/pages/News/NewsDetail.jsx
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
-import { API } from "../../api/baseURL";         // ← unified base URL
+import { API } from "../../api/baseURL";
 import "../../styles/News.css";
 
 export default function NewsDetail() {
   const { slug: slugOrId } = useParams();
 
   const [newsItem, setNewsItem] = useState(null);
-  const [loading,  setLoading]  = useState(true);
+  const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
 
   /* ─────────────── fetch once ─────────────── */
@@ -28,10 +27,10 @@ export default function NewsDetail() {
         setNotFound(true);
       })
       .finally(() => setLoading(false));
-  }, [slugOrId]);                                // API is constant – omit from deps
+  }, [slugOrId]);
 
   /* ─────────────── render ─────────────── */
-  if (loading)               return <p>Loading …</p>;
+  if (loading) return <p>Loading …</p>;
   if (notFound || !newsItem) return <p>News item not found.</p>;
 
   return (
@@ -44,12 +43,10 @@ export default function NewsDetail() {
             {new Date(newsItem.createdAt).toLocaleDateString()}
           </p>
 
-          <div className="news-body-full">
-            <div
+          <div
             className="news-body-full"
             dangerouslySetInnerHTML={{ __html: newsItem.content }}
-            ></div>
-          </div>
+          ></div>
 
           <Link to="/news" className="back-link">
             ← Back to News
