@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import { API } from "../../api/baseURL";
 import "../../styles/News.css";
+import "../../styles/buttons.css";
 
 export default function NewsDetail() {
   const { slug: slugOrId } = useParams();

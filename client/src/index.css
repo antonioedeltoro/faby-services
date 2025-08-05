@@ -2,6 +2,7 @@
     ==================== */
 
 @import url("./styles/tokens/typography.css"); /* typography scale */
+@import url("./styles/buttons.css");
 
 /* ----- Brand colours ----- */
 :root {
