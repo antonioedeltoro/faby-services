@@ -45,7 +45,10 @@ export default function NewsDetail() {
           </p>
 
           <div className="news-body-full">
-            <p>{newsItem.content}</p>
+            <div
+            className="news-body-full"
+            dangerouslySetInnerHTML={{ __html: newsItem.content }}
+            ></div>
           </div>
 
           <Link to="/news" className="back-link">
