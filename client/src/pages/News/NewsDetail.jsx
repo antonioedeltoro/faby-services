@@ -11,7 +11,7 @@ export default function NewsDetail() {
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
 
-  /* ─────────────── fetch once ─────────────── */
+  // ─────────────── fetch once ───────────────
   useEffect(() => {
     const isMongoId = /^[0-9a-fA-F]{24}$/.test(slugOrId);
 
@@ -29,7 +29,7 @@ export default function NewsDetail() {
       .finally(() => setLoading(false));
   }, [slugOrId]);
 
-  /* ─────────────── render ─────────────── */
+  // ─────────────── render ───────────────
   if (loading) return <p>Loading …</p>;
   if (notFound || !newsItem) return <p>News item not found.</p>;
 
@@ -43,6 +43,7 @@ export default function NewsDetail() {
             {new Date(newsItem.createdAt).toLocaleDateString()}
           </p>
 
+          {/* Render HTML content with embedded button */}
           <div
             className="news-body-full"
             dangerouslySetInnerHTML={{ __html: newsItem.content }}
