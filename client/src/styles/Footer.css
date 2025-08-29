@@ -64,6 +64,7 @@
   flex-wrap: wrap;
 }
 
+/* global footer link styles */
 .footer__nav a,
 .footer__contact a,
 .footer__column a {
@@ -97,6 +98,29 @@
 
 .footer-logo:hover {
   opacity: 1;
+}
+
+.footer-divider {
+  border: none;
+  border-top: 1px solid #ccc; /* neutral line */
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.footer__credits {
+  text-align: center;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* explicitly style credits link like nav links */
+.footer__credits a {
+  color: var(--color-accent, #00aeef);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.footer__credits a:hover {
+  color: #f8cc21;
 }
 
 @media (max-width: 768px) {
