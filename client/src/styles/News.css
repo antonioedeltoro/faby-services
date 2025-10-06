@@ -1,5 +1,5 @@
 /* ========================
-   NEWS PAGES – Faby brand
+   NEWS PAGES – Faby brand
 ======================== */
 
 @import url("./buttons.css");
@@ -15,28 +15,35 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
+
+  /* layout tokens */
+  --page-gutter: clamp(16px, 3vw, 40px);
+  --text-container: 800px; /* unified readable width */
+  --max-container: 1200px; /* outer cap for layout */
 }
 
-/* When there are zero posts, shrink the wrapper
-   and vertically centre the “No news available.” message */
+/* Compact variant (no posts) */
 .news-page--compact {
-  min-height: auto; /* let it size to content */
+  min-height: auto;
   justify-content: center;
   align-items: center;
 }
 
 .news-container {
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: var(--max-container);
   width: 100%;
-  padding: 0 2rem;
+  margin: 0 auto;
+  padding: 0 var(--page-gutter);
 }
 
 /* ---------- Headings ---------- */
 
 .heading-xl,
 .heading-lg {
-  color: var(--color-faby-blue); /* blue headings */
+  color: var(--color-faby-blue);
+  max-width: var(--text-container);
+  margin-inline: auto;
+  text-align: left; /* keep left-aligned by default */
 }
 
 /* ---------- List cards ---------- */
@@ -45,7 +52,12 @@
   border: 1px solid #ddd;
   border-radius: 0.5rem;
   margin-bottom: 2rem;
+
+  /* keep cards within readable width */
+  max-width: var(--text-container);
+  margin-inline: auto;
 }
+
 .news-card.card {
   /* inherits padding + shadow */
 }
@@ -53,19 +65,30 @@
 .news-card h2 {
   font-size: var(--font-size-lg);
   margin-bottom: 0.5rem;
+  text-align: left; /* list titles remain left-aligned */
 }
 
 .news-meta {
   font-size: var(--font-size-xs);
   color: var(--color-gray);
   margin-bottom: 1rem;
+  text-align: left; /* list metadata remains left-aligned */
 }
 
+/* article / single post body */
 .news-body,
 .news-body-full {
   font-size: var(--font-size-md);
   line-height: 1.65;
   color: var(--color-dark);
+  max-width: var(--text-container);
+  margin-inline: auto;
+}
+
+/* preserve author-entered line breaks */
+.news-body,
+.news-body-full {
+  white-space: pre-line;
 }
 
 /* ---------- Links ---------- */
@@ -83,10 +106,17 @@
   text-decoration: underline;
 }
 
-/* preserve author‑entered line breaks */
-.news-body,
-.news-body-full {
-  white-space: pre-line; /* keeps \n as real line breaks */
+/* ---------- Single-post centering ---------- */
+/* Center title and metadata only on full-article pages */
+.news-body-full ~ .heading-xl,
+.news-body-full ~ .heading-lg {
+  text-align: center;
+  display: block;
+  margin-inline: auto;
+}
+
+.news-body-full ~ .news-meta {
+  text-align: center;
 }
 
 /* ---------- Responsive ---------- */
@@ -95,7 +125,17 @@
   .news-card h2 {
     font-size: var(--font-size-md);
   }
+
   .news-container {
     padding: 0 1.5rem;
+  }
+
+  /* let everything expand full width on small screens */
+  .heading-xl,
+  .heading-lg,
+  .news-card,
+  .news-body,
+  .news-body-full {
+    max-width: 100%;
   }
 }

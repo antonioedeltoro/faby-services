@@ -2,24 +2,49 @@
   display: flex;
   flex-direction: column;
   gap: 0;
+
+  /* layout tokens */
+  --page-gutter: clamp(16px, 3vw, 40px);
+  --text-container: 800px; /* comfortable readable width */
+  --max-container: 1200px; /* for grids and imagery */
 }
 
-/* Full-screen sections with default or alternating background */
+/* Full-screen sections */
 .section {
   min-height: 100vh;
-  width: 100vw;
+  width: 100%; /* prevents 100vw overflow */
   display: flex;
   align-items: center;
   padding: 4rem 0;
 }
 
 .section-content {
-  max-width: 1200px;
+  max-width: var(--max-container);
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 var(--page-gutter);
   text-align: left;
 }
 
+/* Narrower width for long-form text sections */
+.hero-section .section-content,
+.mission-section .section-content,
+.beliefs-section .section-content,
+.testimonials-section .section-content,
+.stats-section .section-content {
+  max-width: var(--text-container);
+}
+
+/* Paragraph readability */
+.home-page .paragraph {
+  line-height: 1.6;
+}
+
+/* Utility: allow wide visuals to span full width */
+.full-bleed {
+  max-width: none !important;
+}
+
+/* Centered hero */
 .section.centered {
   min-height: 100vh;
   display: flex;
@@ -48,7 +73,7 @@
   text-align: left;
 }
 
-/* Alternating background */
+/* Alternating background colors */
 .mission-section,
 .founder-section,
 .stats-section {
@@ -64,7 +89,7 @@
 .founder-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  max-width: 1200px;
+  max-width: var(--max-container);
   margin: 0 auto;
   padding: 0 2rem;
   gap: 2rem;
@@ -96,15 +121,11 @@
   color: #444;
 }
 
-.hero-section,
-.mission-section,
-.beliefs-section,
-.founder-section,
-.testimonials-section,
-.stats-section {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
+/* Balanced heading wrapping */
+.heading-xl,
+.heading-md,
+.heading-sm {
+  text-wrap: balance;
 }
 
 /* Responsive */
@@ -135,5 +156,15 @@
 
   .hero-section p {
     text-align: left;
+  }
+
+  /* On small screens, expand to full width */
+  .section-content,
+  .hero-section .section-content,
+  .mission-section .section-content,
+  .beliefs-section .section-content,
+  .testimonials-section .section-content,
+  .stats-section .section-content {
+    max-width: 100%;
   }
 }

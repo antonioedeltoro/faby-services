@@ -11,6 +11,11 @@
 .open-enrollment-page {
   display: flex;
   flex-direction: column;
+
+  /* layout tokens */
+  --page-gutter: clamp(16px, 3vw, 40px);
+  --text-container: 800px; /* readable width (desktop) */
+  --max-container: 1200px; /* room for wider layouts if needed */
 }
 
 .open-enrollment-section {
@@ -18,9 +23,9 @@
 }
 
 .enrollment-content {
-  max-width: 1200px; /* match Services / Contact / News */
+  max-width: var(--max-container);
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 var(--page-gutter);
 }
 
 /* ---------- Headings & copy ---------- */
@@ -28,7 +33,17 @@
 .heading-xl {
   font-size: var(--font-size-xxl);
   margin-bottom: 1rem;
+  color: var(--color-dark, #1a1a1a);
 }
+
+/* readable width cap for text elements */
+.open-enrollment-page .heading-xl,
+.open-enrollment-page .paragraph,
+.open-enrollment-page .enrollment-list {
+  max-width: var(--text-container);
+  margin-inline: auto;
+}
+
 .heading-xl.blue {
   color: var(--color-faby-blue);
 }
@@ -56,6 +71,10 @@
 
 .card {
   margin-top: 1rem;
+
+  /* keep the form card within readable width */
+  max-width: var(--text-container);
+  margin-inline: auto;
 }
 
 .enrollment-form {
@@ -85,9 +104,11 @@
   display: flex;
   gap: 0.5rem;
 }
+
 .phone-field select {
   width: 30%;
 }
+
 .phone-field input {
   flex: 1;
 }
@@ -117,13 +138,23 @@
   .heading-xl {
     font-size: var(--font-size-xl);
   }
+
   .enrollment-content {
     padding: 0 1.5rem;
+  }
+
+  /* let all text and the form use full width on smaller screens */
+  .open-enrollment-page .heading-xl,
+  .open-enrollment-page .paragraph,
+  .open-enrollment-page .enrollment-list,
+  .card {
+    max-width: 100%;
   }
 
   .phone-field {
     flex-direction: column;
   }
+
   .phone-field select {
     width: 100%;
   }
