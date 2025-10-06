@@ -7,6 +7,11 @@
   flex-direction: column;
   gap: 0;
   background-color: #f7f7f7;
+
+  /* layout tokens */
+  --page-gutter: clamp(16px, 3vw, 40px);
+  --text-container: 800px; /* readable width for long-form text */
+  --max-container: 1200px; /* room for wider grids/imagery */
 }
 
 .services-section {
@@ -14,13 +19,24 @@
   padding: 3rem 0;
 }
 
+/* Base container: keep wide cap for sections that may include grids */
 .section-content {
-  max-width: 1200px;
+  max-width: var(--max-container);
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 var(--page-gutter);
   text-align: left;
 }
 
+/* Apply readable width to text elements only (keeps grids wide) */
+.services-page .heading-xl,
+.services-page .subheading,
+.services-page .paragraph,
+.services-page .cta {
+  max-width: var(--text-container);
+  margin-inline: auto; /* centers the text column within the section */
+}
+
+/* Typography */
 .heading-xl {
   font-size: 2.25rem;
   margin-bottom: 2rem;
@@ -66,6 +82,14 @@
 
   .section-content {
     padding: 0 1.5rem;
+  }
+
+  /* On small screens, let text expand to full width */
+  .services-page .heading-xl,
+  .services-page .subheading,
+  .services-page .paragraph,
+  .services-page .cta {
+    max-width: 100%;
   }
 }
 
