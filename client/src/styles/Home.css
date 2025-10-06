@@ -18,6 +18,7 @@
   padding: 4rem 0;
 }
 
+/* Structural container stays wide (like the rest of the site) */
 .section-content {
   max-width: var(--max-container);
   margin: 0 auto;
@@ -25,13 +26,13 @@
   text-align: left;
 }
 
-/* Narrower width for long-form text sections */
-.hero-section .section-content,
-.mission-section .section-content,
-.beliefs-section .section-content,
-.testimonials-section .section-content,
-.stats-section .section-content {
+/* READABILITY: cap only the text column, not the whole section */
+.home-page .heading-xl,
+.home-page .heading-md,
+.home-page .heading-sm,
+.home-page .paragraph {
   max-width: var(--text-container);
+  margin-inline: auto; /* center the 800px column */
 }
 
 /* Paragraph readability */
@@ -85,7 +86,7 @@
   background-color: transparent;
 }
 
-/* Founder */
+/* Founder: keep the grid at the wide container */
 .founder-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -158,13 +159,16 @@
     text-align: left;
   }
 
-  /* On small screens, expand to full width */
-  .section-content,
-  .hero-section .section-content,
-  .mission-section .section-content,
-  .beliefs-section .section-content,
-  .testimonials-section .section-content,
-  .stats-section .section-content {
+  /* On small screens, let content expand to full width */
+  .section-content {
+    max-width: 100%;
+    padding: 0 1.5rem;
+  }
+
+  .home-page .heading-xl,
+  .home-page .heading-md,
+  .home-page .heading-sm,
+  .home-page .paragraph {
     max-width: 100%;
   }
 }
