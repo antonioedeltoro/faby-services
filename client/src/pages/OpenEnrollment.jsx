@@ -28,15 +28,15 @@ export default function OpenEnrollment() {
 
     const email = "fabymultiservicios@gmail.com";
     const mailSubject = encodeURIComponent(
-      `Open Enrollment Inquiry: ${subject}`
+      `Consulta de Inscripción Abierta: ${subject}`
     );
     const mailBody = encodeURIComponent(
-      `New Open Enrollment Submission:\n\n` +
-        `Name: ${name}\n` +
-        `Phone: ${countryCode} ${phone}\n` +
-        `Subject: ${subject}\n` +
-        `Call At: ${callAt}\n\n` +
-        `Message:\n${message}`
+      `Nueva solicitud de Inscripción Abierta:\n\n` +
+        `Nombre: ${name}\n` +
+        `Teléfono: ${countryCode} ${phone}\n` +
+        `Asunto: ${subject}\n` +
+        `Llamar el: ${callAt}\n\n` +
+        `Mensaje:\n${message}`
     );
 
     window.location.href = `mailto:${email}?subject=${mailSubject}&body=${mailBody}`;
@@ -49,33 +49,33 @@ export default function OpenEnrollment() {
   return (
     <div className="page-container open-enrollment-page">
       <Helmet>
-        <title>{`Open Enrollment ${currentYear} | Faby Services Insurance & Taxes`}</title>
+        <title>{`Inscripción Abierta ${currentYear} | Faby Services Seguros y Contabilidad`}</title>
       </Helmet>
 
       <section className="open-enrollment-section">
         <div className="enrollment-content">
-          <h1 className="heading-xl blue">{`Open Enrollment ${currentYear}`}</h1>
-          <p className="paragraph">Enroll With Confidence</p>
+          <h1 className="heading-xl blue">{`Inscripción Abierta ${currentYear}`}</h1>
+          <p className="paragraph">Inscríbase con Confianza</p>
           <p className="paragraph">
-            {`Open Enrollment ${currentYear} is here. We’ll help you select from the best health insurance plans on the market.`}
+            {`La Inscripción Abierta ${currentYear} ya está aquí. Le ayudaremos a seleccionar entre los mejores planes de seguro médico del mercado.`}
           </p>
-          <p className="paragraph">Ready to enroll?</p>
+          <p className="paragraph">¿Listo para inscribirse?</p>
 
           <ul className="enrollment-list">
-            <li>Call us at (424) 249-0927 or (424) 426-9893</li>
+            <li>Llámenos al (424) 249-0927 o (424) 426-9893</li>
             <li>
-              Or fill out our online contact form, and we'll call you at your
-              convenience.
+              O complete nuestro formulario de contacto en línea, y lo
+              llamaremos cuando le sea conveniente.
             </li>
-            <li>Get expert guidance every step of the way.</li>
-            <li>Let’s find the right coverage for you.</li>
+            <li>Reciba orientación experta en cada paso del proceso.</li>
+            <li>Encontraremos la cobertura adecuada para usted.</li>
           </ul>
 
           {/* ---------- Card wrapper ---------- */}
           <div className="card">
             <form className="enrollment-form" onSubmit={handleSubmit}>
               <label>
-                Full Name
+                Nombre Completo
                 <input
                   type="text"
                   name="name"
@@ -86,7 +86,7 @@ export default function OpenEnrollment() {
               </label>
 
               <label>
-                Phone Number
+                Número de Teléfono
                 <div className="phone-field">
                   <select
                     name="countryCode"
@@ -101,15 +101,15 @@ export default function OpenEnrollment() {
                     <option value="+53">+53 (Cuba)</option>
                     <option value="+593">+593 (Ecuador)</option>
                     <option value="+503">+503 (El Salvador)</option>
-                    <option value="+34">+34 (Spain)</option>
+                    <option value="+34">+34 (España)</option>
                     <option value="+502">+502 (Guatemala)</option>
                     <option value="+504">+504 (Honduras)</option>
-                    <option value="+52">+52 (Mexico)</option>
+                    <option value="+52">+52 (México)</option>
                     <option value="+505">+505 (Nicaragua)</option>
-                    <option value="+507">+507 (Panama)</option>
+                    <option value="+507">+507 (Panamá)</option>
                     <option value="+595">+595 (Paraguay)</option>
-                    <option value="+51">+51 (Peru)</option>
-                    <option value="+1">+1 (United States)</option>
+                    <option value="+51">+51 (Perú)</option>
+                    <option value="+1">+1 (Estados Unidos)</option>
                     <option value="+598">+598 (Uruguay)</option>
                     <option value="+58">+58 (Venezuela)</option>
                   </select>
@@ -124,19 +124,19 @@ export default function OpenEnrollment() {
               </label>
 
               <label>
-                Subject
+                Asunto
                 <select
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
                   required
                 >
-                  <option value="">Select a topic</option>
-                  <option value="Bookkeeping">Bookkeeping</option>
-                  <option value="Training Courses">Training Courses</option>
-                  <option value="Taxes">Taxes</option>
+                  <option value="">Seleccione un tema</option>
+                  <option value="Bookkeeping">Contabilidad</option>
+                  <option value="Training Courses">Cursos de Capacitación</option>
+                  <option value="Taxes">Impuestos</option>
                   <option value="Business Consulting Services">
-                    Business Consulting Services
+                    Servicios de Consultoría Empresarial
                   </option>
                   <option value="Covered California">Covered California</option>
                   <option value="Medicare">Medicare</option>
@@ -144,7 +144,7 @@ export default function OpenEnrollment() {
               </label>
 
               <label>
-                Callback Date and Time
+                Fecha y Hora para Devolver la Llamada
                 <input
                   type="datetime-local"
                   name="callAt"
@@ -154,26 +154,26 @@ export default function OpenEnrollment() {
               </label>
 
               <label>
-                Message
+                Mensaje
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   rows={5}
-                  placeholder="Tell us about your case or situation..."
+                  placeholder="Cuéntenos sobre su caso o situación..."
                 />
               </label>
 
               <div className="enrollment-buttons">
                 <button type="submit" className="button">
-                  Submit
+                  Enviar
                 </button>
                 <button
                   type="button"
                   className="button button--outline"
                   onClick={handleReset}
                 >
-                  Clear Form
+                  Borrar Formulario
                 </button>
               </div>
             </form>

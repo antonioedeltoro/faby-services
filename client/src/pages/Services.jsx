@@ -5,43 +5,43 @@ export default function Services() {
   return (
     <div className="page-container services-page">
       <Helmet>
-        <title>Services | Faby Services Insurance & Taxes</title>
+        <title>Servicios | Faby Services Seguros y Contabilidad</title>
       </Helmet>
 
       <section className="services-section">
         <div className="section-content">
-          <h1 className="heading-xl blue">Explore Our Services</h1>
+          <h1 className="heading-xl blue">Explore Nuestros Servicios</h1>
 
           <div className="service-block">
-            <h2 className="subheading">Health Insurance</h2>
+            <h2 className="subheading">Seguro Médico</h2>
             <p className="paragraph">
-              Protect yourself and your loved ones. We offer a full range of coverage options through Covered California and other trusted providers.
+              Proteja a usted y a sus seres queridos. Ofrecemos una gama completa de opciones de cobertura a través de Covered California y otros proveedores confiables.
             </p>
           </div>
 
           <div className="service-block">
-            <h2 className="subheading">Tax Services</h2>
+            <h2 className="subheading">Servicios de Impuestos</h2>
             <p className="paragraph">
-              Whether you're filing personal or corporate taxes, our experienced advisors ensure accurate, compliant, and timely filings.
+              Ya sea que presente impuestos personales o corporativos, nuestros asesores experimentados garantizan presentaciones precisas, cumplidas y a tiempo.
             </p>
           </div>
 
           <div className="service-block">
-            <h2 className="subheading">Bookkeeping</h2>
+            <h2 className="subheading">Contabilidad</h2>
             <p className="paragraph">
-              Let us handle the books, payroll, accounts receivable/payable, and tax records—so you can focus on running your business.
+              Permítanos encargarnos de la contabilidad, nómina, cuentas por cobrar/pagar y registros fiscales—para que usted pueda concentrarse en administrar su negocio.
             </p>
           </div>
 
           <div className="service-block">
-            <h2 className="subheading">Training Courses</h2>
+            <h2 className="subheading">Cursos de Capacitación</h2>
             <p className="paragraph">
-              Stay up to date with the latest in federal and tax law. No prior experience needed—just the desire to learn and grow.
+              Manténgase actualizado con lo más reciente en leyes federales y fiscales. No se requiere experiencia previa—solo el deseo de aprender y crecer.
             </p>
           </div>
 
           <p className="paragraph cta">
-            For expert help and real business results—let’s get started.
+            Para obtener ayuda experta y resultados reales para su negocio—comencemos hoy.
           </p>
         </div>
       </section>

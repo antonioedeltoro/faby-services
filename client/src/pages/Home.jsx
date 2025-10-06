@@ -7,27 +7,27 @@ export default function Home() {
   return (
     <div className="home-page">
       <Helmet>
-        <title>Home | Faby Services</title>
+        <title>Inicio | Faby Services</title>
       </Helmet>
 
       {/* HERO */}
       <section className="section hero-section centered">
         <div className="section-content">
-          <h1 className="heading-xl text-center">Trusted Tax & Business Consulting Services</h1>
+          <h1 className="heading-xl text-center">Servicios Confiables de Impuestos y Consultoría Empresarial</h1>
           <p className="paragraph">
-          At Faby Services, we help individuals, families, and small businesses take control of their finances with clarity, confidence, and compassion. We understand that navigating taxes, insurance, and document preparation can feel overwhelming—especially when you’re trying to do it all on your own. That’s why we’ve built our services around one simple idea: personalized, honest support you can rely on.
+            En Faby Services, ayudamos a individuos, familias y pequeñas empresas a tomar el control de sus finanzas con claridad, confianza y compasión. Entendemos que manejar impuestos, seguros y preparación de documentos puede ser abrumador—especialmente cuando intenta hacerlo por su cuenta. Por eso hemos construido nuestros servicios en torno a una idea simple: apoyo personalizado y honesto en el que puede confiar.
           </p>
           <p className="paragraph">
-          We approach every client relationship with care and intention. Whether you’re filing taxes for the first time, securing health insurance for your family, or managing the financial operations of your small business, we listen carefully to your needs and walk you through every detail. No confusing jargon. No rushed explanations. Just clear, practical guidance tailored to your specific situation.
+            Nos acercamos a cada cliente con cuidado e intención. Ya sea que esté presentando impuestos por primera vez, asegurando un plan de salud para su familia o administrando las finanzas de su pequeña empresa, escuchamos atentamente sus necesidades y lo guiamos en cada detalle. Sin jerga confusa. Sin explicaciones apresuradas. Solo orientación clara y práctica adaptada a su situación.
           </p>
           <p className="paragraph">
-          Our team is deeply rooted in the community we serve. Many of our clients come to us through word of mouth—referrals from neighbors, friends, and family members who trust us to deliver results. We take that trust seriously. It’s why we go the extra mile to ensure every form is accurate, every deadline is met, and every question gets a thoughtful answer.
+            Nuestro equipo está profundamente arraigado en la comunidad a la que servimos. Muchos de nuestros clientes llegan por recomendaciones—de vecinos, amigos y familiares que confían en nosotros para ofrecer resultados. Tomamos esa confianza muy en serio. Por eso hacemos todo lo posible para garantizar que cada formulario sea preciso, cada fecha límite se cumpla y cada pregunta reciba una respuesta reflexiva.
           </p>
           <p className="paragraph">
-          Beyond the paperwork, we’re here to advocate for your financial wellbeing. We stay current on changes to tax laws, health coverage options, and compliance requirements so you don’t have to. Our goal is to make sure you're not only meeting your obligations, but also maximizing opportunities—saving money where you can and protecting what matters most.
+            Más allá del papeleo, estamos aquí para abogar por su bienestar financiero. Nos mantenemos al día con los cambios en las leyes tributarias, las opciones de cobertura médica y los requisitos de cumplimiento, para que usted no tenga que hacerlo. Nuestro objetivo es asegurarnos de que no solo cumpla con sus obligaciones, sino que también aproveche las oportunidades—ahorrando dinero donde pueda y protegiendo lo que más importa.
           </p>
           <p className="paragraph">
-          When you work with Faby Services, you’re not just hiring a tax preparer or insurance specialist. You’re gaining a partner who’s committed to your long-term stability and success. Whatever stage of life you’re in, whatever challenges you’re facing—we’re here to support you, every step of the way.
+            Cuando trabaja con Faby Services, no solo contrata a un preparador de impuestos o a un especialista en seguros. Está ganando un socio comprometido con su estabilidad y éxito a largo plazo. Sea cual sea la etapa de la vida en la que se encuentre o los desafíos que enfrente—estamos aquí para apoyarlo en cada paso del camino.
           </p>
         </div>
       </section>
@@ -35,21 +35,21 @@ export default function Home() {
       {/* MISSION */}
       <section className="section mission-section">
         <div className="section-content">
-          <h2 className="heading-md">Empowering Your Finances, Securing Your Future</h2>
+          <h2 className="heading-md">Empoderando Sus Finanzas, Asegurando Su Futuro</h2>
           <p className="paragraph">
-            At Faby Services, we specialize in providing clear, trustworthy support across a range of financial and administrative services—including accounting guidance, tax preparation, and official document processing. Whether you’re an individual planning for the year ahead or a small business navigating complex obligations, we offer the expertise and structure you need to move forward with confidence.
+            En Faby Services, nos especializamos en brindar apoyo claro y confiable en una variedad de servicios financieros y administrativos, incluyendo asesoría contable, preparación de impuestos y procesamiento de documentos oficiales. Ya sea que sea un individuo planificando el próximo año o una pequeña empresa enfrentando obligaciones complejas, ofrecemos la experiencia y estructura necesarias para avanzar con confianza.
           </p>
           <p className="paragraph">
-            Our approach is rooted in simplicity and integrity. We believe that everyone deserves access to sound financial planning—without the intimidation, confusion, or hidden fees. That’s why we take the time to explain your options, help you make informed decisions, and ensure your documents are accurate and compliant every step of the way.
+            Nuestro enfoque está basado en la simplicidad y la integridad. Creemos que todos merecen acceso a una planificación financiera sólida—sin intimidación, confusión ni tarifas ocultas. Por eso nos tomamos el tiempo para explicarle sus opciones, ayudarle a tomar decisiones informadas y garantizar que sus documentos sean precisos y cumplan con los requisitos en cada paso del proceso.
           </p>
           <p className="paragraph">
-            We know that financial stress doesn’t just affect your wallet—it impacts your peace of mind, your ability to plan for the future, and the wellbeing of your family. Our mission is to remove that stress by becoming a reliable, knowledgeable partner you can count on year after year. Whether it’s tax season, open enrollment, or time to register a business, we’re here to guide you through it.
+            Sabemos que el estrés financiero no solo afecta su bolsillo—también impacta su tranquilidad, su capacidad de planificar el futuro y el bienestar de su familia. Nuestra misión es eliminar ese estrés convirtiéndonos en un socio confiable y con conocimiento en quien pueda confiar año tras año. Ya sea temporada de impuestos, inscripción abierta o tiempo de registrar un negocio, estamos aquí para guiarlo.
           </p>
           <p className="paragraph">
-            Health coverage is another pillar of our support. Many clients come to us unsure of where to begin or overwhelmed by the enrollment process. We simplify that journey, helping you find and secure the best possible insurance for your circumstances. Because financial security doesn’t stop at numbers—it includes the security of knowing your health and future are protected.
+            La cobertura médica es otro pilar de nuestro apoyo. Muchos clientes llegan a nosotros sin saber por dónde empezar o abrumados por el proceso de inscripción. Simplificamos ese camino, ayudándole a encontrar y asegurar el mejor seguro posible según sus circunstancias. Porque la seguridad financiera no se trata solo de números—incluye la tranquilidad de saber que su salud y su futuro están protegidos.
           </p>
           <p className="paragraph">
-            At Faby Services, empowerment isn’t a buzzword—it’s our commitment. We’re here to help you gain control over your finances, understand your rights and responsibilities, and take confident steps toward a more secure future. No matter your background or situation, we meet you with respect, clarity, and genuine care.
+            En Faby Services, el empoderamiento no es solo una palabra de moda—es nuestro compromiso. Estamos aquí para ayudarle a tomar el control de sus finanzas, comprender sus derechos y responsabilidades, y dar pasos seguros hacia un futuro más estable. Sin importar su origen o situación, lo recibimos con respeto, claridad y atención genuina.
           </p>
         </div>
       </section>
@@ -57,21 +57,21 @@ export default function Home() {
       {/* BELIEFS */}
       <section className="section beliefs-section">
         <div className="section-content">
-          <h2 className="heading-md">What We Believe</h2>
+          <h2 className="heading-md">En Qué Creemos</h2>
           <p className="paragraph">
-            At Faby Services, we believe that financial literacy and access to trustworthy guidance should never be a luxury—they're a fundamental right. Every individual and every family deserves to feel secure in their financial decisions, to understand the fine print, and to face tax season or major life changes with clarity, not confusion.
+            En Faby Services creemos que la educación financiera y el acceso a orientación confiable nunca deben ser un lujo—son un derecho fundamental. Cada persona y cada familia merecen sentirse seguras en sus decisiones financieras, entender los detalles y enfrentar la temporada de impuestos o los cambios importantes de la vida con claridad, no con confusión.
           </p>
           <p className="paragraph">
-            Too often, people are left to navigate complex systems—like taxes, insurance, and legal documentation—without clear direction. We’ve seen how that uncertainty creates stress, delays, and costly mistakes. Our belief is simple: when people are supported with care and clarity, they make better decisions, and their lives improve.
+            Con demasiada frecuencia, las personas deben navegar sistemas complejos—como impuestos, seguros y documentación legal—sin una dirección clara. Hemos visto cómo esa incertidumbre genera estrés, retrasos y errores costosos. Nuestra creencia es simple: cuando las personas reciben apoyo con cuidado y claridad, toman mejores decisiones y mejoran su calidad de vida.
           </p>
           <p className="paragraph">
-            We also believe in preparation—not just for what's expected, but for what’s possible. Life changes quickly. Illness, job changes, growing families, or new businesses all come with new financial responsibilities. We help our clients prepare for these transitions with proactive strategies and personalized solutions, ensuring they’re never caught off guard.
+            También creemos en la preparación—no solo para lo esperado, sino para lo posible. La vida cambia rápidamente. Enfermedades, cambios de trabajo, familias en crecimiento o nuevos negocios traen nuevas responsabilidades financieras. Ayudamos a nuestros clientes a prepararse para estas transiciones con estrategias proactivas y soluciones personalizadas, asegurando que nunca los tomen por sorpresa.
           </p>
           <p className="paragraph">
-            Trust is the foundation of everything we do. We understand that when you come to us with your finances, your documents, or your questions, you're putting a great deal of faith in our hands. That trust is never taken for granted. We work hard to earn it, keep it, and reflect it in the way we communicate, plan, and deliver results.
+            La confianza es la base de todo lo que hacemos. Entendemos que cuando nos entrega sus finanzas, documentos o preguntas, está depositando una gran fe en nuestras manos. Esa confianza nunca se da por sentada. Trabajamos arduamente para ganarla, mantenerla y reflejarla en la forma en que comunicamos, planificamos y entregamos resultados.
           </p>
           <p className="paragraph">
-            Ultimately, we believe that dignity, stability, and peace of mind begin with a solid financial foundation. Our role is not just to process paperwork—it’s to uplift our community by making essential services accessible, understandable, and human. That’s the heart of everything we do.
+            En última instancia, creemos que la dignidad, la estabilidad y la tranquilidad comienzan con una base financiera sólida. Nuestro papel no es solo procesar papeleo—es fortalecer a nuestra comunidad haciendo que los servicios esenciales sean accesibles, comprensibles y humanos. Ese es el corazón de todo lo que hacemos.
           </p>
         </div>
       </section>
@@ -83,14 +83,13 @@ export default function Home() {
             <img src={FabyImage} alt="María Fabiola Bucio" className="founder-image" />
           </div>
           <div className="founder-text">
-            <h2 className="heading-md">Meet Our Founder</h2>
+            <h2 className="heading-md">Conozca a Nuestra Fundadora</h2>
             <h3 className="heading-sm">María Fabiola Bucio</h3>
-            <p className="paragraph">Founder of Faby Services</p>
+            <p className="paragraph">Fundadora de Faby Services</p>
             <blockquote className="paragraph">
-              "I'm a proud Mexican entrepreneur who started this business as a personal dream.
-              Thanks to the trust of my community, that dream has grown into a thriving company
-              committed to providing more than just services—we offer a helping hand. From start to
-              finish, I’ll be by your side. Tell us what you need, and we’ll make it happen."
+              "Soy una orgullosa empresaria mexicana que inició este negocio como un sueño personal.
+              Gracias a la confianza de mi comunidad, ese sueño ha crecido hasta convertirse en una empresa próspera
+              comprometida con ofrecer más que servicios—ofrecemos una mano amiga. De principio a fin, estaré a su lado. Cuéntenos lo que necesita y lo haremos realidad."
             </blockquote>
           </div>
         </div>
@@ -99,21 +98,21 @@ export default function Home() {
       {/* TESTIMONIALS */}
       <section className="section testimonials-section">
         <div className="section-content">
-          <h2 className="heading-md">What Our Clients Say</h2>
+          <h2 className="heading-md">Lo Que Dicen Nuestros Clientes</h2>
           <p className="paragraph">
-            At Faby Services, we measure success not just in numbers or transactions, but in the confidence and relief our clients feel when they walk out the door. Our clients come to us seeking answers, guidance, and clarity—and what they leave with is trust, empowerment, and peace of mind.
+            En Faby Services, medimos el éxito no solo en números o transacciones, sino en la confianza y alivio que sienten nuestros clientes al salir por la puerta. Nuestros clientes nos buscan en busca de respuestas, orientación y claridad—y lo que se llevan es confianza, empoderamiento y tranquilidad.
           </p>
           <p className="paragraph">
-            We’ve had the honor of working with individuals navigating complex tax situations, small business owners launching new ventures, and families planning for a more secure future. No matter the challenge, our commitment remains the same: listen closely, act with integrity, and deliver solutions that actually work.
+            Hemos tenido el honor de trabajar con personas enfrentando situaciones fiscales complejas, dueños de pequeñas empresas lanzando nuevos proyectos y familias que buscan un futuro más seguro. Sin importar el desafío, nuestro compromiso sigue siendo el mismo: escuchar con atención, actuar con integridad y ofrecer soluciones que realmente funcionen.
           </p>
           <p className="paragraph">
-            Clients consistently share how much they value our transparency and our willingness to explain things clearly—without jargon or judgment. For many, it’s the first time they’ve felt truly heard and supported in a financial setting. That trust is what fuels our work and defines the experience we aim to provide every single time.
+            Nuestros clientes valoran constantemente nuestra transparencia y disposición para explicar las cosas con claridad—sin jerga ni juicios. Para muchos, es la primera vez que se sienten verdaderamente escuchados y apoyados en un entorno financiero. Esa confianza es lo que impulsa nuestro trabajo y define la experiencia que buscamos brindar cada vez.
           </p>
           <p className="paragraph">
-            Over the years, we’ve become more than just a tax or consulting office—we’ve become a trusted part of our clients’ lives. They come back year after year, not just for services, but for the continuity, familiarity, and genuine care they’ve come to expect. Their referrals, loyalty, and kind words are the greatest endorsements of our mission.
+            A lo largo de los años, nos hemos convertido en más que una oficina de impuestos o consultoría—somos una parte confiable de la vida de nuestros clientes. Regresan año tras año, no solo por los servicios, sino por la continuidad, familiaridad y atención genuina que han llegado a esperar. Sus recomendaciones, lealtad y palabras amables son el mejor testimonio de nuestra misión.
           </p>
           <p className="paragraph">
-            Whether it’s a heartfelt thank-you note or a referral to a friend, we don’t take the praise lightly. Every positive review is a reflection of our team’s dedication to putting people first—and a reminder of why we started this journey in the first place.
+            Ya sea una nota de agradecimiento o una recomendación a un amigo, no tomamos los elogios a la ligera. Cada reseña positiva refleja la dedicación de nuestro equipo para poner a las personas primero—y nos recuerda por qué comenzamos este camino.
           </p>
         </div>
       </section>
@@ -121,21 +120,21 @@ export default function Home() {
       {/* STATS */}
       <section className="section stats-section">
         <div className="section-content">
-          <h2 className="heading-md">Why Choose Us?</h2>
+          <h2 className="heading-md">¿Por Qué Elegirnos?</h2>
           <p className="paragraph quote">
-            Choosing a financial services partner is about more than credentials or offerings—it’s about trust, consistency, and the feeling that someone genuinely has your back. At Faby Services, we pride ourselves on building relationships rooted in honesty, care, and a deep understanding of our clients’ needs.
+            Elegir un socio de servicios financieros es más que credenciales o servicios—se trata de confianza, consistencia y la seguridad de saber que alguien realmente lo respalda. En Faby Services, nos enorgullece construir relaciones basadas en la honestidad, el cuidado y una profunda comprensión de las necesidades de nuestros clientes.
           </p>
           <p className="paragraph quote">
-            From the moment you walk through our doors or give us a call, you’ll experience a different kind of service—one that’s personal, not transactional. We take the time to get to know your story, your goals, and the challenges you face. Whether you’re preparing your taxes, launching a business, or seeking guidance on insurance, our team is here to make things simple and stress-free.
+            Desde el momento en que cruza nuestras puertas o nos llama, experimentará un tipo de servicio diferente—uno personal, no transaccional. Nos tomamos el tiempo para conocer su historia, sus metas y los desafíos que enfrenta. Ya sea preparando sus impuestos, lanzando un negocio o buscando orientación sobre seguros, nuestro equipo está aquí para hacerlo simple y sin estrés.
           </p>
           <p className="paragraph quote">
-            What sets us apart is our commitment to clear, practical guidance. We believe in explaining things without jargon and offering solutions without pressure. You’ll always know what’s happening, why it matters, and what your options are. It’s your future—we’re just here to help you shape it.
+            Lo que nos distingue es nuestro compromiso con una orientación clara y práctica. Creemos en explicar las cosas sin jerga y ofrecer soluciones sin presión. Siempre sabrá lo que está pasando, por qué importa y cuáles son sus opciones. Es su futuro—nosotros solo estamos aquí para ayudarle a moldearlo.
           </p>
           <p className="paragraph quote">
-            Our team isn’t just experienced; we’re invested. Every staff member brings not only professional knowledge but also compassion and a sense of responsibility. We approach every situation with care, treating your financial wellbeing as if it were our own.
+            Nuestro equipo no solo tiene experiencia; está comprometido. Cada miembro aporta no solo conocimiento profesional sino también compasión y sentido de responsabilidad. Abordamos cada situación con cuidado, tratando su bienestar financiero como si fuera el nuestro.
           </p>
           <p className="paragraph quote">
-            As one of our clients once said, “A well-managed business allows you to track every dollar and know exactly when and where to invest it.” We couldn’t agree more. That’s why we’ve built a firm designed to give you the tools, insight, and confidence to take control of your financial life—every step of the way.
+            Como dijo uno de nuestros clientes: “Un negocio bien administrado le permite rastrear cada dólar y saber exactamente cuándo y dónde invertirlo.” No podríamos estar más de acuerdo. Por eso hemos construido una empresa diseñada para darle las herramientas, la visión y la confianza necesarias para tomar el control de su vida financiera—en cada paso del camino.
           </p>
         </div>
       </section>
