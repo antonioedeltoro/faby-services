@@ -26,11 +26,11 @@ export default function Footer() {
       <div className="footer__grid">
         {/* left */}
         <div className="footer__column footer__nav">
-          <NavLink to="/" onClick={scrollToTop}>Home</NavLink>
-          <NavLink to="/services" onClick={scrollToTop}>Services</NavLink>
-          <NavLink to="/contact" onClick={scrollToTop}>Contact</NavLink>
+          <NavLink to="/" onClick={scrollToTop}>Inicio</NavLink>
+          <NavLink to="/services" onClick={scrollToTop}>Servicios</NavLink>
+          <NavLink to="/contact" onClick={scrollToTop}>Contacto</NavLink>
           <NavLink to="/open-enrollment" onClick={scrollToTop}>
-            Open Enrollment {new Date().getFullYear()}
+            Inscripción Abierta {new Date().getFullYear()}
           </NavLink>
         </div>
 
@@ -39,7 +39,7 @@ export default function Footer() {
           <div className="admin-logo-link">
             <Link
               to={isAuthenticated ? "/admin/news" : "/admin/login"}
-              title="Admin access"
+              title="Acceso de administrador"
               onClick={scrollToTop}
             >
               <img src={logo} alt="Faby Services" className="footer-logo" />
@@ -50,11 +50,11 @@ export default function Footer() {
         {/* right */}
         <div className="footer__column">
           <div className="footer__social">
-            <a href="tel:+14242490927" aria-label="Call">
-              <Phone size={18} title="Call" />
+            <a href="tel:+14242490927" aria-label="Llamar">
+              <Phone size={18} title="Llamar" />
             </a>
-            <a href="mailto:fabymultiservicios@gmail.com" aria-label="Email">
-              <Mail size={18} title="Email" />
+            <a href="mailto:fabymultiservicios@gmail.com" aria-label="Correo electrónico">
+              <Mail size={18} title="Correo electrónico" />
             </a>
             <a href="https://www.facebook.com/fabyservicesCA" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
               <Facebook size={18} />
@@ -79,9 +79,9 @@ export default function Footer() {
       <hr className="footer-divider" />
 
       <div className="footer__credits">
-        <p>© {new Date().getFullYear()} Faby Services Insurance & Taxes</p>
+        <p>© {new Date().getFullYear()} Faby Services Seguros y Contabilidad</p>
         <p>
-          Designed by{" "}
+          Diseñado por{" "}
           <a
             href="https://www.deltoro.codes"
             target="_blank"

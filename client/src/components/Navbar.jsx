@@ -63,7 +63,7 @@ export default function Navbar() {
     <nav className={`navbar ${scrolled ? "scrolled" : ""} ${hidden ? "hidden" : ""}`}>
       <div className="navbar__logo">
         <Link to="/" onClick={closeMenu}>
-          <img src={logo} alt="Faby Services logo" className="logo-img" />
+          <img src={logo} alt="Logotipo de Faby Services" className="logo-img" />
         </Link>
       </div>
 
@@ -77,15 +77,15 @@ export default function Navbar() {
       </button>
 
       <ul ref={menuRef} className={`navbar__links ${isOpen ? "open" : ""}`}>
-        <li><NavLink to="/" end onClick={closeMenu}>Home</NavLink></li>
-        <li><NavLink to="/services" onClick={closeMenu}>Services</NavLink></li>
-        <li><NavLink to="/contact" onClick={closeMenu}>Contact</NavLink></li>
+        <li><NavLink to="/" end onClick={closeMenu}>Inicio</NavLink></li>
+        <li><NavLink to="/services" onClick={closeMenu}>Servicios</NavLink></li>
+        <li><NavLink to="/contact" onClick={closeMenu}>Contacto</NavLink></li>
         <li>
           <NavLink to="/open-enrollment" onClick={closeMenu}>
-            Open Enrollment {new Date().getFullYear()}
+            Inscripción Abierta {new Date().getFullYear()}
           </NavLink>
         </li>
-        <li><NavLink to="/news" onClick={closeMenu}>News</NavLink></li>
+        <li><NavLink to="/news" onClick={closeMenu}>Noticias</NavLink></li>
       </ul>
     </nav>
   );

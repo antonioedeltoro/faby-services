@@ -31,8 +31,8 @@ export default function NewsDetail() {
   }, [slugOrId]);
 
   // ─────────────── render ───────────────
-  if (loading) return <p>Loading …</p>;
-  if (notFound || !newsItem) return <p>News item not found.</p>;
+  if (loading) return <p>Cargando…</p>;
+  if (notFound || !newsItem) return <p>Noticia no encontrada.</p>;
 
   return (
     <div className="news-page">
@@ -40,7 +40,7 @@ export default function NewsDetail() {
         <div className="card">
           <h1 className="heading-xl">{newsItem.title}</h1>
           <p className="news-meta">
-            Published on{" "}
+            Publicado el{" "}
             {new Date(newsItem.createdAt).toLocaleDateString()}
           </p>
 
@@ -51,7 +51,7 @@ export default function NewsDetail() {
           ></div>
 
           <Link to="/news" className="back-link">
-            ← Back to News
+            ← Volver a Noticias
           </Link>
         </div>
       </div>
