@@ -34,6 +34,13 @@ export default function Services() {
           </div>
 
           <div className="service-block">
+            <h2 className="subheading">Servicios de Notaría</h2>
+            <p className="paragraph">
+              Ofrecemos servicios notariales confiables y rápidos para todo tipo de documentos legales y comerciales. Garantizamos precisión, confidencialidad y cumplimiento con los requisitos estatales vigentes.
+            </p>
+          </div>
+
+          <div className="service-block">
             <h2 className="subheading">Cursos de Capacitación</h2>
             <p className="paragraph">
               Manténgase actualizado con lo más reciente en leyes federales y fiscales. No se requiere experiencia previa—solo el deseo de aprender y crecer.
