@@ -5,10 +5,10 @@ import "../styles/Navbar.css";
 import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
-  const [isOpen, setIsOpen]   = useState(false);  // mobile menu open/closed
-  const [scrolled, setScrolled] = useState(false); // adds shadow after 20 px
-  const [hidden, setHidden]   = useState(false);  // controls slide-away
-  const prevScroll = useRef(0);                   // remembers last scroll Y
+  const [isOpen, setIsOpen]     = useState(false);  // mobile menu open/closed
+  const [scrolled, setScrolled] = useState(false);  // adds shadow after 20 px
+  const [hidden, setHidden]     = useState(false);  // controls slide-away
+  const prevScroll = useRef(0);                     // remembers last scroll Y
 
   const menuRef   = useRef(null);
   const buttonRef = useRef(null);
@@ -32,8 +32,8 @@ export default function Navbar() {
       const passedThreshold = currentY > window.innerHeight * 0.25;
       const scrollingDown   = currentY > prevScroll.current;
 
-      if (scrollingDown && passedThreshold)   setHidden(true);
-      else if (!scrollingDown)                setHidden(false);
+      if (scrollingDown && passedThreshold) setHidden(true);
+      else if (!scrollingDown)              setHidden(false);
 
       prevScroll.current = currentY;
     };
@@ -59,6 +59,8 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen]);
 
+  const year = new Date().getFullYear();
+
   return (
     <nav className={`navbar ${scrolled ? "scrolled" : ""} ${hidden ? "hidden" : ""}`}>
       <div className="navbar__logo">
@@ -80,12 +82,35 @@ export default function Navbar() {
         <li><NavLink to="/" end onClick={closeMenu}>Inicio</NavLink></li>
         <li><NavLink to="/services" onClick={closeMenu}>Servicios</NavLink></li>
         <li><NavLink to="/contact" onClick={closeMenu}>Contacto</NavLink></li>
+
+        {/* NEW: Appointments (after Contacto) */}
         <li>
-          <NavLink to="/open-enrollment" onClick={closeMenu}>
-            Inscripción Abierta {new Date().getFullYear()}
+          <NavLink to="/appointments" onClick={closeMenu}>
+            Citas
           </NavLink>
         </li>
+
+        <li>
+          <NavLink to="/open-enrollment" onClick={closeMenu}>
+            Inscripción Abierta {year}
+          </NavLink>
+        </li>
+
+        {/* NEW: Tax Season (year), before Noticias */}
+        <li>
+          <NavLink to="/tax-season" onClick={closeMenu}>
+            Temporada de Impuestos {year}
+          </NavLink>
+        </li>
+
         <li><NavLink to="/news" onClick={closeMenu}>Noticias</NavLink></li>
+
+        {/* NEW: Reviews (after Noticias) */}
+        <li>
+          <NavLink to="/reviews" onClick={closeMenu}>
+            Reseñas
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );
