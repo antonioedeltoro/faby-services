@@ -59,7 +59,23 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen]);
 
-  const year = new Date().getFullYear();
+  const now  = new Date();
+  const year = now.getFullYear();
+
+  const inRange = (d, start, end) => d >= start && d <= end;
+
+  // Open Enrollment: Nov 1 – Jan 31 (spans years)
+  const oeStartCY = new Date(year, 10, 1, 0, 0, 0, 0);            // Nov 1 (current year)
+  const oeEndNY   = new Date(year + 1, 0, 31, 23, 59, 59, 999);   // Jan 31 (next year)
+  const oeStartPY = new Date(year - 1, 10, 1, 0, 0, 0, 0);        // Nov 1 (prev year)
+  const oeEndCY   = new Date(year, 0, 31, 23, 59, 59, 999);       // Jan 31 (current year)
+  const showOpenEnrollment =
+    inRange(now, oeStartCY, oeEndNY) || inRange(now, oeStartPY, oeEndCY);
+
+  // Tax Season: Jan 15 – Oct 15 (includes extensions)
+  const taxStart = new Date(year, 0, 15, 0, 0, 0, 0);             // Jan 15
+  const taxEnd   = new Date(year, 9, 15, 23, 59, 59, 999);        // Oct 15
+  const showTaxSeason = inRange(now, taxStart, taxEnd);
 
   return (
     <nav className={`navbar ${scrolled ? "scrolled" : ""} ${hidden ? "hidden" : ""}`}>
@@ -82,35 +98,28 @@ export default function Navbar() {
         <li><NavLink to="/" end onClick={closeMenu}>Inicio</NavLink></li>
         <li><NavLink to="/services" onClick={closeMenu}>Servicios</NavLink></li>
         <li><NavLink to="/contact" onClick={closeMenu}>Contacto</NavLink></li>
+        <li><NavLink to="/appointments" onClick={closeMenu}>Citas</NavLink></li>
 
-        {/* NEW: Appointments (after Contacto) */}
-        <li>
-          <NavLink to="/appointments" onClick={closeMenu}>
-            Citas
-          </NavLink>
-        </li>
+        {showOpenEnrollment && (
+          <li>
+            <NavLink to="/open-enrollment" onClick={closeMenu}>
+              Inscripción Abierta {year}
+              <span className="seasonal-dot" />
+            </NavLink>
+          </li>
+        )}
 
-        <li>
-          <NavLink to="/open-enrollment" onClick={closeMenu}>
-            Inscripción Abierta {year}
-          </NavLink>
-        </li>
-
-        {/* NEW: Tax Season (year), before Noticias */}
-        <li>
-          <NavLink to="/tax-season" onClick={closeMenu}>
-            Temporada de Impuestos {year}
-          </NavLink>
-        </li>
+        {showTaxSeason && (
+          <li>
+            <NavLink to="/tax-season" onClick={closeMenu}>
+              Temporada de Impuestos {year}
+              <span className="seasonal-dot" />
+            </NavLink>
+          </li>
+        )}
 
         <li><NavLink to="/news" onClick={closeMenu}>Noticias</NavLink></li>
-
-        {/* NEW: Reviews (after Noticias) */}
-        <li>
-          <NavLink to="/reviews" onClick={closeMenu}>
-            Reseñas
-          </NavLink>
-        </li>
+        <li><NavLink to="/reviews" onClick={closeMenu}>Reseñas</NavLink></li>
       </ul>
     </nav>
   );

@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
 import OpenEnrollment from './pages/OpenEnrollment';
+import TaxSeason from './pages/TaxSeason'; // ← NEW
 
 // News Pages (Public)
 import NewsList from './pages/News/NewsList';
@@ -36,6 +37,7 @@ export default function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/open-enrollment" element={<OpenEnrollment />} />
+            <Route path="/tax-season" element={<TaxSeason />} /> {/* ← NEW */}
             <Route path="/news" element={<NewsList />} />
             <Route path="/news/:slug" element={<NewsDetail />} />
             <Route path="/admin/login" element={<AdminLogin />} />
