@@ -9,7 +9,7 @@ import {
   MessageCircle,
   CircleDashed,
 } from "lucide-react";
-import { useAuth } from "../hooks/useAuth";   // ✅ use the hook
+import { useAuth } from "../hooks/useAuth";
 import logo from "../assets/Fabylogoblk.png";
 
 export default function Footer() {
@@ -17,9 +17,10 @@ export default function Footer() {
 
   // Scroll to the top when clicking footer internal links
   const scrollToTop = () => {
-    // use auto for instant jump (not smooth)
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   };
+
+  const year = new Date().getFullYear();
 
   return (
     <footer className="footer">
@@ -29,9 +30,7 @@ export default function Footer() {
           <NavLink to="/" onClick={scrollToTop}>Inicio</NavLink>
           <NavLink to="/services" onClick={scrollToTop}>Servicios</NavLink>
           <NavLink to="/contact" onClick={scrollToTop}>Contacto</NavLink>
-          <NavLink to="/open-enrollment" onClick={scrollToTop}>
-            Inscripción Abierta {new Date().getFullYear()}
-          </NavLink>
+          <NavLink to="/appointments" onClick={scrollToTop}>Citas</NavLink>
         </div>
 
         {/* centre */}
@@ -56,19 +55,44 @@ export default function Footer() {
             <a href="mailto:fabymultiservicios@gmail.com" aria-label="Correo electrónico">
               <Mail size={18} title="Correo electrónico" />
             </a>
-            <a href="https://www.facebook.com/fabyservicesCA" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <a
+              href="https://www.facebook.com/fabyservicesCA"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
               <Facebook size={18} />
             </a>
-            <a href="https://www.instagram.com/fabyservicesca/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <a
+              href="https://www.instagram.com/fabyservicesca/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
               <Instagram size={18} />
             </a>
-            <a href="https://www.threads.net/@fabyservicesca" target="_blank" rel="noopener noreferrer" aria-label="Threads">
+            <a
+              href="https://www.threads.net/@fabyservicesca"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Threads"
+            >
               <CircleDashed size={18} title="Threads" />
             </a>
-            <a href="https://x.com/fabyservices" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+            <a
+              href="https://x.com/fabyservices"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="X (Twitter)"
+            >
               <Twitter size={18} title="X" />
             </a>
-            <a href="https://wa.me/14242490927" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+            <a
+              href="https://wa.me/14242490927"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+            >
               <MessageCircle size={18} title="WhatsApp" />
             </a>
           </div>
@@ -79,7 +103,7 @@ export default function Footer() {
       <hr className="footer-divider" />
 
       <div className="footer__credits">
-        <p>© {new Date().getFullYear()} Faby Services Seguros y Contabilidad</p>
+        <p>© {year} Faby Services Seguros y Contabilidad</p>
         <p>
           Diseñado por{" "}
           <a
