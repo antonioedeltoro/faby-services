@@ -34,7 +34,7 @@ export default function Services() {
           </div>
 
           <div className="service-block">
-            <h2 className="subheading">Servicios de Notaría</h2>
+            <h2 className="subheading">Notary Public</h2>
             <p className="paragraph">
               Ofrecemos servicios notariales confiables y rápidos para todo tipo de documentos legales y comerciales. Garantizamos precisión, confidencialidad y cumplimiento con los requisitos estatales vigentes.
             </p>

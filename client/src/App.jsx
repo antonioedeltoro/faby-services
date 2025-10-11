@@ -5,8 +5,10 @@ import './App.css';
 import Home from './pages/Home';
 import Services from './pages/Services';
 import Contact from './pages/Contact';
+import Appointments from './pages/Appointments'; // ← NEW
 import OpenEnrollment from './pages/OpenEnrollment';
-import TaxSeason from './pages/TaxSeason'; // ← NEW
+import TaxSeason from './pages/TaxSeason';
+import Reviews from './pages/Reviews'; // ← NEW
 
 // News Pages (Public)
 import NewsList from './pages/News/NewsList';
@@ -36,10 +38,12 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/appointments" element={<Appointments />} /> {/* ← NEW */}
             <Route path="/open-enrollment" element={<OpenEnrollment />} />
-            <Route path="/tax-season" element={<TaxSeason />} /> {/* ← NEW */}
+            <Route path="/tax-season" element={<TaxSeason />} />
             <Route path="/news" element={<NewsList />} />
             <Route path="/news/:slug" element={<NewsDetail />} />
+            <Route path="/reviews" element={<Reviews />} /> {/* ← NEW */}
             <Route path="/admin/login" element={<AdminLogin />} />
 
             {/* Protected Admin Routes */}
