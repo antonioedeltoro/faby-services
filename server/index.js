@@ -1,27 +1,24 @@
-// server/index.js  (ES‑module version)
+// server/index.js  (ES-module version)
 
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 
-import authRoutes from "./routes/auth.js";
-import newsRoutes from "./routes/news.js";
+import authRoutes from "./routes/auth.js"; // admin-only (existing)
+import newsRoutes from "./routes/news.js"; // existing
+import userAuthRoutes from "./routes/userAuth.js"; // ← NEW (user accounts)
+import reviewsRoutes from "./routes/reviews.js"; // ← NEW (reviews CRUD)
 
-/* ───────────────────────────────────────────
-   Load environment variables
-   ─────────────────────────────────────────── */
 dotenv.config();
 
 const app = express();
 
-/* ───────────────────────────────────────────
-   CORS configuration
-   ─────────────────────────────────────────── */
+/* CORS */
 const allowedOrigins = [
-  process.env.CLIENT_ORIGIN || "http://localhost:5173", // local dev
-  "https://faby-services.onrender.com", // Render static preview
-  "https://www.fabyservices.com", // Production domain
+  process.env.CLIENT_ORIGIN || "http://localhost:5173",
+  "https://faby-services.onrender.com",
+  "https://www.fabyservices.com",
 ];
 
 app.use(
@@ -33,30 +30,23 @@ app.use(
   })
 );
 
-/* ───────────────────────────────────────────
-   Global middleware
-   ─────────────────────────────────────────── */
-app.use(express.json()); // built‑in body parser
-app.use("/uploads", express.static("uploads")); // serve uploaded images
+/* Middleware */
+app.use(express.json());
+app.use("/uploads", express.static("uploads"));
 
-/* ───────────────────────────────────────────
-   Application routes
-   ─────────────────────────────────────────── */
-app.use("/api/auth", authRoutes);
-app.use("/api/news", newsRoutes);
+/* Routes */
+app.use("/api/auth", authRoutes); // admin login (existing)
+app.use("/api/news", newsRoutes); // existing
+app.use("/api/user/auth", userAuthRoutes); // ← NEW user register/login
+app.use("/api/reviews", reviewsRoutes); // ← NEW reviews API
 
-/* ───────────────────────────────────────────
-   Health & root routes
-   ─────────────────────────────────────────── */
+/* Health + root */
 app.get("/api/healthz", (_req, res) =>
   res.json({ status: "ok", ts: Date.now() })
 );
+app.get("/", (_req, res) => res.send("Faby-Services API is running"));
 
-app.get("/", (_req, res) => res.send("Faby‑Services API is running 🎉"));
-
-/* ───────────────────────────────────────────
-   Database connection + server start
-   ─────────────────────────────────────────── */
+/* DB + start */
 const PORT = process.env.PORT || 5001;
 
 mongoose
@@ -64,7 +54,7 @@ mongoose
   .then(() => {
     console.log("✅  MongoDB connected");
     app.listen(PORT, () =>
-      console.log(`🚀  Server running on http://localhost:${PORT}`)
+      console.log(`Server running on http://localhost:${PORT}`)
     );
   })
-  .catch((err) => console.error("❌  Mongo connection error:", err));
+  .catch((err) => console.error("Mongo connection error:", err));

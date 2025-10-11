@@ -1,0 +1,227 @@
+/* ===========================
+   REVIEWS PAGE STYLES
+=========================== */
+
+@import url("./partials/card.css");
+@import url("./buttons.css");
+@import url("./partials/forms.css");
+
+/* ---------- Tokens ---------- */
+.reviews-page {
+  display: flex;
+  flex-direction: column;
+  --page-gutter: clamp(16px, 3vw, 40px);
+  --text-container: 800px;
+  --max-container: 1200px;
+  --block-gap: 1.5rem;
+  --inline-gap: 1rem;
+}
+
+.reviews-section {
+  padding: 3rem 0 2.5rem;
+}
+
+.reviews-content {
+  max-width: var(--max-container);
+  margin: 0 auto;
+  padding: 0 var(--page-gutter);
+}
+
+/* ---------- Headings & copy ---------- */
+.heading-xl {
+  font-size: var(--font-size-xxl);
+  margin-bottom: 0.75rem;
+  color: var(--color-dark, #1a1a1a);
+}
+.heading-xl.blue {
+  color: var(--color-faby-blue);
+}
+
+.heading-md {
+  font-size: var(--font-size-lg, 1.25rem);
+  margin: 0;
+  color: var(--color-dark, #1a1a1a);
+}
+
+.paragraph {
+  font-size: 1rem;
+  color: var(--color-dark);
+  line-height: 1.65;
+  margin-bottom: 0.75rem;
+}
+.error-text {
+  color: crimson;
+}
+
+/* limit readable width for text blocks */
+.reviews-page .heading-xl,
+.reviews-page .paragraph {
+  max-width: var(--text-container);
+  margin-inline: auto;
+}
+
+/* ---------- Cards ---------- */
+.reviews-page .card {
+  max-width: var(--text-container);
+  margin: var(--block-gap) auto;
+  padding: 1.5rem;
+  border-radius: 6px;
+  background-color: #fff;
+}
+
+/* ---------- Forms ---------- */
+.review-form {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.review-form label {
+  display: grid;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: var(--color-dark);
+}
+
+.review-form input,
+.review-form select,
+.review-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid var(--color-gray);
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #fff;
+  color: var(--color-dark);
+}
+
+/* Consistent dropdown look */
+.review-form select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8'><path fill='%231a1a1a' d='M1 1l5 5 5-5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 12px 8px;
+  cursor: pointer;
+}
+
+/* Focus */
+.review-form input:focus,
+.review-form select:focus,
+.review-form textarea:focus {
+  outline: none;
+  border-color: var(--color-faby-blue);
+  box-shadow: 0 0 0 2px rgba(29, 161, 242, 0.15);
+}
+
+/* ---------- Auth card tweaks ---------- */
+.auth-title {
+  text-align: center;
+  margin-bottom: 0.25rem;
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: 0.25rem;
+  color: var(--color-dark);
+  font-size: 0.95rem;
+}
+
+.linklike {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: var(--color-faby-blue);
+  cursor: pointer;
+  font: inherit;
+  text-decoration: underline;
+}
+.linklike:hover {
+  color: #0d8bd4;
+}
+
+/* ---------- Buttons ---------- */
+.review-buttons {
+  display: flex;
+  gap: var(--inline-gap);
+  justify-content: center;
+  margin-top: 0.25rem;
+}
+.review-buttons.left {
+  justify-content: flex-start;
+}
+.review-buttons.right {
+  justify-content: flex-end;
+}
+
+/* “Cerrar sesión” button — brand black base (#363636), red hover (#ff343d) */
+.reviews-page .button.button--logout {
+  background-color: #363636 !important;
+  color: #ffffff !important;
+  border: 2px solid #363636 !important;
+  transition: background-color 0.35s ease, color 0.35s ease,
+    border-color 0.35s ease;
+}
+.reviews-page .button.button--logout:hover,
+.reviews-page .button.button--logout:active {
+  background-color: #ff343d !important;
+  border-color: #ff343d !important;
+  color: #ffffff !important;
+}
+.reviews-page .button.button--logout:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 52, 61, 0.25);
+}
+
+/* ---------- Reviews list (match form width) ---------- */
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 1.5rem auto 0;
+  max-width: var(--text-container);
+  width: 100%;
+}
+
+.review-card.card {
+  width: 100%;
+  max-width: 100%;
+}
+
+.review-card .review-header {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.badge-muted {
+  margin-left: 8px;
+  font-size: 12px;
+  color: #888;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .heading-xl {
+    font-size: var(--font-size-xl);
+  }
+
+  .reviews-content {
+    padding: 0 1.25rem;
+  }
+
+  .reviews-page .heading-xl,
+  .reviews-page .paragraph,
+  .reviews-page .card,
+  .reviews-list {
+    max-width: 100%;
+  }
+
+  .review-buttons {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+}
