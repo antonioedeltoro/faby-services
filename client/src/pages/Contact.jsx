@@ -6,7 +6,7 @@ import 'mapbox-gl/dist/mapbox-gl.css'; // local CSS import (Option 1)
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN || '';
 
-const ADDRESS_TEXT = '14103 Jefferson Ave, Hawthorne, CA 90250';
+const ADDRESS_TEXT = '10920 Fenton Rd, Moreno Valley, CA 92557';
 
 // Approximate coordinates; replace with exact lat/lng if you have them
 const LOCATION = { lng: -118.3469, lat: 33.9043, zoom: 15 };
