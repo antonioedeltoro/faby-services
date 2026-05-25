@@ -9,7 +9,7 @@ mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN || '';
 const ADDRESS_TEXT = '10920 Fenton Rd, Moreno Valley, CA 92557';
 
 // Approximate coordinates; replace with exact lat/lng if you have them
-const LOCATION = { lng: -118.3469, lat: 33.9043, zoom: 15 };
+const LOCATION = { lng: -117.2927, lat: 33.9396, zoom: 15, };
 
 export default function Contact() {
   const mapContainerRef = useRef(null);
