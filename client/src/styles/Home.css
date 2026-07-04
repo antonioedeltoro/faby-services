@@ -78,7 +78,7 @@
 .mission-section,
 .founder-section,
 .stats-section {
-  background-color: var(--surface-alt);
+  background-color: var(--section-warm);
 }
 
 .beliefs-section,

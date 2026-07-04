@@ -77,7 +77,7 @@
 .mapbox-placeholder {
   display: grid;
   place-items: center;
-  background: var(--surface-alt);
+  background: var(--panel-soft);
   color: var(--text);
   border: 1px dashed var(--border);
 }

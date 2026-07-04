@@ -32,6 +32,8 @@
   --nav-link: #1da1f2;    /* navbar link colour         */
   --footer-bg: #333333;   /* footer background          */
   --footer-divider: #cccccc;
+  --section-warm: #f2eee2; /* peach alternating home section */
+  --panel-soft: #eef3f3;   /* soft info panel (contact)     */
   --shadow: rgba(0, 0, 0, 0.1);
 }
 
@@ -47,6 +49,8 @@
   --nav-link: #4fc3f7;
   --footer-bg: #16181c;
   --footer-divider: #333a42;
+  --section-warm: #201c17; /* warm-tinted dark for the peach section */
+  --panel-soft: #1f2933;
   --shadow: rgba(0, 0, 0, 0.5);
 }
 
