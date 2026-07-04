@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useParams, Link } from "react-router-dom";
-import { API } from "../../api/baseURL";
+import { api } from "../../api/client";
 import "../../styles/News.css";
 import "../../styles/buttons.css";
 
@@ -16,12 +15,8 @@ export default function NewsDetail() {
   useEffect(() => {
     const isMongoId = /^[0-9a-fA-F]{24}$/.test(slugOrId);
 
-    axios
-      .get(
-        isMongoId
-          ? `${API}/api/news/${slugOrId}`
-          : `${API}/api/news/slug/${slugOrId}`
-      )
+    api
+      .get(isMongoId ? `/news/${slugOrId}` : `/news/slug/${slugOrId}`)
       .then((res) => setNewsItem(res.data))
       .catch((err) => {
         console.error("Error fetching news:", err);

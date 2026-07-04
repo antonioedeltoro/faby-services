@@ -3,7 +3,7 @@ import "../../styles/Admin.css";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { API } from "../../api/baseURL";        // ← unified import
+import { api } from "../../api/client";
 
 export default function EditPost() {
   const { id } = useParams();
@@ -18,22 +18,16 @@ export default function EditPost() {
 
   /* ─────────────── fetch post once ─────────────── */
   useEffect(() => {
-    const token = localStorage.getItem("authToken");
-
-    fetch(`${API}/api/news/${id}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((r) => {
-        if (!r.ok) throw new Error();
-        return r.json();
-      })
-      .then((d) => {
+    api
+      .get(`/news/${id}`)
+      .then((res) => {
+        const d = res.data;
         setTitle(d.title || "");
         setBody(d.content || "");
         setExistingImage(d.imageUrl || "");
       })
       .catch(() => setError("Failed to load post."));
-  }, [id]);                                      // `API` is a constant; omit from deps
+  }, [id]);
 
   /* ─────────────── handlers ─────────────── */
   const handleImageChange = (e) => {
@@ -60,22 +54,11 @@ export default function EditPost() {
     formData.append("content", body);
     if (image) formData.append("image", image);
 
-    const token = localStorage.getItem("authToken");
-
     try {
-      const res = await fetch(`${API}/api/news/${id}`, {
-        method: "PUT",
-        headers: { Authorization: `Bearer ${token}` },
-        body: formData,
-      });
-
-      if (!res.ok) {
-        throw new Error(`Update failed (${res.status})`);
-      }
-
+      await api.put(`/news/${id}`, formData);
       navigate("/admin/news");
     } catch (err) {
-      setError(err.message);
+      setError(`Update failed (${err.response?.status || "network error"})`);
     }
   };
 

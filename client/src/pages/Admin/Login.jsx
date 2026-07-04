@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-import { API } from "../../api/baseURL";          // ← centralised base URL
+import { api } from "../../api/client";
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
@@ -17,27 +17,20 @@ export default function AdminLogin() {
     e.preventDefault();
     setError("");                                  // clear previous error
     try {
-      const res = await fetch(`${API}/api/auth/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-        credentials: "include",                   // ensure cookies flow, if used
-      });
-
-      if (!res.ok) {
-        /* Backend returns 401 for bad credentials; propagate a user‑friendly
-           message instead of the generic “Invalid credentials”. */
-        if (res.status === 401) {
-          throw new Error("Incorrect email or password.");
-        }
-        throw new Error(`Login failed (${res.status})`);
-      }
-
-      const { token } = await res.json();
-      login(token);                               // save token in auth context
+      const res = await api.post("/auth/login", { email, password });
+      login(res.data.token);                        // save token in auth context
       navigate("/admin/news");
     } catch (err) {
-      setError(err.message);
+      const status = err.response?.status;
+      /* Backend returns 401 for bad credentials; propagate a user-friendly
+         message instead of the generic “Invalid credentials”. */
+      if (status === 401) {
+        setError("Incorrect email or password.");
+      } else if (status) {
+        setError(`Login failed (${status})`);
+      } else {
+        setError(err.message);
+      }
     }
   };
 

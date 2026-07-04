@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LogoutButton from "../../components/LogoutButton";
-import { API } from "../../api/baseURL";            // ← unified base URL
+import { api } from "../../api/client";
 import "../../styles/Admin.css";
 
 export default function NewsDashboard() {
@@ -11,38 +11,25 @@ export default function NewsDashboard() {
 
   /* ─────────────── fetch posts once ─────────────── */
   useEffect(() => {
-    const token = localStorage.getItem("authToken");
-
-    fetch(`${API}/api/news`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((r) => {
-        if (!r.ok) throw new Error(`Failed to load posts (${r.status})`);
-        return r.json();
-      })
-      .then((data) => setPosts(Array.isArray(data) ? data : []))
-      .catch((err) => setError(err.message));
+    api
+      .get("/news")
+      .then((res) => setPosts(Array.isArray(res.data) ? res.data : []))
+      .catch((err) =>
+        setError(
+          `Failed to load posts (${err.response?.status || "network error"})`
+        )
+      );
   }, []);
 
   /* ─────────────── delete handler ─────────────── */
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this post?")) return;
 
-    const token = localStorage.getItem("authToken");
-
     try {
-      const res = await fetch(`${API}/api/news/${id}`, {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      if (!res.ok) {
-        throw new Error(`Delete failed (${res.status})`);
-      }
-
+      await api.delete(`/news/${id}`);
       setPosts((prev) => prev.filter((p) => p._id !== id));
     } catch (err) {
-      alert(err.message);
+      alert(`Delete failed (${err.response?.status || "network error"})`);
     }
   };
 

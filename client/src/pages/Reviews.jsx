@@ -1,8 +1,7 @@
 import "../styles/Reviews.css";
 import { Helmet } from "react-helmet";
 import { useEffect, useMemo, useRef, useState } from "react";
-import axios from "axios";
-import { API } from "../api/baseURL";
+import { reviewsApi } from "../api/client";
 
 const USER_TOKEN_KEY = "reviews_user_token";
 const INACTIVITY_MS = 15 * 60 * 1000; // 15 min
@@ -36,11 +35,6 @@ export default function Reviews() {
     };
   }, [authed]);
 
-  useEffect(() => {
-    if (authed) axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-    else delete axios.defaults.headers.common.Authorization;
-  }, [authed, token]);
-
   /* ─────────── Data ─────────── */
   const [publicReviews, setPublicReviews] = useState([]);
   const [myReviews, setMyReviews] = useState([]);
@@ -64,8 +58,8 @@ export default function Reviews() {
       try {
         setLoading(true);
         setError("");
-        const publicReq = axios.get(`${API}/api/reviews/public`);
-        const mineReq = authed ? axios.get(`${API}/api/reviews/mine`) : Promise.resolve({ data: [] });
+        const publicReq = reviewsApi.get("/reviews/public");
+        const mineReq = authed ? reviewsApi.get("/reviews/mine") : Promise.resolve({ data: [] });
         const [pubRes, meRes] = await Promise.all([publicReq, mineReq]);
         if (cancelled) return;
         setPublicReviews(pubRes.data || []);
@@ -100,12 +94,12 @@ export default function Reviews() {
     e.preventDefault();
     try {
       setError("");
-      const { data } = await axios.post(`${API}/api/user/auth/register`, authForm);
+      const { data } = await reviewsApi.post("/user/auth/register", authForm);
       localStorage.setItem(USER_TOKEN_KEY, data.token);
       setToken(data.token);
       setUser(data.user);
       setAuthForm({ email: "", password: "" });
-      const meRes = await axios.get(`${API}/api/reviews/mine`);
+      const meRes = await reviewsApi.get("/reviews/mine");
       setMyReviews(meRes.data || []);
     } catch (err) {
       setError("No se pudo crear la cuenta.");
@@ -116,12 +110,12 @@ export default function Reviews() {
     e.preventDefault();
     try {
       setError("");
-      const { data } = await axios.post(`${API}/api/user/auth/login`, authForm);
+      const { data } = await reviewsApi.post("/user/auth/login", authForm);
       localStorage.setItem(USER_TOKEN_KEY, data.token);
       setToken(data.token);
       setUser(data.user);
       setAuthForm({ email: "", password: "" });
-      const meRes = await axios.get(`${API}/api/reviews/mine`);
+      const meRes = await reviewsApi.get("/reviews/mine");
       setMyReviews(meRes.data || []);
     } catch (err) {
       setError("No se pudo iniciar sesión.");
@@ -130,7 +124,6 @@ export default function Reviews() {
 
   const handleLogout = () => {
     localStorage.removeItem(USER_TOKEN_KEY);
-    delete axios.defaults.headers.common.Authorization;
     setToken("");
     setUser(null);
     setMyReviews([]);
@@ -149,7 +142,7 @@ export default function Reviews() {
         message: form.message.trim(),
         authorDisplayName: form.fullName.trim(),
       };
-      const { data } = await axios.post(`${API}/api/reviews`, payload);
+      const { data } = await reviewsApi.post("/reviews", payload);
       setMyReviews((prev) => [data, ...prev]);
       setForm(emptyForm);
       setPage(1);
@@ -176,7 +169,7 @@ export default function Reviews() {
         message: form.message.trim(),
         authorDisplayName: form.fullName.trim(),
       };
-      const { data } = await axios.put(`${API}/api/reviews/${editingId}`, payload);
+      const { data } = await reviewsApi.put(`/reviews/${editingId}`, payload);
       setMyReviews((prev) => prev.map((r) => (r._id === editingId ? data : r)));
       setEditingId(null);
       setForm(emptyForm);
@@ -187,7 +180,7 @@ export default function Reviews() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`${API}/api/reviews/${id}`);
+      await reviewsApi.delete(`/reviews/${id}`);
       setMyReviews((prev) => prev.filter((r) => r._id !== id));
     } catch {
       setError("No se pudo eliminar su reseña.");

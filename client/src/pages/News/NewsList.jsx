@@ -1,8 +1,7 @@
 // client/src/pages/News/NewsList.jsx
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
-import { API } from "../../api/baseURL";         // ← unified base URL
+import { api } from "../../api/client";
 import "../../styles/News.css";
 
 export default function NewsList() {
@@ -11,8 +10,8 @@ export default function NewsList() {
 
   /* ─────────────── fetch once ─────────────── */
   useEffect(() => {
-    axios
-      .get(`${API}/api/news`)
+    api
+      .get("/news")
       .then((res) => {
         setNewsItems(Array.isArray(res.data) ? res.data : []);
       })

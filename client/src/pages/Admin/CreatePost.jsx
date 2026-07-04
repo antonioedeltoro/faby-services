@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { API } from "../../api/baseURL";             // ← central base URL
+import { api } from "../../api/client";
 import "../../styles/Admin.css";
 
 export default function CreatePost() {
@@ -37,22 +37,13 @@ export default function CreatePost() {
     formData.append("content", body);
     if (image) formData.append("image", image);
 
-    const token = localStorage.getItem("authToken");
-
     try {
-      const res = await fetch(`${API}/api/news`, {
-        method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
-        body: formData,
-      });
-
-      if (!res.ok) {
-        throw new Error(`Failed to create post (${res.status})`);
-      }
-
+      await api.post("/news", formData);
       navigate("/admin/news");
     } catch (err) {
-      setError(err.message);
+      setError(
+        `Failed to create post (${err.response?.status || "network error"})`
+      );
     }
   };
 
