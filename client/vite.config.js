@@ -8,9 +8,4 @@ export default defineConfig({
   build: {
     emptyOutDir: true, // ✅ ensure no stale files
   },
-  server: {
-    proxy: {
-      "/api": "http://localhost:5000",
-    },
-  },
 });
