@@ -1,0 +1,14 @@
+# Dependencies
+node_modules
+
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+
+# Uploads (runtime files)
+uploads
+
+# OS / editor
+.DS_Store
+*.log
