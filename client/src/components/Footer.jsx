@@ -102,6 +102,7 @@ export default function Footer() {
       </div>
 
       {/* full-width horizontal rule */}
+      <br />
       <hr className="footer-divider" />
 
       <div className="footer__credits">
