@@ -4,6 +4,7 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import fs from "fs";
 
 import authRoutes from "./routes/auth.js"; // admin-only (existing)
 import newsRoutes from "./routes/news.js"; // existing
@@ -29,6 +30,9 @@ app.use(
     credentials: true,
   })
 );
+
+/* Ensure the uploads folder exists (multer writes here) */
+fs.mkdirSync("uploads", { recursive: true });
 
 /* Middleware */
 app.use(express.json());

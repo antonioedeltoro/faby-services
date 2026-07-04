@@ -9,6 +9,13 @@ export default function authMiddleware(req, res, next) {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    // Reject any valid-but-non-admin token (e.g. a reviews user's 7-day token,
+    // which is signed with the same JWT_SECRET but has no admin role).
+    if (decoded.role !== "admin") {
+      return res.status(403).json({ message: "Admin access required" });
+    }
+
     req.user = decoded; // optional: make user info available downstream
     next();
   } catch {
