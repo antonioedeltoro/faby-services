@@ -1,8 +1,10 @@
 import "../styles/TaxSeason.css";
 import { Helmet } from "react-helmet";
 import { useState } from "react";
+import { useLang } from "../context/LanguageContext";
 
 export default function TaxSeason() {
+  const { t } = useLang();
   const currentYear = new Date().getFullYear();
 
   const initialFormState = {
@@ -80,32 +82,32 @@ export default function TaxSeason() {
 
     const email = "fabymultiservicios@gmail.com";
     const mailSubject = encodeURIComponent(
-      `Consulta: Temporada de Impuestos ${currentYear}`
+      `${t("taxSeason.email.subjectPrefix")} ${currentYear}`
     );
 
     const depLines =
       dependentsCount > 0
         ? dependentsDob
-            .map((d, i) => `Dependiente #${i + 1} - Fecha de nacimiento: ${d || "(sin fecha)"}`)
+            .map((d, i) => `${t("taxSeason.email.dependentLine")} #${i + 1} - ${t("taxSeason.email.dobLabel")}: ${d || t("taxSeason.email.noDate")}`)
             .join("\n")
         : "N/A";
 
     const mailBody = encodeURIComponent(
-      `Nueva solicitud de Temporada de Impuestos ${currentYear}:\n\n` +
-        `Contribuyente\n` +
-        `• Nombre completo: ${taxpayerName}\n` +
-        `• Fecha de nacimiento: ${taxpayerDob}\n` +
-        `• Teléfono: ${taxpayerCountryCode} ${taxpayerPhone}\n\n` +
-        `Esposo(a) (opcional)\n` +
-        `• Nombre: ${spouseName || "N/A"}\n` +
-        `• Fecha de nacimiento: ${spouseDob || "N/A"}\n` +
-        `• Teléfono: ${
+      `${t("taxSeason.email.bodyIntroPrefix")} ${currentYear}:\n\n` +
+        `${t("taxSeason.email.taxpayerHeading")}\n` +
+        `• ${t("taxSeason.email.fullNameLabel")}: ${taxpayerName}\n` +
+        `• ${t("taxSeason.email.dobLabel")}: ${taxpayerDob}\n` +
+        `• ${t("taxSeason.email.phoneLabel")}: ${taxpayerCountryCode} ${taxpayerPhone}\n\n` +
+        `${t("taxSeason.email.spouseHeading")}\n` +
+        `• ${t("taxSeason.email.nameLabel")}: ${spouseName || "N/A"}\n` +
+        `• ${t("taxSeason.email.dobLabel")}: ${spouseDob || "N/A"}\n` +
+        `• ${t("taxSeason.email.phoneLabel")}: ${
           spousePhone ? `${spouseCountryCode} ${spousePhone}` : "N/A"
         }\n\n` +
-        `Dependientes\n` +
-        `• Número de dependientes: ${dependentsCount}\n` +
+        `${t("taxSeason.email.dependentsHeading")}\n` +
+        `• ${t("taxSeason.email.dependentsCountLabel")}: ${dependentsCount}\n` +
         `${depLines}\n\n` +
-        `Mensaje:\n${message || "(sin mensaje)"}`
+        `${t("taxSeason.email.messageLabel")}:\n${message || t("taxSeason.email.noMessage")}`
     );
 
     window.location.href = `mailto:${email}?subject=${mailSubject}&body=${mailBody}`;
@@ -118,15 +120,15 @@ export default function TaxSeason() {
   return (
     <div className="page-container tax-season-page">
       <Helmet>
-        <title>{`Temporada de Impuestos ${currentYear} | Faby Services Seguros y Contabilidad`}</title>
+        <title>{`${t("taxSeason.meta.titlePrefix")} ${currentYear} | Faby Services`}</title>
       </Helmet>
 
       <section className="tax-season-section">
         <div className="tax-content">
-          <h1 className="heading-xl blue">{`Temporada de Impuestos ${currentYear}`}</h1>
-          <p className="paragraph">Preparación de Impuestos con Confianza</p>
+          <h1 className="heading-xl blue">{`${t("taxSeason.hero.headingPrefix")} ${currentYear}`}</h1>
+          <p className="paragraph">{t("taxSeason.hero.tagline")}</p>
           <p className="paragraph">
-            {`La Temporada de Impuestos ${currentYear} está en curso. Comparta sus datos básicos y nos pondremos en contacto para ayudarle a presentar correctamente—incluyendo extensiones hasta el 15 de octubre, si corresponde.`}
+            {`${t("taxSeason.hero.introPrefix")} ${currentYear} ${t("taxSeason.hero.introSuffix")}`}
           </p>
 
           {/* ---------- Card wrapper ---------- */}
@@ -134,7 +136,7 @@ export default function TaxSeason() {
             <form className="enrollment-form" onSubmit={handleSubmit}>
               {/* Taxpayer */}
               <label>
-                Nombre completo del contribuyente
+                {t("taxSeason.form.taxpayerName")}
                 <input
                   type="text"
                   name="taxpayerName"
@@ -145,7 +147,7 @@ export default function TaxSeason() {
               </label>
 
               <label>
-                Fecha de nacimiento del contribuyente
+                {t("taxSeason.form.taxpayerDob")}
                 <input
                   type="date"
                   name="taxpayerDob"
@@ -156,7 +158,7 @@ export default function TaxSeason() {
               </label>
 
               <label>
-                Teléfono del contribuyente
+                {t("taxSeason.form.taxpayerPhone")}
                 <div className="phone-field">
                   <select
                     name="taxpayerCountryCode"
@@ -171,15 +173,15 @@ export default function TaxSeason() {
                     <option value="+53">+53 (Cuba)</option>
                     <option value="+593">+593 (Ecuador)</option>
                     <option value="+503">+503 (El Salvador)</option>
-                    <option value="+34">+34 (España)</option>
+                    <option value="+34">{`+34 (${t("taxSeason.countries.spain")})`}</option>
                     <option value="+502">+502 (Guatemala)</option>
                     <option value="+504">+504 (Honduras)</option>
-                    <option value="+52">+52 (México)</option>
+                    <option value="+52">{`+52 (${t("taxSeason.countries.mexico")})`}</option>
                     <option value="+505">+505 (Nicaragua)</option>
-                    <option value="+507">+507 (Panamá)</option>
+                    <option value="+507">{`+507 (${t("taxSeason.countries.panama")})`}</option>
                     <option value="+595">+595 (Paraguay)</option>
-                    <option value="+51">+51 (Perú)</option>
-                    <option value="+1">+1 (Estados Unidos)</option>
+                    <option value="+51">{`+51 (${t("taxSeason.countries.peru")})`}</option>
+                    <option value="+1">{`+1 (${t("taxSeason.countries.usa")})`}</option>
                     <option value="+598">+598 (Uruguay)</option>
                     <option value="+58">+58 (Venezuela)</option>
                   </select>
@@ -195,18 +197,18 @@ export default function TaxSeason() {
 
               {/* Spouse (optional) */}
               <label>
-                Nombre del esposo(a) (opcional)
+                {t("taxSeason.form.spouseName")}
                 <input
                   type="text"
                   name="spouseName"
                   value={formData.spouseName}
                   onChange={handleChange}
-                  placeholder="(Opcional)"
+                  placeholder={t("taxSeason.form.optionalPlaceholder")}
                 />
               </label>
 
               <label>
-                Fecha de nacimiento del esposo(a) (opcional)
+                {t("taxSeason.form.spouseDob")}
                 <input
                   type="date"
                   name="spouseDob"
@@ -216,7 +218,7 @@ export default function TaxSeason() {
               </label>
 
               <label>
-                Teléfono del esposo(a) (opcional)
+                {t("taxSeason.form.spousePhone")}
                 <div className="phone-field">
                   <select
                     name="spouseCountryCode"
@@ -231,15 +233,15 @@ export default function TaxSeason() {
                     <option value="+53">+53 (Cuba)</option>
                     <option value="+593">+593 (Ecuador)</option>
                     <option value="+503">+503 (El Salvador)</option>
-                    <option value="+34">+34 (España)</option>
+                    <option value="+34">{`+34 (${t("taxSeason.countries.spain")})`}</option>
                     <option value="+502">+502 (Guatemala)</option>
                     <option value="+504">+504 (Honduras)</option>
-                    <option value="+52">+52 (México)</option>
+                    <option value="+52">{`+52 (${t("taxSeason.countries.mexico")})`}</option>
                     <option value="+505">+505 (Nicaragua)</option>
-                    <option value="+507">+507 (Panamá)</option>
+                    <option value="+507">{`+507 (${t("taxSeason.countries.panama")})`}</option>
                     <option value="+595">+595 (Paraguay)</option>
-                    <option value="+51">+51 (Perú)</option>
-                    <option value="+1">+1 (Estados Unidos)</option>
+                    <option value="+51">{`+51 (${t("taxSeason.countries.peru")})`}</option>
+                    <option value="+1">{`+1 (${t("taxSeason.countries.usa")})`}</option>
                     <option value="+598">+598 (Uruguay)</option>
                     <option value="+58">+58 (Venezuela)</option>
                   </select>
@@ -248,14 +250,14 @@ export default function TaxSeason() {
                     name="spousePhone"
                     value={formData.spousePhone}
                     onChange={handleChange}
-                    placeholder="(Opcional)"
+                    placeholder={t("taxSeason.form.optionalPlaceholder")}
                   />
                 </div>
               </label>
 
               {/* Dependents */}
               <label>
-                Número de dependientes
+                {t("taxSeason.form.dependentsCount")}
                 <input
                   type="number"
                   name="dependentsCount"
@@ -268,11 +270,11 @@ export default function TaxSeason() {
 
               {formData.dependentsCount > 0 && (
                 <div className="dependents-block">
-                  <p className="paragraph"><strong>Fechas de nacimiento de dependientes</strong></p>
+                  <p className="paragraph"><strong>{t("taxSeason.form.dependentsDobHeading")}</strong></p>
                   {Array.from({ length: formData.dependentsCount }).map((_, idx) => (
                     <div className="dependent-row" key={idx}>
                       <label>
-                        Dependiente #{idx + 1} — Fecha de nacimiento
+                        {t("taxSeason.form.dependentLabelPrefix")} #{idx + 1} {t("taxSeason.form.dependentLabelSuffix")}
                         <input
                           type="date"
                           value={formData.dependentsDob[idx] || ""}
@@ -287,24 +289,24 @@ export default function TaxSeason() {
 
               {/* Message box */}
               <label>
-                Mensaje
+                {t("taxSeason.form.message")}
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   rows={5}
-                  placeholder="Cuéntenos sobre su caso o situación..."
+                  placeholder={t("taxSeason.form.messagePlaceholder")}
                 />
               </label>
 
               <div className="enrollment-buttons">
-                <button type="submit" className="button">Enviar</button>
+                <button type="submit" className="button">{t("taxSeason.form.submit")}</button>
                 <button
                   type="button"
                   className="button button--outline"
                   onClick={handleReset}
                 >
-                  Borrar Formulario
+                  {t("taxSeason.form.reset")}
                 </button>
               </div>
             </form>

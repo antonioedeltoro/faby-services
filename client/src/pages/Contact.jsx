@@ -3,6 +3,7 @@ import '../styles/Contact.css';
 import { Helmet } from 'react-helmet';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css'; // local CSS import (Option 1)
+import { useLang } from "../context/LanguageContext";
 
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN || '';
 
@@ -12,6 +13,7 @@ const ADDRESS_TEXT = '10920 Fenton Rd, Moreno Valley, CA 92557';
 const LOCATION = { lng: -117.2927, lat: 33.9396, zoom: 15, };
 
 export default function Contact() {
+  const { t } = useLang();
   const mapContainerRef = useRef(null);
   const mapRef = useRef(null);
 
@@ -94,7 +96,7 @@ export default function Contact() {
   return (
     <div className="page-container contact-page">
       <Helmet>
-        <title>Contacto | Faby Services Seguros y Contabilidad</title>
+        <title>{t("contact.meta.title")}</title>
       </Helmet>
 
       <section className="contact-section">
@@ -102,17 +104,17 @@ export default function Contact() {
           <div className="contact-grid">
             {/* LEFT COLUMN — existing content */}
             <div className="contact-left">
-              <h1 className="heading-xl blue">Contáctenos</h1>
-              <p className="paragraph">¿Tiene preguntas? Estamos aquí para ayudarle.</p>
+              <h1 className="heading-xl blue">{t("contact.heading")}</h1>
+              <p className="paragraph">{t("contact.intro")}</p>
 
               <div className="contact-details">
-                <p className="paragraph"><strong>Teléfono:</strong> (424) 249-0927 / (424) 426-9893</p>
-                <p className="paragraph"><strong>Correo electrónico:</strong> fabymultiservicios@gmail.com</p>
-                <p className="paragraph"><strong>Ubicación:</strong> {ADDRESS_TEXT}</p>
+                <p className="paragraph"><strong>{t("contact.details.phoneLabel")}</strong> (424) 249-0927 / (424) 426-9893</p>
+                <p className="paragraph"><strong>{t("contact.details.emailLabel")}</strong> fabymultiservicios@gmail.com</p>
+                <p className="paragraph"><strong>{t("contact.details.locationLabel")}</strong> {ADDRESS_TEXT}</p>
               </div>
 
               <p className="paragraph cta">
-                ¿Prefiere hablar en persona? Llámenos o visítenos durante el horario de atención.
+                {t("contact.cta")}
               </p>
             </div>
 
@@ -122,8 +124,8 @@ export default function Contact() {
               className="mapbox-container"
               onClick={openMaps}
               role="button"
-              aria-label="Abrir mapas"
-              title="Abrir mapas"
+              aria-label={t("contact.mapAria")}
+              title={t("contact.mapAria")}
             />
           </div>
         </div>

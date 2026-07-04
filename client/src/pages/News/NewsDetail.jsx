@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { api } from "../../api/client";
+import { useLang } from "../../context/LanguageContext";
 import "../../styles/News.css";
 import "../../styles/buttons.css";
 
 export default function NewsDetail() {
+  const { t } = useLang();
   const { slug: slugOrId } = useParams();
 
   const [newsItem, setNewsItem] = useState(null);
@@ -26,8 +28,8 @@ export default function NewsDetail() {
   }, [slugOrId]);
 
   // ─────────────── render ───────────────
-  if (loading) return <p>Cargando…</p>;
-  if (notFound || !newsItem) return <p>Noticia no encontrada.</p>;
+  if (loading) return <p>{t("news.loading")}</p>;
+  if (notFound || !newsItem) return <p>{t("news.notFound")}</p>;
 
   return (
     <div className="news-page">
@@ -35,7 +37,7 @@ export default function NewsDetail() {
         <div className="card">
           <h1 className="heading-xl">{newsItem.title}</h1>
           <p className="news-meta">
-            Publicado el{" "}
+            {t("news.publishedOn")}{" "}
             {new Date(newsItem.createdAt).toLocaleDateString()}
           </p>
 
@@ -46,7 +48,7 @@ export default function NewsDetail() {
           ></div>
 
           <Link to="/news" className="back-link">
-            ← Volver a Noticias
+            ← {t("news.backToNews")}
           </Link>
         </div>
       </div>

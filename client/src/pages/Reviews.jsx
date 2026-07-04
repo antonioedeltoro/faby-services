@@ -2,12 +2,15 @@ import "../styles/Reviews.css";
 import { Helmet } from "react-helmet";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { reviewsApi } from "../api/client";
+import { useLang } from "../context/LanguageContext";
 
 const USER_TOKEN_KEY = "reviews_user_token";
 const INACTIVITY_MS = 15 * 60 * 1000; // 15 min
 const PAGE_SIZE = 10;
 
 export default function Reviews() {
+  const { t } = useLang();
+
   /* ─────────── Auth state ─────────── */
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem(USER_TOKEN_KEY) || "");
@@ -66,7 +69,7 @@ export default function Reviews() {
         setMyReviews(meRes.data || []);
         setPage(1);
       } catch (err) {
-        setError(err?.response?.data?.message || "No se pudieron cargar las reseñas.");
+        setError(err?.response?.data?.message || t("reviews.errors.load"));
       } finally {
         if (!cancelled) setLoading(false);
       }
@@ -102,7 +105,7 @@ export default function Reviews() {
       const meRes = await reviewsApi.get("/reviews/mine");
       setMyReviews(meRes.data || []);
     } catch (err) {
-      setError("No se pudo crear la cuenta.");
+      setError(t("reviews.errors.register"));
     }
   };
 
@@ -118,7 +121,7 @@ export default function Reviews() {
       const meRes = await reviewsApi.get("/reviews/mine");
       setMyReviews(meRes.data || []);
     } catch (err) {
-      setError("No se pudo iniciar sesión.");
+      setError(t("reviews.errors.login"));
     }
   };
 
@@ -147,7 +150,7 @@ export default function Reviews() {
       setForm(emptyForm);
       setPage(1);
     } catch {
-      setError("No se pudo enviar su reseña.");
+      setError(t("reviews.errors.create"));
     }
   };
 
@@ -174,7 +177,7 @@ export default function Reviews() {
       setEditingId(null);
       setForm(emptyForm);
     } catch {
-      setError("No se pudo actualizar su reseña.");
+      setError(t("reviews.errors.update"));
     }
   };
 
@@ -183,7 +186,7 @@ export default function Reviews() {
       await reviewsApi.delete(`/reviews/${id}`);
       setMyReviews((prev) => prev.filter((r) => r._id !== id));
     } catch {
-      setError("No se pudo eliminar su reseña.");
+      setError(t("reviews.errors.delete"));
     }
   };
 
@@ -191,14 +194,14 @@ export default function Reviews() {
   return (
     <div className="page-container reviews-page">
       <Helmet>
-        <title>Reseñas | Faby Services Seguros y Contabilidad</title>
+        <title>{t("reviews.pageTitle")}</title>
       </Helmet>
 
       <section className="reviews-section">
         <div className="reviews-content">
-          <h1 className="heading-xl blue">Reseñas</h1>
+          <h1 className="heading-xl blue">{t("reviews.heading")}</h1>
           <p className="paragraph">
-            Comparte tu experiencia con Faby Services. Inicia sesión o crea una cuenta para publicar y gestionar tus reseñas.
+            {t("reviews.intro")}
           </p>
 
           {error && <p className="paragraph error-text">{error}</p>}
@@ -208,11 +211,11 @@ export default function Reviews() {
             <div className="card">
               <form className="review-form" onSubmit={authMode === "login" ? handleLogin : handleRegister}>
                 <h2 className="heading-md auth-title">
-                  {authMode === "login" ? "Iniciar sesión" : "Crear cuenta"}
+                  {authMode === "login" ? t("reviews.login") : t("reviews.createAccount")}
                 </h2>
 
                 <label>
-                  Correo electrónico
+                  {t("reviews.email")}
                   <input
                     type="email"
                     name="email"
@@ -222,7 +225,7 @@ export default function Reviews() {
                   />
                 </label>
                 <label>
-                  Contraseña
+                  {t("reviews.password")}
                   <input
                     type="password"
                     name="password"
@@ -234,31 +237,31 @@ export default function Reviews() {
 
                 <div className="review-buttons">
                   <button type="submit" className="button">
-                    {authMode === "login" ? "Iniciar sesión" : "Crear cuenta"}
+                    {authMode === "login" ? t("reviews.login") : t("reviews.createAccount")}
                   </button>
                 </div>
 
                 <p className="auth-switch">
                   {authMode === "login" ? (
                     <>
-                      ¿No tienes cuenta?{" "}
+                      {t("reviews.noAccountPrompt")}{" "}
                       <button
                         type="button"
                         className="linklike"
                         onClick={() => setAuthMode("register")}
                       >
-                        Crear cuenta
+                        {t("reviews.createAccount")}
                       </button>
                     </>
                   ) : (
                     <>
-                      ¿Ya tienes cuenta?{" "}
+                      {t("reviews.hasAccountPrompt")}{" "}
                       <button
                         type="button"
                         className="linklike"
                         onClick={() => setAuthMode("login")}
                       >
-                        Iniciar sesión
+                        {t("reviews.login")}
                       </button>
                     </>
                   )}
@@ -272,62 +275,62 @@ export default function Reviews() {
             <div className="card">
               <form className="review-form" onSubmit={editingId ? handleUpdate : handleCreate}>
                 <label>
-                  Nombre completo
+                  {t("reviews.fullName")}
                   <input
                     type="text"
                     name="fullName"
                     value={form.fullName}
                     onChange={handleField}
-                    placeholder="Ej.: Juan Pérez"
+                    placeholder={t("reviews.fullNamePlaceholder")}
                     required
                   />
                 </label>
 
                 <label>
-                  Calificación
+                  {t("reviews.rating")}
                   <select
                     name="rating"
                     value={form.rating}
                     onChange={handleField}
                     required
                   >
-                    <option value="5">5 - Excelente</option>
-                    <option value="4">4 - Muy bueno</option>
-                    <option value="3">3 - Bueno</option>
-                    <option value="2">2 - Regular</option>
-                    <option value="1">1 - Necesita mejorar</option>
+                    <option value="5">{t("reviews.rating5")}</option>
+                    <option value="4">{t("reviews.rating4")}</option>
+                    <option value="3">{t("reviews.rating3")}</option>
+                    <option value="2">{t("reviews.rating2")}</option>
+                    <option value="1">{t("reviews.rating1")}</option>
                   </select>
                 </label>
 
                 <label>
-                  Mensaje
+                  {t("reviews.message")}
                   <textarea
                     name="message"
                     value={form.message}
                     onChange={handleField}
                     rows={5}
-                    placeholder="Cuéntenos sobre su experiencia..."
+                    placeholder={t("reviews.messagePlaceholder")}
                     required
                   />
                 </label>
 
                 <div className="review-buttons">
                   <button type="submit" className="button">
-                    {editingId ? "Actualizar reseña" : "Publicar reseña"}
+                    {editingId ? t("reviews.updateReview") : t("reviews.postReview")}
                   </button>
                   <button
                     type="button"
                     className="button button--outline"
                     onClick={handleReset}
                   >
-                    Borrar Formulario
+                    {t("reviews.clearForm")}
                   </button>
                   <button
                     type="button"
                     className="button button--logout"
                     onClick={handleLogout}
                   >
-                    Cerrar sesión
+                    {t("reviews.logout")}
                   </button>
                 </div>
               </form>
@@ -337,16 +340,16 @@ export default function Reviews() {
           {/* Reviews list */}
           <div className="reviews-list">
             {loading ? (
-              <p className="paragraph">Cargando reseñas…</p>
+              <p className="paragraph">{t("reviews.loading")}</p>
             ) : pagedReviews.length === 0 ? (
-              <p className="paragraph">Aún no hay reseñas.</p>
+              <p className="paragraph">{t("reviews.empty")}</p>
             ) : (
               <>
                 {pagedReviews.map((r) => {
                   const isMine = myReviews.some((m) => m._id === r._id);
                   const stars = "★★★★★".slice(0, r.rating).padEnd(5, "☆");
                   const nameSource = r.authorDisplayName || r.authorName;
-                  const displayName = nameSource && nameSource.trim() ? nameSource : "Usuario";
+                  const displayName = nameSource && nameSource.trim() ? nameSource : t("reviews.anonymousUser");
 
                   return (
                     <div className="review-card card" key={r._id}>
@@ -362,14 +365,14 @@ export default function Reviews() {
                             className="button button--outline"
                             onClick={() => startEdit(r)}
                           >
-                            Editar
+                            {t("reviews.edit")}
                           </button>
                           <button
                             type="button"
                             className="button"
                             onClick={() => handleDelete(r._id)}
                           >
-                            Eliminar
+                            {t("reviews.delete")}
                           </button>
                         </div>
                       )}
@@ -379,7 +382,7 @@ export default function Reviews() {
                 {hasMore && (
                   <div className="review-buttons">
                     <button type="button" className="button" onClick={() => setPage((p) => p + 1)}>
-                      Cargar más
+                      {t("reviews.loadMore")}
                     </button>
                   </div>
                 )}

@@ -44,21 +44,21 @@
 .heading-xl {
   font-size: 2.25rem;
   margin-bottom: 1.5rem;
-  color: var(--color-dark, #1a1a1a);
+  color: var(--text);
 }
 .heading-xl.blue {
   color: var(--color-accent, #004d40);
 }
 .paragraph {
   font-size: 1rem;
-  color: #333;
+  color: var(--text);
   line-height: 1.6;
   margin-bottom: 1rem;
 }
 .cta {
   font-style: italic;
   font-weight: 500;
-  color: #444;
+  color: var(--text-muted);
   margin-top: 2rem;
 }
 
@@ -77,9 +77,9 @@
 .mapbox-placeholder {
   display: grid;
   place-items: center;
-  background: #eef3f3;
-  color: #36454f;
-  border: 1px dashed #cfd8dc;
+  background: var(--surface-alt);
+  color: var(--text);
+  border: 1px dashed var(--border);
 }
 
 /* Responsive */

@@ -6,18 +6,23 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: #ffffff;
+  background-color: var(--nav-bg);
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 1.5rem;
   padding: 1rem 2rem 0.1rem 2rem;
   transition: background-color 0.3s ease, box-shadow 0.3s ease,
     transform 0.3s ease; /* enables slide-away */
 }
 
+/* Logo pushes the links + controls to the right */
+.navbar__logo {
+  margin-right: auto;
+}
+
 /* Shadow once user scrolls a bit */
 .navbar.scrolled {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px var(--shadow);
 }
 
 /* Slide bar completely out of view */
@@ -32,24 +37,6 @@
 }
 
 /* ========================
-   HAMBURGER TOGGLE
-======================== */
-
-.navbar__toggle {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 1.75rem;
-  color: #1da1f2;
-  cursor: pointer;
-  z-index: 1100;
-}
-
-.navbar__toggle svg {
-  stroke: #1da1f2;
-}
-
-/* ========================
    NAV LINKS (DESKTOP)
 ======================== */
 
@@ -59,19 +46,72 @@
 }
 
 .navbar__links a {
-  color: #1da1f2;
+  color: var(--nav-link);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s ease, border-bottom 0.2s ease;
 }
 
 .navbar__links a:hover {
-  color: #f8cc21;
-  border-bottom: 2px solid #f8cc21;
+  color: var(--color-faby-gold);
+  border-bottom: 2px solid var(--color-faby-gold);
 }
 
 .navbar__links a.active {
-  border-bottom: 2px solid #f8cc21;
+  border-bottom: 2px solid var(--color-faby-gold);
+}
+
+/* ========================
+   NAVBAR CONTROLS (always visible — never inside the hamburger)
+======================== */
+
+.navbar__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+  color: var(--nav-link);
+  background: none;
+  border: 1px solid transparent;
+  line-height: 1;
+  transition: background-color 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.nav-control:hover {
+  color: var(--color-faby-gold);
+  border-color: var(--color-faby-gold);
+}
+
+.lang-toggle__code {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+/* ========================
+   HAMBURGER TOGGLE
+======================== */
+
+.navbar__toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  color: var(--nav-link);
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.navbar__toggle svg {
+  stroke: currentColor;
 }
 
 /* ========================
@@ -83,12 +123,13 @@
     display: block;
   }
 
+  /* Links collapse into a dropdown; the controls stay on the bar. */
   .navbar__links {
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
-    background-color: #ffffff;
+    background-color: var(--nav-bg);
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -99,6 +140,7 @@
     opacity: 0;
     pointer-events: none;
     transition: transform 0.3s ease, opacity 0.3s ease;
+    box-shadow: 0 8px 12px var(--shadow);
   }
 
   .navbar__links.open {
@@ -116,7 +158,7 @@
   display: inline-block;
   width: 8px;
   height: 8px;
-  background-color: #f8cc21; /* same yellow as active underline */
+  background-color: var(--color-faby-gold);
   border-radius: 50%;
   margin-left: 6px;
   vertical-align: middle;

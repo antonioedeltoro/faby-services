@@ -1,8 +1,10 @@
 import "../styles/TaxSeason.css"; // reuse form/card/typography via partials
 import { Helmet } from "react-helmet";
 import { useState } from "react";
+import { useLang } from "../context/LanguageContext";
 
 export default function Appointments() {
+  const { t } = useLang();
   const [form, setForm] = useState({
     name: "",
     countryCode: "+1",
@@ -19,13 +21,13 @@ export default function Appointments() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const email = "fabymultiservicios@gmail.com";
-    const subject = encodeURIComponent("Solicitud de Cita");
+    const subject = encodeURIComponent(t("appointments.email.subject"));
     const body = encodeURIComponent(
-      `Nueva solicitud de cita:\n\n` +
-      `Nombre: ${form.name}\n` +
-      `Teléfono: ${form.countryCode} ${form.phone}\n` +
-      `Fecha/Hora preferida: ${form.callAt || "(no especificado)"}\n\n` +
-      `Mensaje:\n${form.message || "(sin mensaje)"}`
+      `${t("appointments.email.intro")}\n\n` +
+      `${t("appointments.email.name")}: ${form.name}\n` +
+      `${t("appointments.email.phone")}: ${form.countryCode} ${form.phone}\n` +
+      `${t("appointments.email.preferred")}: ${form.callAt || t("appointments.email.notSpecified")}\n\n` +
+      `${t("appointments.email.message")}:\n${form.message || t("appointments.email.noMessage")}`
     );
     window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
   };
@@ -36,20 +38,20 @@ export default function Appointments() {
   return (
     <div className="page-container tax-season-page">
       <Helmet>
-        <title>Citas | Faby Services Seguros y Contabilidad</title>
+        <title>{t("appointments.meta.title")}</title>
       </Helmet>
 
       <section className="tax-season-section">
         <div className="tax-content">
-          <h1 className="heading-xl blue">Citas</h1>
+          <h1 className="heading-xl blue">{t("appointments.heading")}</h1>
           <p className="paragraph">
-            Envíe su solicitud y nos pondremos en contacto para confirmar la fecha y hora.
+            {t("appointments.intro")}
           </p>
 
           <div className="card">
             <form className="enrollment-form" onSubmit={handleSubmit}>
               <label>
-                Nombre Completo
+                {t("appointments.form.name")}
                 <input
                   type="text"
                   name="name"
@@ -60,21 +62,21 @@ export default function Appointments() {
               </label>
 
               <label>
-                Teléfono
+                {t("appointments.form.phone")}
                 <div className="phone-field">
                   <select
                     name="countryCode"
                     value={form.countryCode}
                     onChange={handleChange}
                   >
-                    <option value="+1">+1 (Estados Unidos)</option>
-                    <option value="+52">+52 (México)</option>
-                    <option value="+503">+503 (El Salvador)</option>
-                    <option value="+505">+505 (Nicaragua)</option>
-                    <option value="+506">+506 (Costa Rica)</option>
-                    <option value="+507">+507 (Panamá)</option>
-                    <option value="+57">+57 (Colombia)</option>
-                    <option value="+34">+34 (España)</option>
+                    <option value="+1">+1 ({t("appointments.countries.us")})</option>
+                    <option value="+52">+52 ({t("appointments.countries.mx")})</option>
+                    <option value="+503">+503 ({t("appointments.countries.sv")})</option>
+                    <option value="+505">+505 ({t("appointments.countries.ni")})</option>
+                    <option value="+506">+506 ({t("appointments.countries.cr")})</option>
+                    <option value="+507">+507 ({t("appointments.countries.pa")})</option>
+                    <option value="+57">+57 ({t("appointments.countries.co")})</option>
+                    <option value="+34">+34 ({t("appointments.countries.es")})</option>
                     {/* extend if needed */}
                   </select>
                   <input
@@ -88,7 +90,7 @@ export default function Appointments() {
               </label>
 
               <label>
-                Fecha y hora preferidas
+                {t("appointments.form.preferredDateTime")}
                 <input
                   type="datetime-local"
                   name="callAt"
@@ -98,24 +100,24 @@ export default function Appointments() {
               </label>
 
               <label>
-                Mensaje
+                {t("appointments.form.message")}
                 <textarea
                   name="message"
                   value={form.message}
                   onChange={handleChange}
                   rows={5}
-                  placeholder="Cuéntenos qué tipo de servicio necesita..."
+                  placeholder={t("appointments.form.messagePlaceholder")}
                 />
               </label>
 
               <div className="enrollment-buttons">
-                <button type="submit" className="button">Enviar</button>
+                <button type="submit" className="button">{t("appointments.form.submit")}</button>
                 <button
                   type="button"
                   className="button button--outline"
                   onClick={handleReset}
                 >
-                  Borrar Formulario
+                  {t("appointments.form.reset")}
                 </button>
               </div>
             </form>

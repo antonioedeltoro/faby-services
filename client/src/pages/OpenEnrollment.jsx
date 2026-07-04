@@ -1,8 +1,10 @@
 import "../styles/OpenEnrollment.css";
 import { Helmet } from "react-helmet";
 import { useState } from "react";
+import { useLang } from "../context/LanguageContext";
 
 export default function OpenEnrollment() {
+  const { t } = useLang();
   const currentYear = new Date().getFullYear();
 
   const initialFormState = {
@@ -49,33 +51,32 @@ export default function OpenEnrollment() {
   return (
     <div className="page-container open-enrollment-page">
       <Helmet>
-        <title>{`Inscripción Abierta ${currentYear} | Faby Services Seguros y Contabilidad`}</title>
+        <title>{`${t("openEnrollment.meta.titlePrefix")} ${currentYear} | Faby Services ${t("openEnrollment.meta.titleSuffix")}`}</title>
       </Helmet>
 
       <section className="open-enrollment-section">
         <div className="enrollment-content">
-          <h1 className="heading-xl blue">{`Inscripción Abierta ${currentYear}`}</h1>
-          <p className="paragraph">Inscríbase con Confianza</p>
+          <h1 className="heading-xl blue">{`${t("openEnrollment.hero.heading")} ${currentYear}`}</h1>
+          <p className="paragraph">{t("openEnrollment.hero.tagline")}</p>
           <p className="paragraph">
-            {`La Inscripción Abierta ${currentYear} ya está aquí. Le ayudaremos a seleccionar entre los mejores planes de seguro médico del mercado.`}
+            {`${t("openEnrollment.hero.introPrefix")} ${currentYear} ${t("openEnrollment.hero.introSuffix")}`}
           </p>
-          <p className="paragraph">¿Listo para inscribirse?</p>
+          <p className="paragraph">{t("openEnrollment.hero.ready")}</p>
 
           <ul className="enrollment-list">
-            <li>Llámenos al (424) 249-0927 o (424) 426-9893</li>
+            <li>{t("openEnrollment.list.call")}</li>
             <li>
-              O complete nuestro formulario de contacto en línea, y lo
-              llamaremos cuando le sea conveniente.
+              {t("openEnrollment.list.form")}
             </li>
-            <li>Reciba orientación experta en cada paso del proceso.</li>
-            <li>Encontraremos la cobertura adecuada para usted.</li>
+            <li>{t("openEnrollment.list.guidance")}</li>
+            <li>{t("openEnrollment.list.coverage")}</li>
           </ul>
 
           {/* ---------- Card wrapper ---------- */}
           <div className="card">
             <form className="enrollment-form" onSubmit={handleSubmit}>
               <label>
-                Nombre Completo
+                {t("openEnrollment.form.name")}
                 <input
                   type="text"
                   name="name"
@@ -86,7 +87,7 @@ export default function OpenEnrollment() {
               </label>
 
               <label>
-                Número de Teléfono
+                {t("openEnrollment.form.phone")}
                 <div className="phone-field">
                   <select
                     name="countryCode"
@@ -101,15 +102,15 @@ export default function OpenEnrollment() {
                     <option value="+53">+53 (Cuba)</option>
                     <option value="+593">+593 (Ecuador)</option>
                     <option value="+503">+503 (El Salvador)</option>
-                    <option value="+34">+34 (España)</option>
+                    <option value="+34">+34 ({t("openEnrollment.countries.spain")})</option>
                     <option value="+502">+502 (Guatemala)</option>
                     <option value="+504">+504 (Honduras)</option>
-                    <option value="+52">+52 (México)</option>
+                    <option value="+52">+52 ({t("openEnrollment.countries.mexico")})</option>
                     <option value="+505">+505 (Nicaragua)</option>
-                    <option value="+507">+507 (Panamá)</option>
+                    <option value="+507">+507 ({t("openEnrollment.countries.panama")})</option>
                     <option value="+595">+595 (Paraguay)</option>
-                    <option value="+51">+51 (Perú)</option>
-                    <option value="+1">+1 (Estados Unidos)</option>
+                    <option value="+51">+51 ({t("openEnrollment.countries.peru")})</option>
+                    <option value="+1">+1 ({t("openEnrollment.countries.unitedStates")})</option>
                     <option value="+598">+598 (Uruguay)</option>
                     <option value="+58">+58 (Venezuela)</option>
                   </select>
@@ -124,19 +125,19 @@ export default function OpenEnrollment() {
               </label>
 
               <label>
-                Asunto
+                {t("openEnrollment.form.subject")}
                 <select
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
                   required
                 >
-                  <option value="">Seleccione un tema</option>
-                  <option value="Bookkeeping">Contabilidad</option>
-                  <option value="Training Courses">Cursos de Capacitación</option>
-                  <option value="Taxes">Impuestos</option>
+                  <option value="">{t("openEnrollment.form.subjectPlaceholder")}</option>
+                  <option value="Bookkeeping">{t("openEnrollment.subjects.bookkeeping")}</option>
+                  <option value="Training Courses">{t("openEnrollment.subjects.trainingCourses")}</option>
+                  <option value="Taxes">{t("openEnrollment.subjects.taxes")}</option>
                   <option value="Business Consulting Services">
-                    Servicios de Consultoría Empresarial
+                    {t("openEnrollment.subjects.businessConsulting")}
                   </option>
                   <option value="Covered California">Covered California</option>
                   <option value="Medicare">Medicare</option>
@@ -144,7 +145,7 @@ export default function OpenEnrollment() {
               </label>
 
               <label>
-                Fecha y Hora para Devolver la Llamada
+                {t("openEnrollment.form.callback")}
                 <input
                   type="datetime-local"
                   name="callAt"
@@ -154,26 +155,26 @@ export default function OpenEnrollment() {
               </label>
 
               <label>
-                Mensaje
+                {t("openEnrollment.form.message")}
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   rows={5}
-                  placeholder="Cuéntenos sobre su caso o situación..."
+                  placeholder={t("openEnrollment.form.messagePlaceholder")}
                 />
               </label>
 
               <div className="enrollment-buttons">
                 <button type="submit" className="button">
-                  Enviar
+                  {t("openEnrollment.form.submit")}
                 </button>
                 <button
                   type="button"
                   className="button button--outline"
                   onClick={handleReset}
                 >
-                  Borrar Formulario
+                  {t("openEnrollment.form.reset")}
                 </button>
               </div>
             </form>

@@ -4,9 +4,9 @@
   max-width: 700px;
   margin: 0 auto;
   padding: 2rem;
-  background-color: var(--color-bg-light);
+  background-color: var(--surface);
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px var(--shadow);
 }
 
 .admin-form-wrapper h1 {
@@ -31,21 +31,22 @@
   width: 100%;
   padding: 0.75rem;
   font-size: var(--font-size-md);
-  border: 1px solid var(--color-gray);
+  border: 1px solid var(--border);
   border-radius: 4px;
-  background-color: #f9f9f9;
+  background-color: var(--surface-alt);
+  color: var(--text);
 }
 
 .admin-form-wrapper input:focus,
 .admin-form-wrapper textarea:focus {
   border-color: var(--color-faby-blue);
-  background-color: #fff;
+  background-color: var(--surface);
   outline: none;
 }
 
 .admin-form-wrapper label {
   font-weight: 600;
-  color: var(--color-dark);
+  color: var(--text);
 }
 
 .admin-form-preview img {

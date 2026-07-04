@@ -49,7 +49,7 @@
 /* ---------- List cards ---------- */
 
 .news-card {
-  border: 1px solid #ddd;
+  border: 1px solid var(--border);
   border-radius: 0.5rem;
   margin-bottom: 2rem;
 
@@ -80,7 +80,7 @@
 .news-body-full {
   font-size: var(--font-size-md);
   line-height: 1.65;
-  color: var(--color-dark);
+  color: var(--text);
   max-width: var(--text-container);
   margin-inline: auto;
 }

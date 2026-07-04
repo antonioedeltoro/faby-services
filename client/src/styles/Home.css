@@ -70,7 +70,7 @@
 
 .hero-section p {
   font-size: 1rem;
-  color: var(--color-dark);
+  color: var(--text);
   text-align: left;
 }
 
@@ -78,7 +78,7 @@
 .mission-section,
 .founder-section,
 .stats-section {
-  background-color: #f2eee2;
+  background-color: var(--surface-alt);
 }
 
 .beliefs-section,
@@ -119,7 +119,7 @@
 .founder-text blockquote {
   font-style: italic;
   margin-top: 1rem;
-  color: #444;
+  color: var(--text-muted);
 }
 
 /* Balanced heading wrapping */

@@ -4,7 +4,7 @@
 @import url("./styles/tokens/typography.css"); /* typography scale */
 @import url("./styles/buttons.css");
 
-/* ----- Brand colours ----- */
+/* ----- Brand colours (constant across themes) ----- */
 :root {
   --color-primary: #00aeef;
   --color-primary-dark: #0072bc;
@@ -20,6 +20,34 @@
   --color-error: #d32f2f;
 
   --color-bg-light: #f7f7f7;
+
+  /* ----- Semantic tokens (theme-aware) — LIGHT defaults ----- */
+  --bg: #f7f7f7;          /* page background            */
+  --surface: #ffffff;     /* cards, navbar, panels      */
+  --surface-alt: #f9f9f9; /* subtle alternate surface   */
+  --text: #333333;        /* primary body text          */
+  --text-muted: #888888;  /* secondary text             */
+  --border: #dddddd;      /* hairlines, inputs          */
+  --nav-bg: #ffffff;      /* navbar background          */
+  --nav-link: #1da1f2;    /* navbar link colour         */
+  --footer-bg: #333333;   /* footer background          */
+  --footer-divider: #cccccc;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* ----- DARK theme overrides ----- */
+[data-theme="dark"] {
+  --bg: #121417;
+  --surface: #1e2228;
+  --surface-alt: #23272e;
+  --text: #e6e8eb;
+  --text-muted: #9aa3ad;
+  --border: #333a42;
+  --nav-bg: #1a1d22;
+  --nav-link: #4fc3f7;
+  --footer-bg: #16181c;
+  --footer-divider: #333a42;
+  --shadow: rgba(0, 0, 0, 0.5);
 }
 
 /* ----- Reset ----- */
@@ -32,11 +60,12 @@
 html,
 body {
   font-family: var(--font-family-base, "Poppins", sans-serif);
-  background-color: var(--color-bg-light);
-  color: var(--color-dark);
+  background-color: var(--bg);
+  color: var(--text);
   line-height: 1.6;
   height: 100%;
   scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Links & media */

@@ -3,8 +3,12 @@ import { useState, useRef, useEffect } from "react";
 import logo from "../assets/Fabylogo.png";
 import "../styles/Navbar.css";
 import { Menu, X } from "lucide-react";
+import { useLang } from "../context/LanguageContext";
+import LanguageToggle from "./LanguageToggle";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
+  const { t } = useLang();
   const [isOpen, setIsOpen]     = useState(false);  // mobile menu open/closed
   const [scrolled, setScrolled] = useState(false);  // adds shadow after 20 px
   const [hidden, setHidden]     = useState(false);  // controls slide-away
@@ -85,25 +89,16 @@ export default function Navbar() {
         </Link>
       </div>
 
-      <button
-        ref={buttonRef}
-        className="navbar__toggle"
-        onClick={toggleMenu}
-        aria-label="Toggle navigation"
-      >
-        {isOpen ? <X size={28} strokeWidth={2.5} /> : <Menu size={28} strokeWidth={2.5} />}
-      </button>
-
       <ul ref={menuRef} className={`navbar__links ${isOpen ? "open" : ""}`}>
-        <li><NavLink to="/" end onClick={closeMenu}>Inicio</NavLink></li>
-        <li><NavLink to="/services" onClick={closeMenu}>Servicios</NavLink></li>
-        <li><NavLink to="/contact" onClick={closeMenu}>Contacto</NavLink></li>
-        <li><NavLink to="/appointments" onClick={closeMenu}>Citas</NavLink></li>
+        <li><NavLink to="/" end onClick={closeMenu}>{t("nav.home")}</NavLink></li>
+        <li><NavLink to="/services" onClick={closeMenu}>{t("nav.services")}</NavLink></li>
+        <li><NavLink to="/contact" onClick={closeMenu}>{t("nav.contact")}</NavLink></li>
+        <li><NavLink to="/appointments" onClick={closeMenu}>{t("nav.appointments")}</NavLink></li>
 
         {showOpenEnrollment && (
           <li>
             <NavLink to="/open-enrollment" onClick={closeMenu}>
-              Inscripción Abierta {year}
+              {t("nav.openEnrollment")} {year}
               <span className="seasonal-dot" />
             </NavLink>
           </li>
@@ -112,15 +107,28 @@ export default function Navbar() {
         {showTaxSeason && (
           <li>
             <NavLink to="/tax-season" onClick={closeMenu}>
-              Temporada de Impuestos {year}
+              {t("nav.taxSeason")} {year}
               <span className="seasonal-dot" />
             </NavLink>
           </li>
         )}
 
-        <li><NavLink to="/news" onClick={closeMenu}>Noticias</NavLink></li>
-        <li><NavLink to="/reviews" onClick={closeMenu}>Reseñas</NavLink></li>
+        <li><NavLink to="/news" onClick={closeMenu}>{t("nav.news")}</NavLink></li>
+        <li><NavLink to="/reviews" onClick={closeMenu}>{t("nav.reviews")}</NavLink></li>
       </ul>
+
+      <div className="navbar__controls">
+        <LanguageToggle />
+        <ThemeToggle />
+        <button
+          ref={buttonRef}
+          className="navbar__toggle"
+          onClick={toggleMenu}
+          aria-label={t("nav.toggleNav")}
+        >
+          {isOpen ? <X size={28} strokeWidth={2.5} /> : <Menu size={28} strokeWidth={2.5} />}
+        </button>
+      </div>
     </nav>
   );
 }

@@ -14,7 +14,7 @@
 .heading-xl {
   font-size: var(--font-size-xxl);
   font-weight: 700;
-  color: var(--color-dark);
+  color: var(--text);
 }
 .heading-xl.blue {
   color: var(--color-faby-blue);
@@ -28,14 +28,14 @@
 
 .paragraph {
   font-size: var(--font-size-md);
-  color: var(--color-dark);
+  color: var(--text);
   line-height: 1.6;
 }
 
 .cta {
   font-style: italic;
   font-weight: 500;
-  color: #444;
+  color: var(--text-muted);
   margin-top: 2rem;
 }
 

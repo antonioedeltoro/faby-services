@@ -10,10 +10,12 @@ import {
   CircleDashed,
 } from "lucide-react";
 import { useAuth } from "../hooks/useAuth";
+import { useLang } from "../context/LanguageContext";
 import logo from "../assets/Fabylogoblk.png";
 
 export default function Footer() {
   const { isAuthenticated } = useAuth();
+  const { t } = useLang();
 
   // Scroll to the top when clicking footer internal links
   const scrollToTop = () => {
@@ -27,10 +29,10 @@ export default function Footer() {
       <div className="footer__grid">
         {/* left */}
         <div className="footer__column footer__nav">
-          <NavLink to="/" onClick={scrollToTop}>Inicio</NavLink>
-          <NavLink to="/services" onClick={scrollToTop}>Servicios</NavLink>
-          <NavLink to="/contact" onClick={scrollToTop}>Contacto</NavLink>
-          <NavLink to="/appointments" onClick={scrollToTop}>Citas</NavLink>
+          <NavLink to="/" onClick={scrollToTop}>{t("nav.home")}</NavLink>
+          <NavLink to="/services" onClick={scrollToTop}>{t("nav.services")}</NavLink>
+          <NavLink to="/contact" onClick={scrollToTop}>{t("nav.contact")}</NavLink>
+          <NavLink to="/appointments" onClick={scrollToTop}>{t("nav.appointments")}</NavLink>
         </div>
 
         {/* centre */}
@@ -38,7 +40,7 @@ export default function Footer() {
           <div className="admin-logo-link">
             <Link
               to={isAuthenticated ? "/admin/news" : "/admin/login"}
-              title="Acceso de administrador"
+              title={t("footer.adminAccess")}
               onClick={scrollToTop}
             >
               <img src={logo} alt="Faby Services" className="footer-logo" />
@@ -49,11 +51,11 @@ export default function Footer() {
         {/* right */}
         <div className="footer__column">
           <div className="footer__social">
-            <a href="tel:+14242490927" aria-label="Llamar">
-              <Phone size={18} title="Llamar" />
+            <a href="tel:+14242490927" aria-label={t("footer.call")}>
+              <Phone size={18} title={t("footer.call")} />
             </a>
-            <a href="mailto:fabymultiservicios@gmail.com" aria-label="Correo electrónico">
-              <Mail size={18} title="Correo electrónico" />
+            <a href="mailto:fabymultiservicios@gmail.com" aria-label={t("footer.email")}>
+              <Mail size={18} title={t("footer.email")} />
             </a>
             <a
               href="https://www.facebook.com/fabyservicesCA"
@@ -103,9 +105,9 @@ export default function Footer() {
       <hr className="footer-divider" />
 
       <div className="footer__credits">
-        <p>© {year} Faby Services Seguros y Contabilidad</p>
+        <p>© {year} {t("footer.company")}</p>
         <p>
-          Diseñado por{" "}
+          {t("footer.designedBy")}{" "}
           <a
             href="https://www.deltoro.codes"
             target="_blank"

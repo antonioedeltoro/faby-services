@@ -33,7 +33,7 @@
 .heading-xl {
   font-size: var(--font-size-xxl);
   margin-bottom: 1rem;
-  color: var(--color-dark, #1a1a1a);
+  color: var(--text);
 }
 
 /* readable width cap for text elements */
@@ -50,7 +50,7 @@
 
 .paragraph {
   font-size: 1rem;
-  color: var(--color-dark);
+  color: var(--text);
   margin-bottom: 1rem;
   line-height: 1.6;
 }
@@ -59,7 +59,7 @@
 .enrollment-list {
   margin-bottom: 2rem;
   padding-left: 1.25rem; /* align bullets */
-  color: var(--color-dark);
+  color: var(--text);
 }
 
 .enrollment-list li {
@@ -88,7 +88,7 @@
   flex-direction: column;
   font-weight: 500;
   font-size: 0.95rem;
-  color: var(--color-dark);
+  color: var(--text);
 }
 
 .enrollment-form input,
@@ -123,7 +123,7 @@
 
 .button--outline {
   background-color: transparent;
-  color: var(--color-dark);
+  color: var(--text);
   border: 2px solid var(--color-dark);
 }
 

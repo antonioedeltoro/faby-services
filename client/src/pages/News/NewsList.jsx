@@ -2,9 +2,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../../api/client";
+import { useLang } from "../../context/LanguageContext";
 import "../../styles/News.css";
 
 export default function NewsList() {
+  const { t } = useLang();
   const [newsItems, setNewsItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -28,12 +30,12 @@ export default function NewsList() {
   return (
     <div className={`news-page ${isEmpty ? "news-page--compact" : ""}`}>
       <div className="news-container">
-        <h1 className="heading-xl">Últimas Noticias</h1>
+        <h1 className="heading-xl">{t("news.title")}</h1>
 
         {loading ? (
-          <p>Cargando…</p>
+          <p>{t("news.loading")}</p>
         ) : isEmpty ? (
-          <p>No hay noticias disponibles.</p>
+          <p>{t("news.empty")}</p>
         ) : (
           newsItems.map((item) => (
             <div className="news-card card" key={item._id}>
@@ -50,7 +52,7 @@ export default function NewsList() {
                 to={`/news/${item.slug || item._id}`}
                 className="read-more"
               >
-                Leer más →
+                {t("news.readMore")} →
               </Link>
             </div>
           ))
