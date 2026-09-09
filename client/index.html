@@ -2,9 +2,92 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#00aeef" />
     <title>Faby Services Insurance & Taxes</title>
+
+    <!--
+      Social/scraper baseline below is intentionally static and site-level so
+      that no-JS crawlers (Facebook, WhatsApp, iMessage, X) always get a valid
+      preview. Per-page <title>, <meta name="description">, <link canonical>,
+      and <html lang> are managed at runtime by src/components/Seo.jsx.
+    -->
+
+    <!-- Open Graph (Facebook, WhatsApp, iMessage, LinkedIn) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Faby Services Insurance & Taxes" />
+    <meta property="og:title" content="Faby Services Insurance & Taxes" />
+    <meta
+      property="og:description"
+      content="Bilingual insurance, tax preparation, bookkeeping, and notary services in Moreno Valley, CA. Honest, personalized financial help for families and small businesses."
+    />
+    <meta property="og:url" content="https://fabyservices.com/" />
+    <meta property="og:image" content="https://fabyservices.com/og-image.png" />
+    <meta property="og:image:alt" content="Faby Services Insurance & Taxes" />
+    <meta property="og:locale" content="es_US" />
+    <meta property="og:locale:alternate" content="en_US" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@fabyservices" />
+    <meta name="twitter:title" content="Faby Services Insurance & Taxes" />
+    <meta
+      name="twitter:description"
+      content="Bilingual insurance, tax preparation, bookkeeping, and notary services in Moreno Valley, CA."
+    />
+    <meta name="twitter:image" content="https://fabyservices.com/og-image.png" />
+
+    <!-- Structured data: LocalBusiness (AccountingService) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "AccountingService",
+        "@id": "https://fabyservices.com/#business",
+        "name": "Faby Services Insurance & Taxes",
+        "description": "Bilingual insurance, tax preparation, bookkeeping, and notary services in Moreno Valley, CA.",
+        "url": "https://fabyservices.com/",
+        "logo": "https://fabyservices.com/og-image.png",
+        "image": "https://fabyservices.com/og-image.png",
+        "email": "fabymultiservicios@gmail.com",
+        "telephone": "+1-424-249-0927",
+        "priceRange": "$$",
+        "currenciesAccepted": "USD",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "10920 Fenton Rd",
+          "addressLocality": "Moreno Valley",
+          "addressRegion": "CA",
+          "postalCode": "92557",
+          "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 33.9396,
+          "longitude": -117.2927
+        },
+        "areaServed": {
+          "@type": "AdministrativeArea",
+          "name": "Moreno Valley, Riverside County, CA"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00",
+            "closes": "17:00"
+          }
+        ],
+        "knowsLanguage": ["en", "es"],
+        "sameAs": [
+          "https://www.facebook.com/fabyservicesCA",
+          "https://www.instagram.com/fabyservicesca/",
+          "https://www.threads.net/@fabyservicesca",
+          "https://x.com/fabyservices"
+        ]
+      }
+    </script>
     <!-- Set theme before first paint to avoid a flash of the wrong theme -->
     <script>
       (function () {

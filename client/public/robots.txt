@@ -1,0 +1,6 @@
+# https://fabyservices.com robots.txt
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+Sitemap: https://fabyservices.com/sitemap.xml

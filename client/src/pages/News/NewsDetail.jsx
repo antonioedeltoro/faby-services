@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { api } from "../../api/client";
 import { useLang } from "../../context/LanguageContext";
+import Seo from "../../components/Seo";
 import "../../styles/News.css";
 import "../../styles/buttons.css";
 
@@ -31,8 +32,22 @@ export default function NewsDetail() {
   if (loading) return <p>{t("news.loading")}</p>;
   if (notFound || !newsItem) return <p>{t("news.notFound")}</p>;
 
+  // Plain-text excerpt from the (HTML) article body for the meta description.
+  const excerpt = newsItem.content
+    ? newsItem.content
+        .replace(/<[^>]*>/g, " ")
+        .replace(/\s+/g, " ")
+        .trim()
+        .slice(0, 155)
+    : undefined;
+
   return (
     <div className="news-page">
+      <Seo
+        title={`${newsItem.title} | Faby Services`}
+        description={excerpt}
+        path={`/news/${newsItem.slug || slugOrId}`}
+      />
       <div className="news-container">
         <div className="card">
           <h1 className="heading-xl">{newsItem.title}</h1>

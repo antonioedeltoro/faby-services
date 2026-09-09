@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import '../styles/Contact.css';
-import { Helmet } from 'react-helmet';
+import Seo from "../components/Seo";
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css'; // local CSS import (Option 1)
 import { useLang } from "../context/LanguageContext";
@@ -95,9 +95,11 @@ export default function Contact() {
 
   return (
     <div className="page-container contact-page">
-      <Helmet>
-        <title>{t("contact.meta.title")}</title>
-      </Helmet>
+      <Seo
+        title={t("contact.meta.title")}
+        description={t("contact.meta.description")}
+        path="/contact"
+      />
 
       <section className="contact-section">
         <div className="section-content">

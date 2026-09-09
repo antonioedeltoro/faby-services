@@ -1,6 +1,6 @@
 // client/src/pages/Admin/Login.jsx
 import "../../styles/Admin.css";
-import { Helmet } from "react-helmet";
+import Seo from "../../components/Seo";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
@@ -36,9 +36,7 @@ export default function AdminLogin() {
 
   return (
     <div className="login-page">
-      <Helmet>
-        <title>Admin Login | Faby Services</title>
-      </Helmet>
+      <Seo title="Admin Login | Faby Services" path="/admin/login" noindex />
 
       <div className="admin-card">
         <h1 className="admin-page-title">Admin&nbsp;Login</h1>

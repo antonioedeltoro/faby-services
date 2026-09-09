@@ -1,5 +1,5 @@
 import "../styles/TaxSeason.css"; // reuse form/card/typography via partials
-import { Helmet } from "react-helmet";
+import Seo from "../components/Seo";
 import { useState } from "react";
 import { useLang } from "../context/LanguageContext";
 
@@ -37,9 +37,11 @@ export default function Appointments() {
 
   return (
     <div className="page-container tax-season-page">
-      <Helmet>
-        <title>{t("appointments.meta.title")}</title>
-      </Helmet>
+      <Seo
+        title={t("appointments.meta.title")}
+        description={t("appointments.meta.description")}
+        path="/appointments"
+      />
 
       <section className="tax-season-section">
         <div className="tax-content">

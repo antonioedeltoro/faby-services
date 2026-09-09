@@ -1,5 +1,5 @@
 import "../styles/TaxSeason.css";
-import { Helmet } from "react-helmet";
+import Seo from "../components/Seo";
 import { useState } from "react";
 import { useLang } from "../context/LanguageContext";
 
@@ -119,9 +119,11 @@ export default function TaxSeason() {
 
   return (
     <div className="page-container tax-season-page">
-      <Helmet>
-        <title>{`${t("taxSeason.meta.titlePrefix")} ${currentYear} | Faby Services`}</title>
-      </Helmet>
+      <Seo
+        title={`${t("taxSeason.meta.titlePrefix")} ${currentYear} | Faby Services`}
+        description={t("taxSeason.meta.description")}
+        path="/tax-season"
+      />
 
       <section className="tax-season-section">
         <div className="tax-content">

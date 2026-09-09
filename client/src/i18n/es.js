@@ -23,7 +23,8 @@ export const es = {
   },
   "appointments": {
     "meta": {
-      "title": "Citas | Faby Services Seguros y Contabilidad"
+      "title": "Citas | Faby Services Seguros y Contabilidad",
+      "description": "Agende una cita con Faby Services para seguros, preparación de impuestos, contabilidad o notaría en Moreno Valley, CA. En inglés y español."
     },
     "heading": "Citas",
     "intro": "Envíe su solicitud y nos pondremos en contacto para confirmar la fecha y hora.",
@@ -59,7 +60,8 @@ export const es = {
   },
   "contact": {
     "meta": {
-      "title": "Contacto | Faby Services Seguros y Contabilidad"
+      "title": "Contacto | Faby Services Seguros y Contabilidad",
+      "description": "Contacte a Faby Services en Moreno Valley, CA. Llame al (424) 249-0927 o visítenos para ayuda con seguros, impuestos, contabilidad y notaría en inglés o español."
     },
     "heading": "Contáctenos",
     "intro": "¿Tiene preguntas? Estamos aquí para ayudarle.",
@@ -73,7 +75,8 @@ export const es = {
   },
   "home": {
     "meta": {
-      "title": "Inicio | Faby Services"
+      "title": "Inicio | Faby Services",
+      "description": "Servicios bilingües de seguros, preparación de impuestos, contabilidad y notaría en Moreno Valley, CA. Ayuda financiera honesta y personalizada para familias y pequeñas empresas."
     },
     "hero": {
       "title": "Servicios Confiables de Impuestos y Consultoría Empresarial",
@@ -123,6 +126,10 @@ export const es = {
   },
   "news": {
     "title": "Últimas Noticias",
+    "meta": {
+      "title": "Noticias | Faby Services Seguros e Impuestos",
+      "description": "Manténgase al día con las últimas noticias sobre impuestos, seguros y finanzas de Faby Services en Moreno Valley, CA."
+    },
     "loading": "Cargando…",
     "empty": "No hay noticias disponibles.",
     "readMore": "Leer más",
@@ -133,7 +140,8 @@ export const es = {
   "openEnrollment": {
     "meta": {
       "titlePrefix": "Inscripción Abierta",
-      "titleSuffix": "Seguros y Contabilidad"
+      "titleSuffix": "Seguros y Contabilidad",
+      "description": "Ayuda con la Inscripción Abierta de Faby Services. Reciba orientación experta y bilingüe sobre cobertura de salud a través de Covered California y otros proveedores confiables."
     },
     "hero": {
       "heading": "Inscripción Abierta",
@@ -175,6 +183,9 @@ export const es = {
   },
   "reviews": {
     "pageTitle": "Reseñas | Faby Services Seguros y Contabilidad",
+    "meta": {
+      "description": "Lea lo que dicen los clientes sobre Faby Services y comparta su experiencia con nuestros servicios de seguros, impuestos y contabilidad en Moreno Valley, CA."
+    },
     "heading": "Reseñas",
     "intro": "Comparte tu experiencia con Faby Services. Inicia sesión o crea una cuenta para publicar y gestionar tus reseñas.",
     "login": "Iniciar sesión",
@@ -214,7 +225,8 @@ export const es = {
   },
   "services": {
     "meta": {
-      "title": "Servicios | Faby Services Seguros y Contabilidad"
+      "title": "Servicios | Faby Services Seguros y Contabilidad",
+      "description": "Explore Faby Services: seguro de salud a través de Covered California, impuestos personales y de negocios, contabilidad, notaría pública y cursos de capacitación financiera."
     },
     "title": "Explore Nuestros Servicios",
     "items": {
@@ -243,7 +255,8 @@ export const es = {
   },
   "taxSeason": {
     "meta": {
-      "titlePrefix": "Temporada de Impuestos"
+      "titlePrefix": "Temporada de Impuestos",
+      "description": "La temporada de impuestos hecha simple. Faby Services ofrece presentación de impuestos personales y de negocios precisa y a tiempo en Moreno Valley, CA."
     },
     "hero": {
       "headingPrefix": "Temporada de Impuestos",

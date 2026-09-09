@@ -1,7 +1,7 @@
 import '../styles/Home.css';
 import '../styles/PageStyles.css';
 import FabyImage from '../assets/Faby.jpeg';
-import { Helmet } from 'react-helmet';
+import Seo from "../components/Seo";
 import { useLang } from "../context/LanguageContext";
 
 export default function Home() {
@@ -9,9 +9,11 @@ export default function Home() {
 
   return (
     <div className="home-page">
-      <Helmet>
-        <title>{t("home.meta.title")}</title>
-      </Helmet>
+      <Seo
+        title={t("home.meta.title")}
+        description={t("home.meta.description")}
+        path="/"
+      />
 
       {/* HERO */}
       <section className="section hero-section centered">

@@ -23,7 +23,8 @@ export const en = {
   },
   "appointments": {
     "meta": {
-      "title": "Appointments | Faby Services Insurance and Bookkeeping"
+      "title": "Appointments | Faby Services Insurance and Bookkeeping",
+      "description": "Schedule an appointment with Faby Services for insurance, tax preparation, bookkeeping, or notary help in Moreno Valley, CA. English & Spanish."
     },
     "heading": "Appointments",
     "intro": "Send us your request and we'll get in touch to confirm the date and time.",
@@ -59,7 +60,8 @@ export const en = {
   },
   "contact": {
     "meta": {
-      "title": "Contact | Faby Services Insurance and Accounting"
+      "title": "Contact | Faby Services Insurance and Accounting",
+      "description": "Contact Faby Services in Moreno Valley, CA. Call (424) 249-0927 or visit us for insurance, taxes, bookkeeping, and notary help in English or Spanish."
     },
     "heading": "Contact Us",
     "intro": "Have questions? We're here to help.",
@@ -73,7 +75,8 @@ export const en = {
   },
   "home": {
     "meta": {
-      "title": "Home | Faby Services"
+      "title": "Home | Faby Services",
+      "description": "Bilingual insurance, tax preparation, bookkeeping, and notary services in Moreno Valley, CA. Honest, personalized financial help for families and small businesses."
     },
     "hero": {
       "title": "Trusted Tax Services and Business Consulting",
@@ -123,6 +126,10 @@ export const en = {
   },
   "news": {
     "title": "Latest News",
+    "meta": {
+      "title": "News | Faby Services Insurance and Taxes",
+      "description": "Stay up to date with the latest tax, insurance, and financial news from Faby Services in Moreno Valley, CA."
+    },
     "loading": "Loading…",
     "empty": "No news available.",
     "readMore": "Read more",
@@ -133,7 +140,8 @@ export const en = {
   "openEnrollment": {
     "meta": {
       "titlePrefix": "Open Enrollment",
-      "titleSuffix": "Insurance & Bookkeeping"
+      "titleSuffix": "Insurance & Bookkeeping",
+      "description": "Open Enrollment help from Faby Services. Get expert, bilingual guidance on health coverage through Covered California and other trusted providers."
     },
     "hero": {
       "heading": "Open Enrollment",
@@ -175,6 +183,9 @@ export const en = {
   },
   "reviews": {
     "pageTitle": "Reviews | Faby Services Insurance and Accounting",
+    "meta": {
+      "description": "Read what clients say about Faby Services and share your own experience with our insurance, tax, and bookkeeping services in Moreno Valley, CA."
+    },
     "heading": "Reviews",
     "intro": "Share your experience with Faby Services. Log in or create an account to post and manage your reviews.",
     "login": "Log in",
@@ -214,7 +225,8 @@ export const en = {
   },
   "services": {
     "meta": {
-      "title": "Services | Faby Services Insurance and Accounting"
+      "title": "Services | Faby Services Insurance and Accounting",
+      "description": "Explore Faby Services: health insurance through Covered California, personal & business tax filing, bookkeeping, notary public, and financial training courses."
     },
     "title": "Explore Our Services",
     "items": {
@@ -243,7 +255,8 @@ export const en = {
   },
   "taxSeason": {
     "meta": {
-      "titlePrefix": "Tax Season"
+      "titlePrefix": "Tax Season",
+      "description": "Tax season made simple. Faby Services provides accurate, on-time personal and business tax filing in Moreno Valley, CA — in English and Spanish."
     },
     "hero": {
       "headingPrefix": "Tax Season",

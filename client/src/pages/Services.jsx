@@ -1,5 +1,5 @@
 import '../styles/Services.css';
-import { Helmet } from 'react-helmet';
+import Seo from "../components/Seo";
 import { useLang } from "../context/LanguageContext";
 
 export default function Services() {
@@ -7,9 +7,11 @@ export default function Services() {
 
   return (
     <div className="page-container services-page">
-      <Helmet>
-        <title>{t("services.meta.title")}</title>
-      </Helmet>
+      <Seo
+        title={t("services.meta.title")}
+        description={t("services.meta.description")}
+        path="/services"
+      />
 
       <section className="services-section">
         <div className="section-content">

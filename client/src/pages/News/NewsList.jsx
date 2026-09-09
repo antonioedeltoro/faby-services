@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../../api/client";
 import { useLang } from "../../context/LanguageContext";
+import Seo from "../../components/Seo";
 import "../../styles/News.css";
 
 export default function NewsList() {
@@ -29,6 +30,11 @@ export default function NewsList() {
   /* ─────────────── render ─────────────── */
   return (
     <div className={`news-page ${isEmpty ? "news-page--compact" : ""}`}>
+      <Seo
+        title={t("news.meta.title")}
+        description={t("news.meta.description")}
+        path="/news"
+      />
       <div className="news-container">
         <h1 className="heading-xl">{t("news.title")}</h1>
 

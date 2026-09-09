@@ -1,7 +1,7 @@
 // client/src/pages/Admin/CreatePost.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import Seo from "../../components/Seo";
 import { api } from "../../api/client";
 import "../../styles/Admin.css";
 
@@ -51,9 +51,7 @@ export default function CreatePost() {
   return (
     <div className="news-page">
       <div className="admin-card card">
-        <Helmet>
-          <title>Create Post | Admin</title>
-        </Helmet>
+        <Seo title="Create Post | Admin" noindex />
 
         <h1 className="admin-page-title">Create New Post</h1>
 

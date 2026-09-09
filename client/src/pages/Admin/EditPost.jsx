@@ -2,7 +2,7 @@
 import "../../styles/Admin.css";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import Seo from "../../components/Seo";
 import { api } from "../../api/client";
 
 export default function EditPost() {
@@ -66,9 +66,7 @@ export default function EditPost() {
   return (
     <div className="news-page">
       <div className="admin-card card">
-        <Helmet>
-          <title>Edit Post | Admin</title>
-        </Helmet>
+        <Seo title="Edit Post | Admin" noindex />
 
         <h1 className="admin-page-title">Edit News Post</h1>
 

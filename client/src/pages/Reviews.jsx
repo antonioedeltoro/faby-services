@@ -1,5 +1,5 @@
 import "../styles/Reviews.css";
-import { Helmet } from "react-helmet";
+import Seo from "../components/Seo";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { reviewsApi } from "../api/client";
 import { useLang } from "../context/LanguageContext";
@@ -193,9 +193,11 @@ export default function Reviews() {
   /* ─────────── UI ─────────── */
   return (
     <div className="page-container reviews-page">
-      <Helmet>
-        <title>{t("reviews.pageTitle")}</title>
-      </Helmet>
+      <Seo
+        title={t("reviews.pageTitle")}
+        description={t("reviews.meta.description")}
+        path="/reviews"
+      />
 
       <section className="reviews-section">
         <div className="reviews-content">

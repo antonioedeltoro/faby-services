@@ -1,5 +1,5 @@
 import "../styles/OpenEnrollment.css";
-import { Helmet } from "react-helmet";
+import Seo from "../components/Seo";
 import { useState } from "react";
 import { useLang } from "../context/LanguageContext";
 
@@ -50,9 +50,11 @@ export default function OpenEnrollment() {
 
   return (
     <div className="page-container open-enrollment-page">
-      <Helmet>
-        <title>{`${t("openEnrollment.meta.titlePrefix")} ${currentYear} | Faby Services ${t("openEnrollment.meta.titleSuffix")}`}</title>
-      </Helmet>
+      <Seo
+        title={`${t("openEnrollment.meta.titlePrefix")} ${currentYear} | Faby Services ${t("openEnrollment.meta.titleSuffix")}`}
+        description={t("openEnrollment.meta.description")}
+        path="/open-enrollment"
+      />
 
       <section className="open-enrollment-section">
         <div className="enrollment-content">
