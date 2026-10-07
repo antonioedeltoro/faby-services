@@ -58,7 +58,7 @@ export default function Footer() {
               <Mail size={18} title={t("footer.email")} />
             </a>
             <a
-              href="https://www.facebook.com/fabyservicesCA"
+              href="https://www.facebook.com/profile.php?id=61586189362746"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
