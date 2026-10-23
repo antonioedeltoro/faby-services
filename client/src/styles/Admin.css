@@ -13,7 +13,7 @@
 
 .admin-page-title {
   font-size: var(--font-size-xxl);
-  font-family: var(--font-family-heading, serif);
+  font-family: var(--font-family-heading, "Poppins", sans-serif);
   text-align: center;
   color: var(--color-faby-blue);
   margin-bottom: 2rem;
