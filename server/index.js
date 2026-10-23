@@ -16,18 +16,49 @@ dotenv.config();
 const app = express();
 
 /* CORS */
+// Full access: the live site (and local dev / Render URLs).
 const allowedOrigins = [
   process.env.CLIENT_ORIGIN || "http://localhost:5173",
   "https://faby-services.onrender.com",
   "https://www.fabyservices.com",
 ];
 
+// Read-only access: the deltoro.codes portfolio showcase. It may display
+// public data (news, reviews) but must never write to the live database.
+const readOnlyOrigins = ["https://faby-services.deltoro.codes"];
+
+const fullCors = {
+  origin: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+};
+const readOnlyCors = {
+  origin: true,
+  methods: ["GET"],
+  allowedHeaders: ["Content-Type"],
+  credentials: false,
+};
+
+// Server-side guard: CORS only stops browsers from reading responses, so
+// reject any non-GET request from a read-only origin before it reaches a route.
+app.use((req, res, next) => {
+  const origin = req.get("Origin");
+  if (
+    readOnlyOrigins.includes(origin) &&
+    !["GET", "HEAD", "OPTIONS"].includes(req.method)
+  ) {
+    return res.status(403).json({ message: "Read-only demo origin" });
+  }
+  next();
+});
+
 app.use(
-  cors({
-    origin: allowedOrigins,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
+  cors((req, callback) => {
+    const origin = req.get("Origin");
+    if (allowedOrigins.includes(origin)) return callback(null, fullCors);
+    if (readOnlyOrigins.includes(origin)) return callback(null, readOnlyCors);
+    callback(null, { origin: false });
   })
 );
 
