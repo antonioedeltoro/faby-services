@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { useLang } from "../context/LanguageContext";
 
-const SITE_URL = "https://fabyservices.com";
+const SITE_URL = "https://www.fabyservices.com";
 
 /**
  * Per-page <head> metadata, managed at runtime.
