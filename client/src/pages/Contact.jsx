@@ -1,11 +1,11 @@
 import { useEffect, useRef } from 'react';
 import '../styles/Contact.css';
 import Seo from "../components/Seo";
-import mapboxgl from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css'; // local CSS import (Option 1)
 import { useLang } from "../context/LanguageContext";
 
-mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_TOKEN || '';
+// mapbox-gl is ~1.7 MB, so it is loaded on demand (its own chunk) only when
+// this page mounts, instead of shipping in the main bundle for every page.
+const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN || '';
 
 const ADDRESS_TEXT = '10920 Fenton Rd, Moreno Valley, CA 92557';
 
@@ -33,61 +33,79 @@ export default function Contact() {
     window.location.href = getPreferredMapsURL();
   };
 
-  // Initialize Mapbox (deferred to next frame), force resize after load
+  // Lazy-load Mapbox, then initialize (deferred to next frame), force resize after load
   useEffect(() => {
     if (!mapContainerRef.current) return;
     if (mapRef.current) return;
-    if (!mapboxgl.accessToken) return; // graceful: box remains clickable
+    if (!MAPBOX_TOKEN) return; // graceful: box remains clickable
 
+    let cancelled = false;
+    let raf = 0;
     let cleanup = () => {};
-    const raf = requestAnimationFrame(() => {
-      const map = new mapboxgl.Map({
-        container: mapContainerRef.current,
-        style: 'mapbox://styles/mapbox/streets-v12',
-        center: [LOCATION.lng, LOCATION.lat],
-        zoom: LOCATION.zoom,
-        cooperativeGestures: true,
+
+    Promise.all([
+      import('mapbox-gl'),
+      import('mapbox-gl/dist/mapbox-gl.css'),
+    ])
+      .then(([{ default: mapboxgl }]) => {
+        if (cancelled || !mapContainerRef.current) return;
+        mapboxgl.accessToken = MAPBOX_TOKEN;
+
+        raf = requestAnimationFrame(() => {
+          const map = new mapboxgl.Map({
+            container: mapContainerRef.current,
+            style: 'mapbox://styles/mapbox/streets-v12',
+            center: [LOCATION.lng, LOCATION.lat],
+            zoom: LOCATION.zoom,
+            cooperativeGestures: true,
+          });
+          mapRef.current = map;
+
+          new mapboxgl.Marker({ color: '#004d40' })
+            .setLngLat([LOCATION.lng, LOCATION.lat])
+            .addTo(map);
+
+          // Open maps app when user clicks the map
+          map.on('click', openMaps);
+
+          // Fix Safari/Grid timing: ensure the canvas sizes correctly
+          map.on('load', () => {
+            map.resize();
+            setTimeout(() => map.resize(), 100);
+          });
+
+          // Keep sized on window/layout changes
+          const onWinResize = () => map.resize();
+          window.addEventListener('resize', onWinResize);
+
+          // Extra robustness: resize when the container's box size changes
+          let ro;
+          if ('ResizeObserver' in window && mapContainerRef.current) {
+            ro = new ResizeObserver(() => map.resize());
+            ro.observe(mapContainerRef.current);
+          }
+
+          map.on('error', (e) => {
+            // Surface any Mapbox errors in console during dev
+            // eslint-disable-next-line no-console
+            console.error('Mapbox error event:', e?.error || e);
+          });
+
+          cleanup = () => {
+            window.removeEventListener('resize', onWinResize);
+            if (ro) ro.disconnect();
+            map.remove();
+            mapRef.current = null;
+          };
+        });
+      })
+      .catch((err) => {
+        // Map failed to load (network, blocked, etc.) — box stays clickable
+        console.error('Mapbox failed to load:', err);
       });
-      mapRef.current = map;
-
-      new mapboxgl.Marker({ color: '#004d40' })
-        .setLngLat([LOCATION.lng, LOCATION.lat])
-        .addTo(map);
-
-      // Open maps app when user clicks the map
-      map.on('click', openMaps);
-
-      // Fix Safari/Grid timing: ensure the canvas sizes correctly
-      map.on('load', () => {
-        map.resize();
-        setTimeout(() => map.resize(), 100);
-      });
-
-      // Keep sized on window/layout changes
-      const onWinResize = () => map.resize();
-      window.addEventListener('resize', onWinResize);
-
-      // Extra robustness: resize when the container's box size changes
-      let ro;
-      if ('ResizeObserver' in window && mapContainerRef.current) {
-        ro = new ResizeObserver(() => map.resize());
-        ro.observe(mapContainerRef.current);
-      }
-
-      map.on('error', (e) => {
-        // Surface any Mapbox errors in console during dev
-        // eslint-disable-next-line no-console
-        console.error('Mapbox error event:', e?.error || e);
-      });
-
-      cleanup = () => {
-        window.removeEventListener('resize', onWinResize);
-        if (ro) ro.disconnect();
-        map.remove();
-      };
-    });
 
     return () => {
+      cancelled = true;
       cancelAnimationFrame(raf);
       cleanup();
     };
