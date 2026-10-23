@@ -12,26 +12,26 @@ const ADDRESS_TEXT = '10920 Fenton Rd, Moreno Valley, CA 92557';
 // Office Location Coordinates 
 const LOCATION = { lng: -117.2927, lat: 33.9396, zoom: 15, };
 
+// Decide which maps app URL to open
+const getPreferredMapsURL = () => {
+  const ua = navigator.userAgent || '';
+  const isAndroid = /Android/.test(ua);
+  const isIOS = /iPad|iPhone|iPod|Macintosh/.test(ua) && !/Android/.test(ua);
+
+  if (isAndroid) return `geo:0,0?q=${encodeURIComponent(ADDRESS_TEXT)}`;
+  if (isIOS) return `https://maps.apple.com/?q=${encodeURIComponent(ADDRESS_TEXT)}`;
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS_TEXT)}`;
+};
+
+// Fallback: keep the box clickable even if Mapbox fails to init
+const openMaps = () => {
+  window.location.href = getPreferredMapsURL();
+};
+
 export default function Contact() {
   const { t } = useLang();
   const mapContainerRef = useRef(null);
   const mapRef = useRef(null);
-
-  // Decide which maps app URL to open
-  const getPreferredMapsURL = () => {
-    const ua = navigator.userAgent || '';
-    const isAndroid = /Android/.test(ua);
-    const isIOS = /iPad|iPhone|iPod|Macintosh/.test(ua) && !/Android/.test(ua);
-
-    if (isAndroid) return `geo:0,0?q=${encodeURIComponent(ADDRESS_TEXT)}`;
-    if (isIOS) return `https://maps.apple.com/?q=${encodeURIComponent(ADDRESS_TEXT)}`;
-    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS_TEXT)}`;
-  };
-
-  // Fallback: keep the box clickable even if Mapbox fails to init
-  const openMaps = () => {
-    window.location.href = getPreferredMapsURL();
-  };
 
   // Lazy-load Mapbox, then initialize (deferred to next frame), force resize after load
   useEffect(() => {
@@ -87,7 +87,6 @@ export default function Contact() {
 
           map.on('error', (e) => {
             // Surface any Mapbox errors in console during dev
-            // eslint-disable-next-line no-console
             console.error('Mapbox error event:', e?.error || e);
           });
 
