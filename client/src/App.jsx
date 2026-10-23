@@ -9,6 +9,7 @@ import Appointments from './pages/Appointments'; // ← NEW
 import OpenEnrollment from './pages/OpenEnrollment';
 import TaxSeason from './pages/TaxSeason';
 import Reviews from './pages/Reviews'; // ← NEW
+import NotFound from './pages/NotFound';
 
 // News Pages (Public)
 import NewsList from './pages/News/NewsList';
@@ -71,6 +72,9 @@ export default function App() {
                 </ProtectedRoute>
               }
             />
+
+            {/* Catch-all: anything that doesn't match a route above */}
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         <Footer />

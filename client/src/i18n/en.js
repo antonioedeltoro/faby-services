@@ -304,5 +304,13 @@ export const en = {
       "messageLabel": "Message",
       "noMessage": "(no message)"
     }
+  },
+  "notFound": {
+    "meta": {
+      "title": "Page Not Found | Faby Services"
+    },
+    "heading": "Page Not Found",
+    "message": "Sorry, the page you're looking for doesn't exist or may have moved.",
+    "homeLink": "Back to Home"
   }
 };

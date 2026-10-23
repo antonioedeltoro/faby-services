@@ -1,0 +1,23 @@
+/* 404 — page not found */
+.not-found-section {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.not-found-code {
+  font-size: 4.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text-muted);
+  opacity: 0.6;
+  margin-bottom: 0.5rem;
+}
+
+.not-found-section .paragraph {
+  margin: 1rem auto 2rem;
+  max-width: 32rem;
+}
