@@ -8,6 +8,11 @@
   text-align: center;
 }
 
+/* shared .section-content forces text-align: left; center it on this page */
+.not-found-section .section-content {
+  text-align: center;
+}
+
 .not-found-code {
   font-size: 4.5rem;
   font-weight: 700;
